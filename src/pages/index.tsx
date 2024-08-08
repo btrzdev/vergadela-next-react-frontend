@@ -1,9 +1,9 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import Footer from "@/components/Footer/Footer";
-import NavBar from "@/components/NavBar/NavBar";
+import Image from 'next/image'
+import { Inter } from 'next/font/google'
+import Footer from '@/components/Footer/Footer'
+import NavBar from '@/components/NavBar/NavBar'
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
@@ -13,5 +13,5 @@ export default function Home() {
       <NavBar />
       <Footer />
     </main>
-  );
+  )
 }
