@@ -10,11 +10,13 @@ const Contact = () => {
       <NavBar />
       <div className="flex h-full w-full flex-col items-center justify-center bg-white pb-[196px]">
         <div className="flex flex-col items-center justify-center">
-          <h1 className="text-[70px] font-normal text-black">Contactos</h1>
+          <h1 className="font-glittenCaps text-[70px] font-normal text-black">
+            Contactos
+          </h1>
           <hr className="h-[2px] w-[87px] bg-primary-yellow" />
         </div>
-        <div className="flex items-center justify-center pt-[106px]">
-          <div className="max-h-[591px] min-h-[579px] min-w-[400px] min-w-max max-w-[623px] rounded-r-[14px] bg-[url('/contactFormImage.png')] bg-cover lg:w-[623px]" />
+        <div className="flex pt-[106px]">
+          <div className="max-h-[591px] min-h-[579px] min-w-[400px] rounded-r-[14px] bg-[url('/contactFormImage.png')] bg-cover lg:w-[623px]" />
           {/* <Image
               src={'/contactFormImage.png'}
               width={623}

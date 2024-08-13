@@ -1,26 +1,33 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss'
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        footer: "url('/bg_footer.png')",
       },
       colors: {
         'primary-green': '#052E26',
         'primary-dark': '#1F1A17',
         'primary-yellow': '#E0B75B',
-        'secondary-yellow': '#D3AA59'
-      }
+        'secondary-yellow': '#D3AA59',
+      },
+      fontSize: {
+        sm: '14px',
+        md: '16px',
+        xl: '70px',
+      },
+      fontFamily: {
+        glitten: ['Glitten', 'sans-serif'],
+        glittenCaps: ['GlittenCaps', 'sans-serif'],
+      },
     },
   },
   plugins: [],
-};
-export default config;
+}
+export default config

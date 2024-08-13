@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const Footer = () => {
   return (
-    <div className="flex h-[432px] w-full items-start justify-start justify-evenly bg-primary-green pt-[74px]">
+    <div className="bg-footer flex h-[432px] w-full items-start justify-start justify-evenly bg-cover bg-fixed bg-center bg-no-repeat pt-[74px] text-white">
       <div className="flex flex-col items-start justify-start">
         <Image
           src={'/vergadelaFooterLogo.svg'}
@@ -15,7 +15,7 @@ const Footer = () => {
       <div className="flex flex-col items-start justify-start">
         <h3 className="mb-[53px] text-[16px] font-bold">MENU</h3>
         <div className="flex flex-col gap-[18px]">
-          <Link href={''}>Ínicio</Link>
+          <Link href={''}>Início</Link>
           <Link href={''}>Serviços</Link>
           <Link href={''}>Projetos</Link>
           <Link href={''}>Notícias</Link>
