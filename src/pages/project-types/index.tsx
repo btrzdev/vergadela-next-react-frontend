@@ -9,8 +9,8 @@ const ProjectTypes = () => {
     >
       <NavBar />
       <div className="flex h-full w-full flex-col items-center justify-center bg-white">
-        <div className="flex flex-col items-center justify-center gap-[106px]">
-          <h1 className="font-glittenCaps text-[70px] font-normal text-black">
+        <div className="flex flex-col items-center justify-center gap-[40px] px-5 py-[10px] lg:gap-[126px] lg:px-0">
+          <h1 className="text-center font-glittenCaps text-[50px] font-normal text-black lg:text-[70px]">
             Tipos de Projetos
           </h1>
           <p className="inline-block max-w-[630px] text-center text-[28px] leading-[48px]">
@@ -20,9 +20,9 @@ const ProjectTypes = () => {
           </p>
           <hr className="h-[2px] w-[87px] bg-primary-yellow" />
         </div>
-        <div className="align-self-end flex h-[439px] w-full flex-col lg:flex-row">
+        <div className="flex h-auto w-full flex-col lg:flex-row">
           <div
-            className="h-full] flex w-[33%] w-full items-center justify-center"
+            className="flex h-full min-h-[480px] w-[33%] w-full items-center justify-center"
             style={{
               backgroundImage: `url('/images/component_24.png')`,
               backgroundRepeat: 'no-repeat',
@@ -34,7 +34,7 @@ const ProjectTypes = () => {
             </p>
           </div>
           <div
-            className="flex h-full w-[33%] w-full items-center justify-center"
+            className="flex h-full min-h-[480px] w-[33%] w-full items-center justify-center"
             style={{
               backgroundImage: `url('/images/component_25.png')`,
               backgroundRepeat: 'no-repeat',
@@ -44,7 +44,7 @@ const ProjectTypes = () => {
             <p className="font-glittenCaps text-[50px] text-white">Moradias</p>
           </div>
           <div
-            className="flex h-full w-[33%] w-full items-center justify-center"
+            className="flex h-full min-h-[480px] w-[33%] w-full items-center justify-center"
             style={{
               backgroundImage: `url('/images/component_26.png')`,
               backgroundRepeat: 'no-repeat',

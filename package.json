@@ -9,9 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/qs": "^6.9.15",
+    "axios": "^1.7.4",
+    "dotenv": "^16.4.5",
     "eslint-plugin-tailwindcss": "^3.17.4",
     "next": "14.2.5",
     "prettier": "^3.3.3",
+    "qs": "^6.13.0",
     "react": "^18",
     "react-dom": "^18"
   },
