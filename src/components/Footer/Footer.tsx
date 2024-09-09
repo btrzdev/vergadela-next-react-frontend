@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const Footer = () => {
   return (
-    <div className="bg-footer flex h-[432px] w-full items-start justify-start justify-evenly bg-cover bg-fixed bg-center bg-no-repeat pt-[74px] text-white">
+    <div className="absolute bottom-0 flex h-[432px] w-full items-start justify-start justify-evenly bg-footer bg-cover bg-fixed bg-center bg-no-repeat pt-[74px] text-white">
       <div className="flex flex-col items-start justify-start">
         <Image
           src={'/vergadelaFooterLogo.svg'}

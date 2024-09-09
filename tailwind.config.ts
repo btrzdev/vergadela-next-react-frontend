@@ -16,6 +16,7 @@ const config: Config = {
         'primary-dark': '#1F1A17',
         'primary-yellow': '#E0B75B',
         'secondary-yellow': '#D3AA59',
+        'medium-gray': '#1D1C1B',
       },
       fontSize: {
         sm: '14px',

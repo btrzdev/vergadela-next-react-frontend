@@ -1,13 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
-const NavBar = () => {
+
+const DarkNavBar = () => {
   return (
-    <div className="flex h-[149px] w-full items-center justify-between bg-white px-[5%]">
+    <div className="absolute z-50 flex h-[149px] w-full items-center justify-between bg-transparent px-[5%]">
       <Link href={'/about-us'}>
         <Image
           width={140}
           height={32}
-          src={'/vergadelaLogo.svg'}
+          src={'/white/logo_white.svg'}
           alt={'logoVergadela'}
         />
       </Link>
@@ -16,7 +17,7 @@ const NavBar = () => {
         <Image
           width={22}
           height={22}
-          src={'/icons/hamburguer.svg'}
+          src={'/white/white_burguer.svg'}
           alt={'hamburguer_menu'}
         />
       </button>
@@ -25,7 +26,7 @@ const NavBar = () => {
           <Image
             width={22}
             height={22}
-            src={'/icons/facebookIcon.svg'}
+            src={'/white/facebook_white_logo.svg'}
             alt={''}
           />
         </Link>
@@ -33,7 +34,7 @@ const NavBar = () => {
           <Image
             width={22}
             height={22}
-            src={'/icons/instagramIcon.svg'}
+            src={'/white/instagram_white_logo.svg'}
             alt={''}
           />
         </Link>
@@ -42,4 +43,4 @@ const NavBar = () => {
   )
 }
 
-export default NavBar
+export default DarkNavBar

@@ -66,6 +66,53 @@ const getAboutUs = async () => {
     //     partinershipSection: {
     //       populate: {
     //         partinership: {
+    //           populate: {
+    //             image: {
+    //               populate: '*',
+    //             },
+    //           },
+    //         },
+    //       },
+    //     },
+    //     recentsProjects: {
+    //       populate: {
+    //         project: {
+    //           populate: {
+    //             image: {
+    //               populate: '*',
+    //             },
+    //           },
+    //         },
+    //       },
+    //     },
+    //     curiositySection: {
+    //       populate: {
+    //         curiosity: {
+    //           populate: {
+    //             image: {
+    //               populate: '*',
+    //             },
+    //           },
+    //         },
+    //       },
+    //     },
+    //   },
+    // }
+    // const urlParamsObject = {
+    //   populate: {
+    //     hero: {
+    //       populate: '*',
+    //     },
+    //     chronology: {
+    //       populate: {
+    //         image: {
+    //           populate: '*',
+    //         },
+    //       },
+    //     },
+    //     partinershipSection: {
+    //       populate: {
+    //         partinership: {
     //           populate: 'deep',
     //         },
     //       },

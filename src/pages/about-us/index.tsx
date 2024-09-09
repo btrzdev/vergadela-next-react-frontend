@@ -48,31 +48,60 @@ export default function AboutUs({ attributes }: any) {
           </div>
           <h2 className="my-[50px] text-[34px]">Projetos Recentes</h2>
           <div className="flex w-full items-center justify-center gap-[30px]">
-            {attributes?.recentsProjects?.project?.map((item, index) => (
-              <div
-                className="relative flex h-[278px] w-[308px] items-center overflow-hidden rounded-[12px]"
-                key={index}
-              >
+            {attributes?.recentsProjects?.project?.map(
+              (
+                item: {
+                  image: { data: { attributes: { url: string | null } } }
+                  type:
+                    | string
+                    | number
+                    | bigint
+                    | boolean
+                    | ReactElement<any, string | JSXElementConstructor<any>>
+                    | Iterable<ReactNode>
+                    | ReactPortal
+                    | Promise<AwaitedReactNode>
+                    | null
+                    | undefined
+                  title:
+                    | string
+                    | number
+                    | bigint
+                    | boolean
+                    | ReactElement<any, string | JSXElementConstructor<any>>
+                    | Iterable<ReactNode>
+                    | ReactPortal
+                    | Promise<AwaitedReactNode>
+                    | null
+                    | undefined
+                },
+                index: Key | null | undefined
+              ) => (
                 <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat grayscale transition-transform duration-1000 ease-out hover:scale-105 hover:grayscale-0"
-                  style={{
-                    backgroundImage: `url(${getStrapiMedia(item?.image?.data?.attributes?.url)})`,
-                  }}
-                />
-                <div className="absolute bottom-2 left-5 flex flex-col">
-                  <div className="flex items-center gap-[10px]">
-                    <div className="h-[1px] w-[13px] bg-primary-yellow" />
-                    <span className="text-sm font-normal uppercase text-primary-yellow">
-                      {item?.type}
-                    </span>
+                  className="relative flex h-[278px] w-[308px] items-center overflow-hidden rounded-[12px]"
+                  key={index}
+                >
+                  <div
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat grayscale transition-transform duration-1000 ease-out hover:scale-105 hover:grayscale-0"
+                    style={{
+                      backgroundImage: `url(${getStrapiMedia(item?.image?.data?.attributes?.url)})`,
+                    }}
+                  />
+                  <div className="absolute bottom-2 left-5 flex flex-col">
+                    <div className="flex items-center gap-[10px]">
+                      <div className="h-[1px] w-[13px] bg-primary-yellow" />
+                      <span className="text-sm font-normal uppercase text-primary-yellow">
+                        {item?.type}
+                      </span>
+                    </div>
+                    <h3 className="font-glittenCaps text-[28px] text-white">
+                      {' '}
+                      {item?.title}
+                    </h3>
                   </div>
-                  <h3 className="font-glittenCaps text-[28px] text-white">
-                    {' '}
-                    {item?.title}
-                  </h3>
                 </div>
-              </div>
-            ))}
+              )
+            )}
           </div>
         </div>
       </div>
