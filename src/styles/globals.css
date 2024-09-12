@@ -28,4 +28,18 @@
     flex-direction: column;
     min-height: 100vh;
   }
-  
+  ::-webkit-scrollbar{
+    height: 3px;
+    background-color: #1D1C1B;
+    
+  } 
+  ::-webkit-scrollbar-track {
+    height: 3px;
+    background-color: #dbd7d4;
+    
+  } 
+
+  ::-webkit-scrollbar-thumb {
+  height: 3px;
+  background-color: #1D1C1B;
+  }

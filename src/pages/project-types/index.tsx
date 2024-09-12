@@ -7,7 +7,6 @@ const ProjectTypes = () => {
     <main
       className={`flex min-h-screen flex-col items-center justify-between bg-white`}
     >
-      <NavBar />
       <div className="flex h-full w-full flex-col items-center justify-center bg-white">
         <div className="flex flex-col items-center justify-center gap-[40px] px-5 py-[10px] lg:gap-[126px] lg:px-0">
           <h1 className="text-center font-glittenCaps text-[50px] font-normal text-black lg:text-[70px]">
@@ -21,43 +20,56 @@ const ProjectTypes = () => {
           <hr className="h-[2px] w-[87px] bg-primary-yellow" />
         </div>
         <div className="flex h-auto w-full flex-col lg:flex-row">
-          <div
-            className="flex h-full min-h-[480px] w-[33%] w-full items-center justify-center"
-            style={{
-              backgroundImage: `url('/images/component_24.png')`,
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover',
-            }}
-          >
-            <p className="font-glittenCaps text-[50px] text-white">
+          <div className="relative flex h-full min-h-[480px] w-1/3 items-center justify-center">
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url('/images/component_24.png')`,
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                filter: 'brightness(50%)',
+                zIndex: 1,
+              }}
+            />
+
+            <p className="relative z-50 font-glittenCaps text-[50px] text-white">
               Apartamentos
             </p>
           </div>
-          <div
-            className="flex h-full min-h-[480px] w-[33%] w-full items-center justify-center"
-            style={{
-              backgroundImage: `url('/images/component_25.png')`,
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover',
-            }}
-          >
-            <p className="font-glittenCaps text-[50px] text-white">Moradias</p>
+          <div className="relative flex h-full min-h-[480px] w-1/3 items-center justify-center">
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url('/images/component_24.png')`,
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                filter: 'brightness(50%)',
+                zIndex: 1,
+              }}
+            />
+
+            <p className="relative z-50 font-glittenCaps text-[50px] text-white">
+              Apartamentos
+            </p>
           </div>
-          <div
-            className="flex h-full min-h-[480px] w-[33%] w-full items-center justify-center"
-            style={{
-              backgroundImage: `url('/images/component_26.png')`,
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover',
-            }}
-          >
-            <p className="font-glittenCaps text-[50px] text-white">
-              Coorporativo
+          <div className="relative flex h-full min-h-[480px] w-1/3 items-center justify-center">
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url('/images/component_24.png')`,
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                filter: 'brightness(50%)',
+                zIndex: 1,
+              }}
+            />
+
+            <p className="relative z-50 font-glittenCaps text-[50px] text-white">
+              Apartamentos
             </p>
           </div>
         </div>
       </div>
-      <Footer />
     </main>
   )
 }

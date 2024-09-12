@@ -26,6 +26,7 @@ const config: Config = {
       fontFamily: {
         glitten: ['Glitten', 'sans-serif'],
         glittenCaps: ['GlittenCaps', 'sans-serif'],
+        roboto: ['Roboto', 'sans-serif'],
       },
     },
   },

@@ -11,12 +11,12 @@ const NavBar = () => {
 
   return (
     <>
-      <div className="flex h-[149px] w-full items-center justify-between overflow-hidden bg-white px-[5%]">
+      <div className="absolute z-50 flex h-[149px] w-full items-center justify-between overflow-hidden bg-transparent px-[5%]">
         <Link href={'/about-us'}>
           <Image
             width={140}
             height={32}
-            src={'/vergadelaLogo.svg'}
+            src={'white/logo_white.svg'}
             alt={'logoVergadela'}
           />
         </Link>
@@ -25,7 +25,7 @@ const NavBar = () => {
           <Image
             width={22}
             height={22}
-            src={'/icons/hamburguer.svg'}
+            src={'white/white_burguer.svg'}
             alt={'hamburguer_menu'}
           />
         </button>
@@ -35,7 +35,7 @@ const NavBar = () => {
             <Image
               width={22}
               height={22}
-              src={'/icons/facebookIcon.svg'}
+              src={'/white/facebook_white_logo.svg'}
               alt={''}
             />
           </Link>
@@ -43,7 +43,7 @@ const NavBar = () => {
             <Image
               width={22}
               height={22}
-              src={'/icons/instagramIcon.svg'}
+              src={'/white/instagram_white_logo.svg'}
               alt={''}
             />
           </Link>
@@ -82,7 +82,7 @@ const NavBar = () => {
                   Sobre nós
                 </Link>
                 <Link
-                  href="/projects"
+                  href="/services-vergadela"
                   onClick={toggleNav}
                   className="hover:text-primary-yellow"
                 >
@@ -116,7 +116,7 @@ const NavBar = () => {
               <Image
                 height={350}
                 width={307}
-                src={'/icons/vergadela_log_navbar.svg'}
+                src={'/white/logo_white.svg'}
                 alt={'close button navbar'}
               />
             </div>

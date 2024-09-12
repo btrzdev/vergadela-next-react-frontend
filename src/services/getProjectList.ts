@@ -1,51 +1,20 @@
 import { fetchAPI } from '@/utils/fetch-api'
-import { populate } from 'dotenv'
 
 const getProjectList = async () => {
   try {
-    const path = `/about-us`
+    const path = `/projects`
     const urlParamsObject = {
       populate: {
         hero: {
           populate: '*',
         },
-        chronology: {
+        infoSection: {
           populate: {
-            image: {
+            carrouselImages: {
               populate: '*',
             },
-          },
-        },
-        partinershipSection: {
-          populate: {
-            partinership: {
-              populate: {
-                image: {
-                  populate: '*',
-                },
-              },
-            },
-          },
-        },
-        recentsProjects: {
-          populate: {
-            project: {
-              populate: {
-                image: {
-                  populate: '*',
-                },
-              },
-            },
-          },
-        },
-        curiositySection: {
-          populate: {
-            curiosity: {
-              populate: {
-                image: {
-                  populate: '*',
-                },
-              },
+            details: {
+              populate: '*',
             },
           },
         },

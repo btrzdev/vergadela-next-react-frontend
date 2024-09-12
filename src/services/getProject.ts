@@ -13,7 +13,14 @@ export const getProject = async (id: string | number | undefined) => {
           populate: '*',
         },
         infoSection: {
-          populate: '*',
+          populate: {
+            carrouselImages: {
+              populate: '*',
+            },
+            details: {
+              populate: '*',
+            },
+          },
         },
       },
     }

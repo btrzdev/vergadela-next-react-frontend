@@ -60,7 +60,6 @@ const Contact = () => {
           </form>
         </div>
       </div>
-      <Footer />
     </main>
   )
 }
