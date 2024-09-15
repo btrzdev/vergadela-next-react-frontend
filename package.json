@@ -11,17 +11,24 @@
   "dependencies": {
     "@next/font": "^14.2.5",
     "@types/qs": "^6.9.15",
+    "@types/react-slick": "^0.23.13",
     "axios": "^1.7.4",
+    "carousel": "^0.0.3",
     "dotenv": "^16.4.5",
     "eslint-plugin-tailwindcss": "^3.17.4",
     "next": "14.2.5",
+    "nuka": "^1.0.0",
     "prettier": "^3.3.3",
     "qs": "^6.13.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-slick": "^0.30.2",
+    "reactjs-carousel-slider": "^1.0.5",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/nuka-carousel": "^4.4.6",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^8.0.1",
