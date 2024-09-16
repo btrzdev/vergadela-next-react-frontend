@@ -1,11 +1,11 @@
 import { fetchAPI } from '@/utils/fetch-api'
 
-const getProjectTypesPage = async () => {
+const getNews = async () => {
   try {
-    const path = `/project-types-page`
+    const path = `/news`
     const urlParamsObject = {
       populate: {
-        cardType: {
+        preview: {
           populate: '*',
         },
       },
@@ -18,4 +18,5 @@ const getProjectTypesPage = async () => {
     throw error
   }
 }
-export default getProjectTypesPage
+
+export default getNews

@@ -11,7 +11,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   const specialNavBarRoutes = [
     '/about-us',
     '/contact',
-    '/news',
     '/project-types',
     'services-vergadela',
   ]

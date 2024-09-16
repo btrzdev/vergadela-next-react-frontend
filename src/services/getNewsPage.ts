@@ -2,11 +2,24 @@ import { fetchAPI } from '@/utils/fetch-api'
 
 const getProjectTypesPage = async () => {
   try {
-    const path = `/project-types-page`
+    const path = `/news-page`
     const urlParamsObject = {
       populate: {
-        cardType: {
+        bigImage: {
           populate: '*',
+        },
+        news: {
+          populate: {
+            data: {
+              populate: {
+                attributes: {
+                  populate: {
+                    images: { populate: '*' },
+                  },
+                },
+              },
+            },
+          },
         },
       },
     }
@@ -18,4 +31,5 @@ const getProjectTypesPage = async () => {
     throw error
   }
 }
+
 export default getProjectTypesPage

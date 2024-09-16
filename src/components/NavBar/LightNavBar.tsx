@@ -16,7 +16,7 @@ const NavBar = () => {
           <Image
             width={140}
             height={32}
-            src={'white/logo_white.svg'}
+            src={'/white/logo_white.svg'}
             alt={'logoVergadela'}
           />
         </Link>
@@ -25,7 +25,7 @@ const NavBar = () => {
           <Image
             width={22}
             height={22}
-            src={'white/white_burguer.svg'}
+            src={'/white/white_burguer.svg'}
             alt={'hamburguer_menu'}
           />
         </button>

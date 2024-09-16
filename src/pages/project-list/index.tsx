@@ -38,8 +38,15 @@ const ProjectList: React.FC<ProjectListProps> = ({ attributes }) => {
 
         <div className="relative left-[10%] top-1/2 z-10 flex flex-col">
           <div className="flex">
-            <span className="text-[16px] text-primary-yellow">---------</span>
-            <span className="text-[16px] text-primary-yellow">PROJETOS</span>
+            <Image
+              src={'/icons/yellow_straight.svg'}
+              alt={''}
+              width={53}
+              height={22}
+            />
+            <span className="ml-2 font-roboto text-[16px] text-primary-yellow">
+              PROJETOS
+            </span>
           </div>
           <h3 className="font-glittenCaps text-[70px] text-white">
             Apartamentos

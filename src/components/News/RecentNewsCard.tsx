@@ -13,9 +13,9 @@ const RecentNewsCard: React.FC<RecentNewsProps> = ({
   return (
     <div className="flex w-[308px] gap-[30px]">
       <div
-        className="flex h-[86px] w-[94px] items-center justify-center rounded-[4px]"
+        className="h-[86px] min-w-[94px] rounded-[4px]"
         style={{
-          backgroundImage: `url('${imgUrl}')`,
+          backgroundImage: `url(${getStrapiMedia(imgUrl)})`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
         }}

@@ -1,4 +1,6 @@
+import { getStrapiMedia } from '@/utils/api-helpers'
 import { ReactNode } from 'react'
+import Image from 'next/image'
 
 interface NewsCardProps {
   imageSrc: string
@@ -16,18 +18,18 @@ const NewsCard: React.FC<NewsCardProps> = ({
   date,
 }) => {
   return (
-    <div className="font-roboto flex flex-col px-[11%]">
+    <div className="flex flex-col px-[11%] font-roboto">
       <div
         className="flex h-full min-h-[445px] w-[645px] items-center justify-center"
         style={{
-          backgroundImage: `url('${imageSrc}')`,
+          backgroundImage: `url(${getStrapiMedia(imageSrc ?? '')})`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
         }}
       />
       <div className="mb-[27px] mt-[35px] flex items-center gap-[16px]">
         <span className="inline-block flex h-[32px] items-center justify-center rounded-[2px] bg-black p-5 text-center text-sm font-semibold text-white">
-          {tag.toUpperCase()}
+          {tag?.toUpperCase()}
         </span>
         <span className="inline-block flex h-[32px] items-center justify-center text-center text-primary-yellow">
           {date}
@@ -40,8 +42,13 @@ const NewsCard: React.FC<NewsCardProps> = ({
         <p className="mb-[23px] text-sm font-thin leading-[24px]">
           {newsContent}
         </p>
-        <div className="flex">
-          <span className="text-[16px] text-primary-yellow">---------</span>
+        <div className="flex gap-[8px]">
+          <Image
+            src={'/icons/yellow_straight.svg'}
+            alt={''}
+            width={53}
+            height={22}
+          />
           <span className="text-[16px] text-primary-yellow">LER MAIS</span>
         </div>
       </div>
