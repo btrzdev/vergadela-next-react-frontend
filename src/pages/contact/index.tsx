@@ -1,5 +1,3 @@
-import Footer from '@/components/Footer/Footer'
-import NavBar from '@/components/NavBar/NavBar'
 import Image from 'next/image'
 
 const Contact = () => {
@@ -7,7 +5,6 @@ const Contact = () => {
     <main
       className={`flex min-h-screen flex-col items-center justify-between bg-white`}
     >
-      <NavBar />
       <div className="flex h-full w-full flex-col items-center justify-center bg-white pb-[196px]">
         <div className="flex flex-col items-center justify-center">
           <h1 className="font-glittenCaps text-[70px] font-normal text-black">

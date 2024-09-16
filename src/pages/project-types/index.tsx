@@ -1,77 +1,72 @@
-import Footer from '@/components/Footer/Footer'
-import NavBar from '@/components/NavBar/NavBar'
+import getProjectTypesPage from '@/services/getProjectTypePage'
+import { getStrapiMedia } from '@/utils/api-helpers'
 import Image from 'next/image'
 
-const ProjectTypes = () => {
+interface ProjectTypesProps {
+  attributes: any
+}
+const ProjectTypes: React.FC<ProjectTypesProps> = ({ attributes }) => {
+  console.log('attributes', attributes)
   return (
     <main
       className={`flex min-h-screen flex-col items-center justify-between bg-white`}
     >
       <div className="flex h-full w-full flex-col items-center justify-center bg-white">
-        <div className="flex flex-col items-center justify-center gap-[40px] px-5 py-[10px] lg:gap-[126px] lg:px-0">
-          <h1 className="text-center font-glittenCaps text-[50px] font-normal text-black lg:text-[70px]">
-            Tipos de Projetos
-          </h1>
-          <p className="inline-block max-w-[630px] text-center text-[28px] leading-[48px]">
-            "Seja em um apartamento aconchegante, uma moradia espaçosa ou um
-            ambiente corporativo dinâmico, tudo é feito com{' '}
-            <span className="font-glittenCaps">amor e dedicação</span>."
+        <div className="mb-[50px] flex flex-col items-center justify-center gap-[40px] px-5 py-[10px] lg:mb-[160px] lg:gap-[126px] lg:px-0">
+          <div className="flex flex-col items-center">
+            <div className="flex items-center">
+              <Image
+                src={'/icons/yellow_straight.svg'}
+                alt={''}
+                width={53}
+                height={22}
+              />
+              <span className="ml-2 font-roboto text-[16px] text-primary-yellow">
+                {attributes?.attributes?.title}
+              </span>
+            </div>
+            <h1 className="text-center font-glittenCaps text-[50px] font-normal text-black lg:text-[70px]">
+              {attributes?.attributes?.subtitle}
+            </h1>
+          </div>
+
+          <p className="inline-block max-w-[630px] text-center text-[20px] leading-[35px] lg:text-[28px] lg:leading-[48px]">
+            {attributes?.attributes?.description}
           </p>
-          <hr className="h-[2px] w-[87px] bg-primary-yellow" />
         </div>
         <div className="flex h-auto w-full flex-col lg:flex-row">
-          <div className="relative flex h-full min-h-[480px] w-1/3 items-center justify-center">
+          {attributes?.attributes?.cardType?.map((item: any, index: any) => (
             <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `url('/images/component_24.png')`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                filter: 'brightness(50%)',
-                zIndex: 1,
-              }}
-            />
-
-            <p className="relative z-50 font-glittenCaps text-[50px] text-white">
-              Apartamentos
-            </p>
-          </div>
-          <div className="relative flex h-full min-h-[480px] w-1/3 items-center justify-center">
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `url('/images/component_24.png')`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                filter: 'brightness(50%)',
-                zIndex: 1,
-              }}
-            />
-
-            <p className="relative z-50 font-glittenCaps text-[50px] text-white">
-              Apartamentos
-            </p>
-          </div>
-          <div className="relative flex h-full min-h-[480px] w-1/3 items-center justify-center">
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `url('/images/component_24.png')`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                filter: 'brightness(50%)',
-                zIndex: 1,
-              }}
-            />
-
-            <p className="relative z-50 font-glittenCaps text-[50px] text-white">
-              Apartamentos
-            </p>
-          </div>
+              key={index}
+              className="group relative flex h-full min-h-[480px] items-center justify-center overflow-hidden lg:w-1/3"
+            >
+              <div
+                className="absolute inset-0 bg-cover bg-center grayscale filter transition-all duration-500 ease-in-out group-hover:scale-110 group-hover:brightness-100 group-hover:grayscale-0"
+                style={{
+                  backgroundImage: `url(${getStrapiMedia(item?.imgCard?.data?.attributes?.url)})`,
+                }}
+              />
+              <p className="relative z-50 font-glittenCaps text-[50px] capitalize text-white transition-colors duration-500 ease-in-out group-hover:text-primary-yellow">
+                {item?.typeProject}
+              </p>
+            </div>
+          ))}
         </div>
+        <div className="h-[4px] w-full bg-primary-yellow"></div>
       </div>
     </main>
   )
 }
 
 export default ProjectTypes
+
+export async function getServerSideProps() {
+  const data = await getProjectTypesPage()
+  const attributes = data?.data?.data
+
+  return {
+    props: {
+      attributes: attributes,
+    },
+  }
+}

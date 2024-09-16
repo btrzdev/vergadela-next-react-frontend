@@ -111,12 +111,12 @@ const NavBar = () => {
                 </Link>
               </nav>
             </div>
-            <div className="flex w-1/2 items-start justify-start">
+            <div className="z-100 flex w-1/2 items-start justify-start">
               {' '}
               <Image
                 height={350}
                 width={307}
-                src={'/white/logo_white.svg'}
+                src={'/icons/vergadela_log_navbar.svg'}
                 alt={'close button navbar'}
               />
             </div>

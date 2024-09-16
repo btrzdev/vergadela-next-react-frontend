@@ -82,7 +82,7 @@ const NavBar = () => {
                   Sobre nós
                 </Link>
                 <Link
-                  href="/projects"
+                  href="/services-vergadela"
                   onClick={toggleNav}
                   className="hover:text-primary-yellow"
                 >
@@ -111,7 +111,7 @@ const NavBar = () => {
                 </Link>
               </nav>
             </div>
-            <div className="flex w-1/2 items-start justify-start">
+            <div className="z-100 flex w-1/2 items-start justify-start">
               {' '}
               <Image
                 height={350}

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import getProject from '@/services/getProject'
 import { getStrapiMedia } from '@/utils/api-helpers'
 import { GetServerSidePropsContext } from 'next/types'
@@ -33,7 +34,7 @@ const IndividualProject: React.FC<IndividualProjectProps> = ({
   }
 
   return (
-    <div className="font-roboto flex h-screen flex-col bg-[#FFFAF5]">
+    <div className="flex h-screen flex-col bg-[#FFFAF5] font-roboto">
       <div className="h-[872px] w-full">
         <div
           className="flex h-[872px] items-center px-[7%]"
@@ -70,13 +71,13 @@ const IndividualProject: React.FC<IndividualProjectProps> = ({
                 <div className="flex flex-col gap-[30px]">
                   <div className="flex flex-col">
                     <p className="text-[12px] font-semibold">TEAM</p>
-                    <p className="text-medium-gray text-[16px]">
+                    <p className="text-[16px] text-medium-gray">
                       {infos?.team}
                     </p>
                   </div>
                   <div className="flex flex-col">
                     <p className="text-[12px] font-semibold">STRATEGY</p>
-                    <p className="text-medium-gray text-[16px]">
+                    <p className="text-[16px] text-medium-gray">
                       {infos?.strategy}
                     </p>
                   </div>
@@ -84,13 +85,13 @@ const IndividualProject: React.FC<IndividualProjectProps> = ({
                 <div className="flex flex-col gap-[30px]">
                   <div className="flex flex-col">
                     <p className="text-[12px] font-semibold">CLIENT</p>
-                    <p className="text-medium-gray text-[16px]">
+                    <p className="text-[16px] text-medium-gray">
                       {infos?.client}
                     </p>
                   </div>
                   <div className="flex flex-col">
                     <p className="text-[12px] font-semibold">DATE</p>
-                    <p className="text-medium-gray text-[16px]">
+                    <p className="text-[16px] text-medium-gray">
                       {infos?.date}
                     </p>
                   </div>
@@ -98,13 +99,13 @@ const IndividualProject: React.FC<IndividualProjectProps> = ({
                 <div className="flex flex-col gap-[30px]">
                   <div className="flex flex-col">
                     <p className="text-[12px] font-semibold">TERMS</p>
-                    <p className="text-medium-gray text-[16px]">
+                    <p className="text-[16px] text-medium-gray">
                       {infos?.terms}
                     </p>
                   </div>
                   <div className="flex flex-col">
                     <p className="text-[12px] font-semibold">SERVICES</p>
-                    <p className="text-medium-gray text-[16px]">
+                    <p className="text-[16px] text-medium-gray">
                       {infos?.services}
                     </p>
                   </div>
@@ -156,6 +157,7 @@ const IndividualProject: React.FC<IndividualProjectProps> = ({
               {carrouselImages.map(
                 (image: { attributes: { url: string | null } }, index: any) => (
                   <div
+                    key={`${image}-${index}`}
                     onClick={(e) => handleClick(e)}
                     className="h-[204px] w-[308px] flex-shrink-0 items-center rounded-[12px]"
                     style={{
@@ -183,13 +185,13 @@ const IndividualProject: React.FC<IndividualProjectProps> = ({
           <div className="mb-[55px] flex gap-[30px] px-[7%]">
             <div className="flex w-1/2 flex-col gap-[14px]">
               <h3 className="text-left font-semibold">DETALHES</h3>
-              <p className="text-medium-gray max-w-[532px] text-left text-[16px] leading-[26px]">
+              <p className="max-w-[532px] text-left text-[16px] leading-[26px] text-medium-gray">
                 {infos?.details[0]?.content}
               </p>
             </div>
             <div className="flex w-1/2 flex-col gap-[14px]">
               <h3 className="text-left font-semibold">CONCEITO</h3>
-              <p className="text-medium-gray max-w-[532px] text-left text-[16px] leading-[26px]">
+              <p className="max-w-[532px] text-left text-[16px] leading-[26px] text-medium-gray">
                 {infos?.details[1]?.content}
               </p>
             </div>

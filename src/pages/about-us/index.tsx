@@ -1,6 +1,5 @@
 import TeamSwiper from '@/components/AboutUs/TeamSwiper'
 import getAboutUs from '@/services/getAboutUs'
-import getProject from '@/services/getProject'
 import getProjectList from '@/services/getProjectList'
 import { getStrapiMedia } from '@/utils/api-helpers'
 import Image from 'next/image'
@@ -74,8 +73,8 @@ export default function AboutUs({ attributes, projects }: any) {
       </div>
       <div className="flex h-[368px] w-full items-center justify-between rounded-b-[30px] border-t-2 border-t-primary-yellow bg-primary-green px-[20%] py-[59px]">
         <h3 className="animate-slideInLeft inline-block max-w-[420px] font-glittenCaps text-[36px] text-primary-yellow">
-          "Transformamos espaços em experiências, onde cada detalhe reflete
-          amor, inovação e a essência de quem os habita."
+          &quot;Transformamos espaços em experiências, onde cada detalhe reflete
+          amor, inovação e a essência de quem os habita.&quot;
         </h3>
         <p className="animate-slideInRight inline-block max-w-[375px] text-[16px] font-normal leading-[28px] text-white">
           A nossa visão é continuar a expandir a nossa presença global,
@@ -233,7 +232,7 @@ export default function AboutUs({ attributes, projects }: any) {
               },
               index: any
             ) => (
-              <div>
+              <div key={`${item}-${index}`}>
                 <Link href={item?.href}>
                   <Image
                     src={
