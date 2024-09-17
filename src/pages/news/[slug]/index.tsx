@@ -1,25 +1,45 @@
-import NewsCard from '@/components/News/NewsCard'
-import RecentNewsCard from '@/components/News/RecentNewsCard'
+import RecentBigNewsCard from '@/components/News/RecentBigNewsCard'
+import getIndividualNews from '@/services/getIndividualNews'
 import getNews from '@/services/getNews'
-import getNewsPage from '@/services/getNewsPage'
 import { getStrapiMedia } from '@/utils/api-helpers'
+import Formatter from '@/utils/formatter'
 import Image from 'next/image'
+import Link from 'next/link'
+import { GetServerSidePropsContext } from 'next/types'
+import Markdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
+import remarkBreaks from 'remark-breaks'
 
 interface NewsProps {
   attributes: any
   news: any
+  slug: any
 }
 
-const NewsIndividual: React.FC<NewsProps> = ({ attributes, news }) => {
-  console.log('Attributes', attributes)
-  console.log('News', news)
+const IndividualNews: React.FC<NewsProps> = ({ attributes, news, slug }) => {
+  console.log('attributes', attributes)
+  console.log('news', news)
+
+  const customComponents = {
+    p: ({ ...props }) => (
+      <p
+        className="flex text-[14px] font-light leading-[24px] text-medium-gray"
+        {...props}
+      />
+    ),
+    img: ({ ...props }) => (
+      <img className="mr-4 h-auto max-w-[300px]" {...props} />
+    ),
+  }
+
   return (
     <div>
-      <div className="relative mb-[78px] flex min-h-[872px] items-center">
+      {/* Header Section */}
+      <div className="relative flex min-h-[872px] items-center">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `url(${getStrapiMedia(attributes?.bigImage?.data?.attributes?.url)})`,
+            backgroundImage: `url(${getStrapiMedia(attributes?.preview?.image?.data?.attributes?.url)})`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             filter: 'brightness(0.5)',
@@ -27,7 +47,7 @@ const NewsIndividual: React.FC<NewsProps> = ({ attributes, news }) => {
           }}
         ></div>
 
-        <div className="relative left-[10%] top-1/2 z-10 flex flex-col">
+        <div className="relative left-[10%] top-1/2 z-10 flex w-1/2 flex-col">
           <div className="flex">
             <Image
               src={'/icons/yellow_straight.svg'}
@@ -36,60 +56,169 @@ const NewsIndividual: React.FC<NewsProps> = ({ attributes, news }) => {
               height={22}
             />
             <span className="ml-2 font-roboto text-[16px] text-primary-yellow">
-              {attributes.title}
+              {'NOTICIAS'}
             </span>
           </div>
-          <h3 className="font-glittenCaps text-[70px] text-white">
-            {attributes.subtitle}
+          <h3 className="text-left font-glittenCaps text-[70px] text-white">
+            {attributes.title}
           </h3>
         </div>
       </div>
-      <div className="flex w-full justify-between">
-        <div className="flex flex-col gap-[67px]">
-          {news.map((item: any, index: any) => (
-            <NewsCard
-              key={`${item}-${index}`}
-              newsTitle={item?.attributes?.preview?.title}
-              imageSrc={item?.attributes?.preview?.image?.data?.attributes?.url}
-              newsContent={
-                'Worem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus necfringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus.'
-              }
-              tag={item?.attributes?.tag}
-              date={'6 DE MAIO, 2022'}
-            />
-          ))}
-        </div>
-        <div className="flex flex-col px-[7%]">
-          <div className="mb-[69px]">
-            <h2 className="mb-[19px] font-roboto text-[23px] font-semibold">
-              TAGS{' '}
-            </h2>
-            <div className="flex w-full flex-wrap gap-[24px]">
-              {news.map((item: any, index: any) => (
-                <span
-                  key={`${item}-${index}`}
-                  className="flex h-[32px] w-max items-center justify-center rounded-[2px] bg-black px-[18px] py-[9px] text-center text-sm font-semibold text-white"
-                >
-                  {item?.attributes?.tag?.toUpperCase()}
+
+      <div>
+        <div className="flex h-full w-full justify-between bg-[#D9D9D9] px-[7%] pt-[151px]">
+          <div className="flex w-1/2 flex-col">
+            <div className="flex max-w-[420px] flex-col">
+              <div className="flex items-center">
+                <span className="flex h-[32px] w-max items-center justify-center rounded-[2px] bg-medium-gray px-[18px] py-[9px] text-center text-sm font-semibold text-white">
+                  {attributes?.tag?.toUpperCase()}
                 </span>
-              ))}
+                <span className="w-max items-center justify-center rounded-[2px] px-[18px] py-[9px] text-center text-sm font-semibold text-primary-yellow">
+                  {attributes?.date.toUpperCase()}
+                </span>
+              </div>
+              <h2 className="text-[35px] font-semibold">{attributes.title}</h2>
+              <Formatter
+                value={attributes?.content}
+                render={({ children, key }) => {
+                  const containsImage = children.includes('<img')
+
+                  return (
+                    <div
+                      key={key}
+                      className={`flex ${containsImage ? 'flex-row' : 'flex-row'}`}
+                    >
+                      <Markdown
+                        remarkPlugins={[remarkBreaks]}
+                        rehypePlugins={[rehypeRaw]}
+                        components={customComponents}
+                      >
+                        {children}
+                      </Markdown>
+                    </div>
+                  )
+                }}
+              />
+            </div>{' '}
+            <div className="flex flex-col gap-[5px]">
+              <h3 className="font-roboto text-[12px] font-semibold leading-[24px]">
+                PARTILHAR
+              </h3>
+              <div className="mb-[55px] flex gap-[24px]">
+                <Link href={''}>
+                  <Image
+                    src={'/icons/instagramIcon.svg'}
+                    alt={''}
+                    width={22}
+                    height={22}
+                  />
+                </Link>
+                <Link href={''}>
+                  <Image
+                    src={'/icons/facebookIcon.svg'}
+                    alt={''}
+                    width={22}
+                    height={22}
+                  />
+                </Link>
+                <Link href={''}>
+                  <Image
+                    src={'/icons/linkedin.svg'}
+                    alt={''}
+                    width={22}
+                    height={22}
+                  />
+                </Link>
+                <Link href={''}>
+                  <Image
+                    src={'/icons/twitter.svg'}
+                    alt={''}
+                    width={22}
+                    height={22}
+                  />
+                </Link>
+              </div>
             </div>
           </div>
-          <div className="w-full">
-            <h2 className="no-break mb-[19px] font-roboto text-[23px] font-semibold">
-              NOTÍCIAS RECENTES
-            </h2>
-            <div className="flex flex-col gap-[24px]">
-              {news.map((item: any, index: any) => (
-                <RecentNewsCard
+          <div className="flex w-1/2 flex-col gap-[40px]">
+            {attributes?.images?.data?.map(
+              (item: { attributes: { url: string | null } }, index: any) => (
+                <img
+                  src={getStrapiMedia(item?.attributes?.url) ?? ''}
                   key={`${item}-${index}`}
-                  newsDate={'6 DE MAIO, 2022'}
-                  newsTitle={item?.attributes?.preview?.title}
-                  imgUrl={
-                    item?.attributes?.preview?.image?.data?.attributes?.url
-                  }
                 />
-              ))}
+              )
+            )}
+          </div>
+        </div>
+        <div className="flex h-[800px] w-full flex-col">
+          <div className="mb-[50px] flex justify-between px-[7%] pt-[51px]">
+            <div className="flex gap-[11px]">
+              <Image
+                src={'/icons/straight.svg'}
+                alt={''}
+                width={24}
+                height={24}
+              />
+              <p>ANTERIOR</p>
+            </div>
+            <div className="flex">
+              <Link href={'/news'}>
+                <Image
+                  src={'/icons/grid.svg'}
+                  alt={''}
+                  width={28}
+                  height={28}
+                />
+              </Link>
+            </div>
+            <div className="flex gap-[11px]">
+              <p>PRÓXIMO</p>
+              <Image
+                src={'/icons/straight.svg'}
+                alt={''}
+                width={24}
+                height={24}
+                className="rotate-180"
+              />
+            </div>
+          </div>
+          <div className="flex flex-col items-center justify-center gap-[39px] px-[7%] pb-[134px]">
+            <div className="flex flex-col items-center justify-center gap-[13px]">
+              <img
+                src={'/icons/yellow_straight.svg'}
+                alt={''}
+                className="h-[1px] w-full"
+              />
+              <span className="ml-2 font-roboto text-[16px] text-primary-yellow">
+                {'NOTÍCIAS'}
+              </span>
+              <h3 className="text-[35px] font-semibold">OUTRAS NOTÍCIAS</h3>
+            </div>
+            <div className="flex w-full max-w-[1320px] justify-between">
+              {news
+                .filter((item: { id: any }, index: any) => item.id !== slug)
+                .slice(0, 3)
+                .map((item: any, index: any) => (
+                  <Link
+                    href={`/news/${item?.id}`}
+                    key={`${item}-${index}`}
+                    className="flex w-[420px]"
+                  >
+                    <RecentBigNewsCard
+                      key={`${item}-${index}`}
+                      newsTitle={item?.attributes?.preview?.title}
+                      imageSrc={
+                        item?.attributes?.preview?.image?.data?.attributes?.url
+                      }
+                      newsContent={
+                        'Worem ipsum dolor sit amet, consectetur adipiscing elit...'
+                      }
+                      tag={item?.attributes?.tag}
+                      date={'6 DE MAIO, 2022'}
+                    />
+                  </Link>
+                ))}
             </div>
           </div>
         </div>
@@ -98,17 +227,20 @@ const NewsIndividual: React.FC<NewsProps> = ({ attributes, news }) => {
   )
 }
 
-export default NewsIndividual
+export default IndividualNews
 
-export async function getServerSideProps() {
-  const data = await getNewsPage()
-  const attributes = data?.data?.data
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { slug } = context.query
+
+  const data = await getIndividualNews(String(slug))
+  const attributes = data?.data?.attributes
   const newsData = await getNews()
 
   return {
     props: {
-      attributes: attributes?.attributes,
+      attributes: attributes,
       news: newsData?.data?.data,
+      slug: slug,
     },
   }
 }

@@ -4,6 +4,8 @@ import getNews from '@/services/getNews'
 import getNewsPage from '@/services/getNewsPage'
 import { getStrapiMedia } from '@/utils/api-helpers'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 interface NewsProps {
   attributes: any
@@ -11,10 +13,51 @@ interface NewsProps {
 }
 
 const News: React.FC<NewsProps> = ({ attributes, news }) => {
-  console.log('Attributes', attributes)
-  console.log('News', news)
+  const newsTags = news?.map((item: any) => item?.attributes?.tag)
+
+  const [searchTerm, setSearchTerm] = useState('')
+  const [filteredItems, setFilteredItems] = useState(news)
+  const [searchByTag, setSearchByTag] = useState('')
+
+  const itemsPerPage = 3
+  const [currentPage, setCurrentPage] = useState(1)
+  const totalPages = Math.ceil(filteredItems.length / itemsPerPage)
+
+  useEffect(() => {
+    const filtered = news.filter((item: any) => {
+      const titleMatches = item?.attributes?.title
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
+      const tagMatches =
+        searchByTag === '' || item?.attributes?.tag === searchByTag
+
+      return titleMatches && tagMatches
+    })
+
+    setFilteredItems(filtered)
+    setCurrentPage(1)
+  }, [searchTerm, searchByTag, news])
+
+  const paginatedNews = filteredItems.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  )
+
+  const handleSearch = (event: { target: { value: string } }) => {
+    setSearchTerm(event.target.value)
+  }
+
+  const handleSpanClick = (tag: string) => {
+    setSearchByTag(tag === searchByTag ? '' : tag)
+  }
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
+  }
+
   return (
     <div>
+      {/* Header Section */}
       <div className="relative mb-[78px] flex min-h-[872px] items-center">
         <div
           className="absolute inset-0"
@@ -44,51 +87,120 @@ const News: React.FC<NewsProps> = ({ attributes, news }) => {
           </h3>
         </div>
       </div>
-      <div className="flex w-full justify-between">
+
+      {/* Main Section */}
+      <div className="mb-[132px] flex w-full justify-between px-[7%]">
+        {/* News Cards Section */}
         <div className="flex flex-col gap-[67px]">
-          {news.map((item: any, index: any) => (
-            <NewsCard
-              key={`${item}-${index}`}
-              newsTitle={item?.attributes?.preview?.title}
-              imageSrc={item?.attributes?.preview?.image?.data?.attributes?.url}
-              newsContent={
-                'Worem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus necfringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus.'
-              }
-              tag={item?.attributes?.tag}
-              date={'6 DE MAIO, 2022'}
-            />
+          {paginatedNews.map((item: any, index: any) => (
+            <Link href={`/news/${item?.id}`} key={`${item}-${index}`}>
+              <NewsCard
+                key={`${item}-${index}`}
+                newsTitle={item?.attributes?.preview?.title}
+                imageSrc={
+                  item?.attributes?.preview?.image?.data?.attributes?.url
+                }
+                newsContent={
+                  'Worem ipsum dolor sit amet, consectetur adipiscing elit...'
+                }
+                tag={item?.attributes?.tag}
+                date={'6 DE MAIO, 2022'}
+              />
+            </Link>
           ))}
+
+          {/* Pagination Section */}
+          <div className="flex justify-center gap-2">
+            {/* Previous Button */}
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="rotate-180 bg-transparent hover:cursor-pointer"
+            >
+              <img
+                src="/icons/nextPageButton.svg"
+                className="h-[32px] w-[40px]"
+              />
+            </button>
+
+            {/* Page Numbers */}
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index}
+                onClick={() => handlePageChange(index + 1)}
+                className={`px-4 py-2 ${
+                  currentPage === index + 1
+                    ? 'bg-black text-white'
+                    : 'bg-gray-300 text-black'
+                } rounded`}
+              >
+                {index + 1}
+              </button>
+            ))}
+
+            {/* Next Button */}
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="bg-transparent hover:cursor-pointer"
+            >
+              <img
+                src="/icons/nextPageButton.svg"
+                className="h-[32px] w-[40px]"
+              />
+            </button>
+          </div>
         </div>
+
         <div className="flex flex-col px-[7%]">
           <div className="mb-[69px]">
+            <input
+              className="focus:border-b-1 w-full border-b border-gray-300 pb-[8px] placeholder:text-[12px] focus:border-gray-300 focus:outline-none"
+              placeholder="Pesquisar"
+              value={searchTerm}
+              onChange={handleSearch}
+            />
+          </div>
+
+          {/* Tag Filtering */}
+          <div className="mb-[69px]">
             <h2 className="mb-[19px] font-roboto text-[23px] font-semibold">
-              TAGS{' '}
+              TAGS
             </h2>
             <div className="flex w-full flex-wrap gap-[24px]">
               {news.map((item: any, index: any) => (
                 <span
                   key={`${item}-${index}`}
-                  className="flex h-[32px] w-max items-center justify-center rounded-[2px] bg-black px-[18px] py-[9px] text-center text-sm font-semibold text-white"
+                  onClick={() => handleSpanClick(item?.attributes?.tag)}
+                  className={`flex h-[32px] w-max items-center justify-center rounded-[2px] px-[18px] py-[9px] text-center text-sm font-semibold ${
+                    searchByTag === item?.attributes?.tag
+                      ? 'bg-medium-gray text-white'
+                      : 'border border-medium-gray bg-white text-medium-gray'
+                  } cursor-pointer`}
                 >
                   {item?.attributes?.tag?.toUpperCase()}
                 </span>
               ))}
             </div>
           </div>
-          <div className="w-full">
+
+          {/* Recent News Section */}
+          <div className="mb-[132px] w-full">
             <h2 className="no-break mb-[19px] font-roboto text-[23px] font-semibold">
               NOTÍCIAS RECENTES
             </h2>
             <div className="flex flex-col gap-[24px]">
               {news.map((item: any, index: any) => (
-                <RecentNewsCard
-                  key={`${item}-${index}`}
-                  newsDate={'6 DE MAIO, 2022'}
-                  newsTitle={item?.attributes?.preview?.title}
-                  imgUrl={
-                    item?.attributes?.preview?.image?.data?.attributes?.url
-                  }
-                />
+                <Link href={`/news/${item?.id}`} key={`${item}-${index}`}>
+                  <RecentNewsCard
+                    key={`${item}-${index}`}
+                    newsDate={'6 DE MAIO, 2022'}
+                    newsTitle={item?.attributes?.preview?.title}
+                    imgUrl={
+                      item?.attributes?.preview?.image?.data?.attributes?.url
+                    }
+                  />
+                </Link>
               ))}
             </div>
           </div>

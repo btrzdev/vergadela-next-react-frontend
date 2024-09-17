@@ -2,25 +2,23 @@ import { getStrapiMedia } from '@/utils/api-helpers'
 import { ReactNode } from 'react'
 import Image from 'next/image'
 
-interface NewsCardProps {
+interface RecentNewsProps {
   imageSrc: string
   newsTitle: string
   newsContent: string
   tag: string
   date: string | ReactNode
 }
-
-const NewsCard: React.FC<NewsCardProps> = ({
+const RecentBigNewsCard: React.FC<RecentNewsProps> = ({
   imageSrc,
   newsTitle,
-  newsContent,
   tag,
   date,
 }) => {
   return (
-    <div className="flex w-[645px] flex-col font-roboto">
+    <div className="group flex h-full w-full max-w-[420px] flex-col font-roboto hover:brightness-50">
       <div
-        className="flex h-full min-h-[445px] w-[645px] items-center justify-center"
+        className="flex h-[370px] w-full items-center justify-center rounded-[4px]"
         style={{
           backgroundImage: `url(${getStrapiMedia(imageSrc ?? '')})`,
           backgroundRepeat: 'no-repeat',
@@ -36,12 +34,10 @@ const NewsCard: React.FC<NewsCardProps> = ({
         </span>
       </div>
       <div className="flex w-full flex-col">
-        <h2 className="text-[34px] font-semibold text-[#1D1C1B]">
+        <h2 className="text-[28px] font-semibold text-[#1D1C1B]">
           {newsTitle}{' '}
         </h2>
-        <p className="mb-[23px] w-full text-sm font-medium font-thin leading-[24px] text-medium-gray">
-          {newsContent}
-        </p>
+
         <div className="flex gap-[8px]">
           <Image
             src={'/icons/yellow_straight.svg'}
@@ -56,4 +52,4 @@ const NewsCard: React.FC<NewsCardProps> = ({
   )
 }
 
-export default NewsCard
+export default RecentBigNewsCard

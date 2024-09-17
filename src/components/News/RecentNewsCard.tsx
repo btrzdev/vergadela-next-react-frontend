@@ -11,7 +11,7 @@ const RecentNewsCard: React.FC<RecentNewsProps> = ({
   newsDate,
 }) => {
   return (
-    <div className="flex w-[308px] gap-[30px]">
+    <div className="group flex w-[308px] gap-[30px] hover:cursor-pointer hover:brightness-50">
       <div
         className="h-[86px] min-w-[94px] rounded-[4px]"
         style={{

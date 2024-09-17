@@ -59,7 +59,7 @@ const ProjectList: React.FC<ProjectListProps> = ({ attributes }) => {
             <span
               key={index}
               className={`text-[14px] hover:cursor-pointer ${filter === selectedFilter ? 'font-bold text-primary-yellow' : ''}`}
-              style={{ whiteSpace: 'nowrap' }} // Add this inline style
+              style={{ whiteSpace: 'nowrap' }}
               onClick={() => setSelectedFilter(filter)}
             >
               {filter}
