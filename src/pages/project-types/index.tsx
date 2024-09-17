@@ -38,7 +38,11 @@ const ProjectTypes: React.FC<ProjectTypesProps> = ({ attributes }) => {
 
         <div className="flex h-auto w-full flex-col lg:flex-row">
           {attributes?.attributes?.cardType?.map((item: any, index: any) => (
-            <Link href={'/project-list'} className="w-full">
+            <Link
+              href={'/project-list'}
+              className="w-full"
+              key={`${item}-${index}`}
+            >
               <div
                 key={index}
                 className="group relative flex h-full min-h-[480px] w-full items-center justify-center overflow-hidden hover:cursor-pointer"

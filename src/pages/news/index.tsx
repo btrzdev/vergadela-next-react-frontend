@@ -48,6 +48,7 @@ const News: React.FC<NewsProps> = ({ attributes, news }) => {
         <div className="flex flex-col gap-[67px]">
           {news.map((item: any, index: any) => (
             <NewsCard
+              key={`${item}-${index}`}
               newsTitle={item?.attributes?.preview?.title}
               imageSrc={item?.attributes?.preview?.image?.data?.attributes?.url}
               newsContent={
@@ -65,7 +66,10 @@ const News: React.FC<NewsProps> = ({ attributes, news }) => {
             </h2>
             <div className="flex w-full flex-wrap gap-[24px]">
               {news.map((item: any, index: any) => (
-                <span className="flex h-[32px] w-max items-center justify-center rounded-[2px] bg-black px-[18px] py-[9px] text-center text-sm font-semibold text-white">
+                <span
+                  key={`${item}-${index}`}
+                  className="flex h-[32px] w-max items-center justify-center rounded-[2px] bg-black px-[18px] py-[9px] text-center text-sm font-semibold text-white"
+                >
                   {item?.attributes?.tag?.toUpperCase()}
                 </span>
               ))}
@@ -78,6 +82,7 @@ const News: React.FC<NewsProps> = ({ attributes, news }) => {
             <div className="flex flex-col gap-[24px]">
               {news.map((item: any, index: any) => (
                 <RecentNewsCard
+                  key={`${item}-${index}`}
                   newsDate={'6 DE MAIO, 2022'}
                   newsTitle={item?.attributes?.preview?.title}
                   imgUrl={
