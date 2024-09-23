@@ -18,9 +18,9 @@ const NewsCard: React.FC<NewsCardProps> = ({
   date,
 }) => {
   return (
-    <div className="flex w-[645px] flex-col">
+    <div className="flex w-full flex-col lg:min-h-max lg:min-w-max">
       <div
-        className="flex h-full min-h-[445px] w-[645px] items-center justify-center"
+        className="flex h-full min-h-[250px] w-full items-center justify-center rounded-[14px] lg:min-h-[445px]"
         style={{
           backgroundImage: `url(${getStrapiMedia(imageSrc ?? '')})`,
           backgroundRepeat: 'no-repeat',

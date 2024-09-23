@@ -12,14 +12,14 @@ import {
   AwaitedReactNode,
   Key,
   useState,
-  useEffect,
 } from 'react'
-import ProjectTypes from '../project-types'
-import getProjectTypesPage from '@/services/getNewsPage'
+import getProjectType from '@/services/getProjectType'
+import ProjectTypeCardAbout from '@/components/ProjectTypes/ProjectTypes'
 
-export default function AboutUs({ attributes, projects }: any) {
+export default function AboutUs({ attributes, projects, projectsType }: any) {
   console.log('Attributes About Us', attributes)
   console.log('Attributes projects', projects)
+  console.log('Attributes projectTypes', projectsType)
 
   const [chronologyItems, setChronologyItems] = useState(
     attributes?.chronology?.items
@@ -31,10 +31,10 @@ export default function AboutUs({ attributes, projects }: any) {
     (item: any) => item.year === selectedYear
   )
 
-  useEffect(() => console.log('Selected Year', selectedYear))
-  useEffect(() =>
-    console.log('filteredCronologyItemByYear', filteredCronologyItemByYear)
-  )
+  // useEffect(() => console.log('Selected Year', selectedYear))
+  // useEffect(() =>
+  //   console.log('filteredCronologyItemByYear', filteredCronologyItemByYear)
+  // )
 
   return (
     <div>
@@ -49,44 +49,62 @@ export default function AboutUs({ attributes, projects }: any) {
             filter: 'brightness(50%)',
           }}
         />
-        <div className="absolute left-10 top-1/2 z-50 flex flex-col">
-          <span className="text-primary-yellow">{attributes?.hero?.title}</span>
+        <div className="absolute left-10 top-1/2 z-50 -mt-10 flex flex-col px-[7%]">
+          <div className="flex gap-[8px]">
+            <Image
+              src={'/icons/yellow_straight.svg'}
+              alt={''}
+              width={53}
+              height={22}
+            />
+            <span className="text-[16px] text-primary-yellow">
+              {attributes?.hero?.title}
+            </span>
+          </div>
+
           <h1 className="font-glittenCaps text-[70px] text-white">
             {attributes?.hero?.subtitle}
           </h1>
-          <h2 className="mb-[45px] inline-block max-w-[460px] text-justify text-[20px] font-normal leading-[26px] text-white">
+          <h2 className="mb-[45px] inline-block max-w-[460px] text-justify text-[20px] font-light leading-[26px] text-white">
             {attributes?.hero?.description}
           </h2>
-          <span className="text-[16px] text-primary-yellow">SABER MAIS</span>
         </div>
       </div>
       <div className="h-[368px] w-full rounded-b-[30px] border-t-2 border-t-primary-yellow bg-primary-green"></div>
 
       {/* chronology  section*/}
-      <div className="flex w-full flex-col items-center justify-center pb-[81px]">
+      <div className="flex w-full flex-col items-center justify-center pb-[81px] pt-[89px]">
         <h2 className="my-[50px] text-[34px] font-semibold">Cronologia</h2>
-        <div className="my-12 flex w-screen flex-col items-center">
+        <div className="my-12 mt-[213px] flex w-screen flex-col items-center">
           <div className="relative flex w-[80%] justify-between">
             {chronologyItems?.map(
-              (item: {
-                year:
-                  | string
-                  | number
-                  | bigint
-                  | boolean
-                  | ReactElement<any, string | JSXElementConstructor<any>>
-                  | Iterable<ReactNode>
-                  | ReactPortal
-                  | Promise<AwaitedReactNode>
-                  | null
-                  | undefined
-              }) => (
-                <div className={`flex flex-col items-center justify-center`}>
+              (
+                item: {
+                  year:
+                    | string
+                    | number
+                    | bigint
+                    | boolean
+                    | ReactElement<any, string | JSXElementConstructor<any>>
+                    | Iterable<ReactNode>
+                    | ReactPortal
+                    | Promise<AwaitedReactNode>
+                    | null
+                    | undefined
+                },
+                index: number
+              ) => (
+                <div
+                  className={`flex flex-col items-center justify-center`}
+                  key={`${item.year}-${index}`}
+                >
                   <button
-                    className="h-[26px] w-[26px] rounded-full bg-black"
+                    className={`h-[26px] w-[26px] rounded-full bg-black ${item?.year === selectedYear ? 'bg-primary-yellow' : 'bg-black'}`}
                     onClick={() => setSelectedYear(item?.year)}
                   ></button>
-                  <span className="text-[24px] font-semibold">
+                  <span
+                    className={`text-[24px] font-semibold ${item?.year === selectedYear ? 'text-primary-yellow' : 'text-black'}`}
+                  >
                     {item?.year}
                   </span>
                 </div>
@@ -95,8 +113,8 @@ export default function AboutUs({ attributes, projects }: any) {
           </div>
           <div className="mt-[-50px] h-[2px] w-full bg-gradient-to-r from-transparent via-black to-transparent"></div>
         </div>
-        <div className="mt-[290px] flex w-full justify-between px-[7%]">
-          <div className="flex max-w-[420px] flex-col">
+        <div className="mt-[290px] flex w-full max-w-[1095] justify-center gap-[10%] px-[7%]">
+          <div className="flex max-w-[420px] flex-col justify-end">
             <span className="text-[24px] font-semibold text-primary-yellow">
               {filteredCronologyItemByYear[0]?.year}
             </span>
@@ -132,22 +150,36 @@ export default function AboutUs({ attributes, projects }: any) {
         </p>
       </div>
       {/* our services section*/}
-      <div className="h-[591px] w-full px-[7%] pt-[100px]">
-        <div className="flex flex-col">
-          <div className="flex items-center gap-[10px]">
-            <div className="h-[1px] w-[53px] bg-primary-yellow" />
-            <span className="text-sm font-normal uppercase text-primary-yellow">
-              O QUE PUDEMOS OFERECER{' '}
-            </span>
+      <div className="h-[591px] w-full pt-[100px]">
+        <div className="flex flex-col gap-[36px]">
+          <div className="flex flex-col gap-[10px] px-[7%]">
+            <div className="flex items-center">
+              <div className="h-[1px] w-[53px] bg-primary-yellow" />
+              <span className="text-sm font-normal uppercase text-primary-yellow">
+                O QUE PUDEMOS OFERECER{' '}
+              </span>
+            </div>
+            <h2 className="text-[34px] font-medium">Os nossos serviços</h2>
           </div>
-          <h2 className="text-[34px] font-medium">Os nossos serviços</h2>
-          <div className="flex w-full items-center justify-start gap-[30px]">
-            <ProjectTypes attributes={projects?.attributes} />
+          <div className="flex w-full items-center justify-start">
+            {projectsType.map((item: any, index: number) => (
+              <Link
+                href={`/services-vergadela/${item?.attributes?.type}`}
+                key={`${item?.attributes?.type}-${index}`}
+              >
+                <ProjectTypeCardAbout
+                  item={item?.attributes}
+                  img={item?.attributes?.cardImg?.data?.attributes?.url}
+                  type={item?.attributes?.type}
+                  index={index}
+                />
+              </Link>
+            ))}
           </div>
         </div>
       </div>
       {/* our team section */}
-      <div className="h-[591px] w-full px-[7%] pt-[100px]">
+      <div className="mt-[300px] h-[591px] w-full px-[7%] pt-[100px]">
         <div className="flex flex-col">
           <div className="flex items-center gap-[10px]">
             <div className="h-[1px] w-[53px] bg-primary-yellow" />
@@ -200,11 +232,23 @@ export default function AboutUs({ attributes, projects }: any) {
               )
             )}
           </div>
+          <Link
+            className="mt-[27px] flex text-primary-green"
+            href={'/project-types'}
+          >
+            <span className="text-[16px]">MAIS PROJETOS</span>
+            <Image
+              src={'/icons/arrow-right.svg'}
+              width={24}
+              height={26}
+              alt={'arrowIcon'}
+            />
+          </Link>
         </div>
       </div>
       {/* curiosity */}
-      <div className="h-[694px] w-full px-[7%] py-[99px]">
-        <div>
+      <div className="flex h-[694px] w-full flex-col px-[7%] py-[99px]">
+        <>
           <div className="flex items-center gap-[10px]">
             <div className="h-[1px] w-[53px] bg-primary-yellow font-medium" />
             <span className="text-sm font-normal uppercase text-primary-yellow">
@@ -214,8 +258,8 @@ export default function AboutUs({ attributes, projects }: any) {
           <h2 className="mb-[26px] text-[34px] font-medium">
             {attributes?.curiositySection?.subtitle}
           </h2>
-        </div>
-        <div className="flex justify-evenly gap-[20px]">
+        </>
+        <div className="flex justify-between gap-[20px]">
           {attributes?.curiositySection?.curiosity?.map(
             (
               item: {
@@ -301,14 +345,17 @@ export default function AboutUs({ attributes, projects }: any) {
 export async function getServerSideProps() {
   const data = await getAboutUs()
   const dataProjects = await getProjectList()
+  const dataProjectType = await getProjectType()
 
   const { attributes } = data?.data?.data
   const projects = dataProjects?.data?.data
+  const projectTypes = dataProjectType?.data?.data
 
   return {
     props: {
       attributes: attributes,
       projects: projects,
+      projectsType: projectTypes,
     },
   }
 }

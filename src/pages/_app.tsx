@@ -15,7 +15,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
   const specialNavBarRoutes = [
-    '/about-us',
     '/contact',
     '/project-types',
     'services-vergadela',

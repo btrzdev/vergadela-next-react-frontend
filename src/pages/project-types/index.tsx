@@ -7,7 +7,6 @@ interface ProjectTypesProps {
   attributes: any
 }
 const ProjectTypes: React.FC<ProjectTypesProps> = ({ attributes }) => {
-  console.log('attributes', attributes)
   return (
     <main
       className={`flex min-h-screen flex-col items-center justify-between bg-white`}

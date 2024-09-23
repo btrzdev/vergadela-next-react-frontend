@@ -56,9 +56,9 @@ const News: React.FC<NewsProps> = ({ attributes, news }) => {
   }
 
   return (
-    <div>
+    <div className="flex w-screen flex-col overflow-hidden">
       {/* Header Section */}
-      <div className="relative mb-[78px] flex min-h-[872px] items-center">
+      <div className="relative mb-[78px] flex min-h-[500px] items-center overflow-hidden lg:min-h-[872px]">
         <div
           className="absolute inset-0"
           style={{
@@ -70,7 +70,7 @@ const News: React.FC<NewsProps> = ({ attributes, news }) => {
           }}
         ></div>
 
-        <div className="relative left-[10%] top-1/2 z-10 flex flex-col">
+        <div className="relative left-[10%] top-1/2 z-10 flex w-full flex-col">
           <div className="flex">
             <Image
               src={'/icons/yellow_straight.svg'}
@@ -82,15 +82,37 @@ const News: React.FC<NewsProps> = ({ attributes, news }) => {
               {attributes.title}
             </span>
           </div>
-          <h3 className="font-glittenCaps text-[70px] text-white">
+          <h3 className="font-glittenCaps text-[50px] text-white lg:text-[70px]">
             {attributes.subtitle}
           </h3>
         </div>
       </div>
 
       {/* Main Section */}
-      <div className="mb-[132px] flex w-full justify-between px-[7%]">
+      <div className="mb-[132px] flex w-full flex-col justify-between px-[7%] lg:flex-row">
         {/* News Cards Section */}
+        <div className="flex flex-col">
+          {/* Tag Filtering */}
+          <div className="mb-[69px] lg:hidden">
+            <h2 className="mb-[19px] text-[23px] font-semibold">TAGS</h2>
+            <div className="flex w-full flex-wrap gap-[24px]">
+              {news.map((item: any, index: any) => (
+                <span
+                  key={`${item}-${index}`}
+                  onClick={() => handleSpanClick(item?.attributes?.tag)}
+                  className={`flex h-[32px] w-max items-center justify-center rounded-[2px] px-[18px] py-[9px] text-center text-sm font-semibold ${
+                    searchByTag === item?.attributes?.tag
+                      ? 'bg-medium-gray text-white'
+                      : 'border border-medium-gray bg-white text-medium-gray'
+                  } cursor-pointer`}
+                >
+                  {item?.attributes?.tag?.toUpperCase()}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <div className="flex flex-col gap-[67px]">
           {paginatedNews.map((item: any, index: any) => (
             <Link href={`/news/${item?.id}`} key={`${item}-${index}`}>
@@ -163,7 +185,7 @@ const News: React.FC<NewsProps> = ({ attributes, news }) => {
           </div>
 
           {/* Tag Filtering */}
-          <div className="mb-[69px]">
+          <div className="mb-[69px] hidden lg:flex lg:flex-col">
             <h2 className="mb-[19px] text-[23px] font-semibold">TAGS</h2>
             <div className="flex w-full flex-wrap gap-[24px]">
               {news.map((item: any, index: any) => (
@@ -183,9 +205,9 @@ const News: React.FC<NewsProps> = ({ attributes, news }) => {
           </div>
 
           {/* Recent News Section */}
-          <div className="mb-[132px] w-full">
+          <div className="mb-0 w-full lg:mb-[132px]">
             <h2 className="no-break mb-[19px] text-[23px] font-semibold">
-              NOTÍCIAS RECENTES
+              OUTRAS NOTÍCIAS
             </h2>
             <div className="flex flex-col gap-[24px]">
               {news.map((item: any, index: any) => (
