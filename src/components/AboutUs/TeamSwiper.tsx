@@ -15,7 +15,7 @@ const TeamSwiper: React.FC<TeamSwiperProps> = ({ items }) => {
     slidesToShow: items.length,
     slidesToScroll: 1,
     centerMode: false,
-    variableWidth: true,
+    variableWidth: false,
   }
 
   return (

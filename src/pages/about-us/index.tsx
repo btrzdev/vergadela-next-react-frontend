@@ -137,7 +137,7 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
           />
         </div>
       </div>
-      <div className="flex h-[368px] w-full items-center justify-between rounded-b-[30px] border-t-2 border-t-primary-yellow bg-primary-green px-[20%] py-[59px]">
+      <div className="flex h-[368px] w-full items-center justify-between rounded-b-[30px] border-t-2 border-t-primary-yellow bg-primary-green px-[7%] py-[59px]">
         <h3 className="inline-block max-w-[420px] animate-slideInLeft font-glittenCaps text-[36px] text-primary-yellow">
           &quot;Transformamos espaços em experiências, onde cada detalhe reflete
           amor, inovação e a essência de quem os habita.&quot;
@@ -161,19 +161,15 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
             </div>
             <h2 className="text-[34px] font-medium">Os nossos serviços</h2>
           </div>
-          <div className="flex w-full items-center justify-start">
+          <div className="flex w-full items-center">
             {projectsType.map((item: any, index: number) => (
-              <Link
+              <ProjectTypeCardAbout
                 href={`/services-vergadela/${item?.attributes?.type}`}
-                key={`${item?.attributes?.type}-${index}`}
-              >
-                <ProjectTypeCardAbout
-                  item={item?.attributes}
-                  img={item?.attributes?.cardImg?.data?.attributes?.url}
-                  type={item?.attributes?.type}
-                  index={index}
-                />
-              </Link>
+                item={item?.attributes}
+                img={item?.attributes?.cardImg?.data?.attributes?.url}
+                type={item?.attributes?.type}
+                index={index}
+              />
             ))}
           </div>
         </div>
@@ -223,7 +219,7 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
                         {item?.attributes?.type}
                       </span>
                     </div>
-                    <h3 className="font-glittenCaps text-[28px] text-white">
+                    <h3 className="font-glittenCaps text-[28px] capitalize text-white">
                       {' '}
                       {item?.attributes?.hero?.subtitle}
                     </h3>

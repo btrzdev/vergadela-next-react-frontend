@@ -6,6 +6,7 @@ interface ProjectTypesProps {
   index: number
   img: string
   type: string
+  href: string
 }
 
 const ProjectTypeCardAbout: React.FC<ProjectTypesProps> = ({
