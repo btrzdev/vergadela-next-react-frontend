@@ -44,7 +44,7 @@ const ProjectList: React.FC<ProjectListProps> = ({ attributes }) => {
               width={53}
               height={22}
             />
-            <span className="ml-2 font-roboto text-[16px] text-primary-yellow">
+            <span className="ml-2 text-[16px] text-primary-yellow">
               PROJETOS
             </span>
           </div>
@@ -54,7 +54,7 @@ const ProjectList: React.FC<ProjectListProps> = ({ attributes }) => {
         </div>
       </div>
       <div className="flex w-full flex-col items-center justify-center">
-        <div className="flex h-[210px] max-w-[992px] items-center justify-between gap-[50px] font-roboto">
+        <div className="flex h-[210px] max-w-[992px] items-center justify-between gap-[50px]">
           {filters.map((filter, index) => (
             <span
               key={index}
@@ -104,7 +104,7 @@ const ProjectList: React.FC<ProjectListProps> = ({ attributes }) => {
         </div>
       </div>
       <div className="flex">
-        <Link href={''} className="font-roboto text-[16px] font-normal">
+        <Link href={''} className="text-[16px] font-normal">
           MAIS PROJETOS
         </Link>
         <Image

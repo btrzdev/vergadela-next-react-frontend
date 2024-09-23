@@ -34,7 +34,7 @@ const IndividualProject: React.FC<IndividualProjectProps> = ({
   }
 
   return (
-    <div className="flex h-screen flex-col bg-[#FFFAF5] font-roboto">
+    <div className="flex h-screen flex-col bg-[#FFFAF5]">
       <div className="h-[872px] w-full">
         <div
           className="flex h-[872px] items-center px-[7%]"
@@ -64,9 +64,7 @@ const IndividualProject: React.FC<IndividualProjectProps> = ({
         <div className="max-w-[1095px] bg-[#FFFAF5]">
           <div className="mb-[66px] mt-[108px] flex justify-between px-[7%]">
             <div className="flex w-1/2 flex-col gap-[42px]">
-              <h3 className="font-roboto text-[35px] font-semibold">
-                {infos?.location}
-              </h3>
+              <h3 className="text-[35px] font-semibold">{infos?.location}</h3>
               <div className="flex justify-between">
                 <div className="flex flex-col gap-[30px]">
                   <div className="flex flex-col">
@@ -113,7 +111,7 @@ const IndividualProject: React.FC<IndividualProjectProps> = ({
               </div>
             </div>
             <div className="flex w-1/4 flex-col gap-[5px]">
-              <h3 className="font-roboto text-[12px] font-semibold leading-[24px]">
+              <h3 className="text-[12px] font-semibold leading-[24px]">
                 PARTILHAR
               </h3>
               <div className="flex gap-[24px]">

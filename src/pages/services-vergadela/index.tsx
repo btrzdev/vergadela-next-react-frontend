@@ -25,12 +25,15 @@ const ServicesVergadela: React.FC<ServicesVergadelaProps> = ({
   const customComponents = {
     p: ({ ...props }) => (
       <p
-        className="flex text-[14px] font-light leading-[24px] text-medium-gray"
+        className="flex flex-col items-center justify-center font-roboto text-[14px] font-light leading-[24px] text-medium-gray lg:flex-row"
         {...props}
       />
     ),
     img: ({ ...props }) => (
-      <img className="mr-4 h-auto max-w-[300px]" {...props} />
+      <img
+        className="h-auto w-full md:w-[300px] lg:mr-4 lg:min-h-[326px] lg:min-w-[450px] xl:max-w-[474px]"
+        {...props}
+      />
     ),
   }
 
@@ -55,7 +58,7 @@ const ServicesVergadela: React.FC<ServicesVergadelaProps> = ({
               width={53}
               height={22}
             />
-            <span className="ml-2 font-roboto text-[16px] text-primary-yellow">
+            <span className="ml-2 text-[16px] text-primary-yellow">
               SOBRE NÓS
             </span>
           </div>
@@ -63,9 +66,9 @@ const ServicesVergadela: React.FC<ServicesVergadelaProps> = ({
         </div>
       </div>
 
-      <div className="flex gap-[30px] px-[7%]">
-        <div className="w-[308px]">
-          <div className="flex flex-col gap-[23px] pb-[74px] pt-[151px]">
+      <div className="flex flex-col gap-[30px] px-[7%] md:flex-row">
+        <div className="w-[308px] overflow-x-auto">
+          <div className="flex gap-[23px] pb-[74px] pt-[151px] md:flex-col">
             {attributes?.map(
               (
                 item: {
@@ -77,7 +80,7 @@ const ServicesVergadela: React.FC<ServicesVergadelaProps> = ({
               ) => (
                 <div
                   onClick={() => setActiveTab(item?.attributes?.subtitle)}
-                  className={`flex h-[61px] gap-[18px] rounded-[6px] px-[33px] py-[22px] font-medium hover:cursor-pointer ${
+                  className={`flex min-h-[61px] flex-col items-center gap-[18px] rounded-[6px] px-[33px] py-[22px] text-center font-medium hover:cursor-pointer md:flex-row ${
                     activeTab === item?.attributes?.subtitle
                       ? 'bg-primary-green'
                       : 'bg-white'
@@ -110,7 +113,7 @@ const ServicesVergadela: React.FC<ServicesVergadelaProps> = ({
         </div>
 
         {/* Content Section */}
-        <div className="w-2/3 pb-[74px] pt-[151px]">
+        <div className="flex w-full flex-col justify-center overflow-hidden pb-[74px] pt-[151px] lg:w-2/3">
           <h3 className="font-medium text-primary-yellow">
             {currentContent[0]?.attributes?.title}
           </h3>

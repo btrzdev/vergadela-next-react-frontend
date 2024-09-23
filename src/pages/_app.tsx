@@ -4,6 +4,12 @@ import NavBar from '@/components/NavBar/NavBar'
 import LightNavBar from '@/components/NavBar/LightNavBar'
 import '@/styles/globals.css'
 import { AppProps } from 'next/app'
+import { Roboto } from 'next/font/google'
+
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700'],
+})
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -16,7 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   ]
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className={`flex min-h-screen flex-col ${roboto.className}`}>
       {specialNavBarRoutes.includes(router.pathname) ? (
         <NavBar />
       ) : (

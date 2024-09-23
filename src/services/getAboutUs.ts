@@ -12,7 +12,7 @@ const getAboutUs = async () => {
         team: { populate: { teamMember: { populate: '*' } } },
         chronology: {
           populate: {
-            image: {
+            items: {
               populate: '*',
             },
           },

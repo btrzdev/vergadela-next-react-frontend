@@ -18,7 +18,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
   date,
 }) => {
   return (
-    <div className="flex w-[645px] flex-col font-roboto">
+    <div className="flex w-[645px] flex-col">
       <div
         className="flex h-full min-h-[445px] w-[645px] items-center justify-center"
         style={{

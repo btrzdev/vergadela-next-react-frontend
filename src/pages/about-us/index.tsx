@@ -11,11 +11,31 @@ import {
   ReactPortal,
   AwaitedReactNode,
   Key,
+  useState,
+  useEffect,
 } from 'react'
+import ProjectTypes from '../project-types'
+import getProjectTypesPage from '@/services/getNewsPage'
 
 export default function AboutUs({ attributes, projects }: any) {
   console.log('Attributes About Us', attributes)
   console.log('Attributes projects', projects)
+
+  const [chronologyItems, setChronologyItems] = useState(
+    attributes?.chronology?.items
+  )
+
+  const [selectedYear, setSelectedYear] = useState(chronologyItems[0].year)
+
+  const filteredCronologyItemByYear = chronologyItems.filter(
+    (item: any) => item.year === selectedYear
+  )
+
+  useEffect(() => console.log('Selected Year', selectedYear))
+  useEffect(() =>
+    console.log('filteredCronologyItemByYear', filteredCronologyItemByYear)
+  )
+
   return (
     <div>
       <div>
@@ -34,7 +54,7 @@ export default function AboutUs({ attributes, projects }: any) {
           <h1 className="font-glittenCaps text-[70px] text-white">
             {attributes?.hero?.subtitle}
           </h1>
-          <h2 className="mb-[45px] inline-block max-w-[460px] text-justify font-roboto text-[20px] font-normal leading-[26px] text-white">
+          <h2 className="mb-[45px] inline-block max-w-[460px] text-justify text-[20px] font-normal leading-[26px] text-white">
             {attributes?.hero?.description}
           </h2>
           <span className="text-[16px] text-primary-yellow">SABER MAIS</span>
@@ -43,26 +63,54 @@ export default function AboutUs({ attributes, projects }: any) {
       <div className="h-[368px] w-full rounded-b-[30px] border-t-2 border-t-primary-yellow bg-primary-green"></div>
 
       {/* chronology  section*/}
-      <div className="flex w-full flex-col items-center justify-center px-[20%] pb-[81px]">
-        <h2 className="my-[50px] text-[34px]">
-          {attributes?.chronology?.title}
-        </h2>
-        <div className="flex w-full justify-between">
-          <div className="flex max-w-[420px] flex-col font-roboto">
+      <div className="flex w-full flex-col items-center justify-center pb-[81px]">
+        <h2 className="my-[50px] text-[34px] font-semibold">Cronologia</h2>
+        <div className="my-12 flex w-screen flex-col items-center">
+          <div className="relative flex w-[80%] justify-between">
+            {chronologyItems?.map(
+              (item: {
+                year:
+                  | string
+                  | number
+                  | bigint
+                  | boolean
+                  | ReactElement<any, string | JSXElementConstructor<any>>
+                  | Iterable<ReactNode>
+                  | ReactPortal
+                  | Promise<AwaitedReactNode>
+                  | null
+                  | undefined
+              }) => (
+                <div className={`flex flex-col items-center justify-center`}>
+                  <button
+                    className="h-[26px] w-[26px] rounded-full bg-black"
+                    onClick={() => setSelectedYear(item?.year)}
+                  ></button>
+                  <span className="text-[24px] font-semibold">
+                    {item?.year}
+                  </span>
+                </div>
+              )
+            )}
+          </div>
+          <div className="mt-[-50px] h-[2px] w-full bg-gradient-to-r from-transparent via-black to-transparent"></div>
+        </div>
+        <div className="mt-[290px] flex w-full justify-between px-[7%]">
+          <div className="flex max-w-[420px] flex-col">
             <span className="text-[24px] font-semibold text-primary-yellow">
-              {attributes?.chronology?.year}
+              {filteredCronologyItemByYear[0]?.year}
             </span>
             <span className="text-left text-[34px] font-medium text-[#1D1C1B]">
-              {attributes?.chronology?.subtitle}
+              {filteredCronologyItemByYear[0]?.title}
             </span>
             <span className="text-[14px] font-normal leading-[26px] text-[#1D1C1B]">
-              {attributes?.chronology?.description}
+              {filteredCronologyItemByYear[0]?.description}
             </span>
           </div>
           <div
-            className="flex h-[368px] w-[562px] w-full items-center justify-center rounded-[14px]"
+            className="flex h-[368px] w-[562px] w-full max-w-[562px] items-center justify-center rounded-[14px]"
             style={{
-              backgroundImage: `url(${getStrapiMedia(attributes?.chronology?.image?.data?.attributes?.url)})`,
+              backgroundImage: `url(${getStrapiMedia(filteredCronologyItemByYear[0]?.image?.data?.attributes?.url)})`,
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'cover',
               backgroundBlendMode: 'darken',
@@ -72,11 +120,11 @@ export default function AboutUs({ attributes, projects }: any) {
         </div>
       </div>
       <div className="flex h-[368px] w-full items-center justify-between rounded-b-[30px] border-t-2 border-t-primary-yellow bg-primary-green px-[20%] py-[59px]">
-        <h3 className="animate-slideInLeft inline-block max-w-[420px] font-glittenCaps text-[36px] text-primary-yellow">
+        <h3 className="inline-block max-w-[420px] animate-slideInLeft font-glittenCaps text-[36px] text-primary-yellow">
           &quot;Transformamos espaços em experiências, onde cada detalhe reflete
           amor, inovação e a essência de quem os habita.&quot;
         </h3>
-        <p className="animate-slideInRight inline-block max-w-[375px] text-[16px] font-normal leading-[28px] text-white">
+        <p className="inline-block max-w-[375px] animate-slideInRight text-[16px] font-normal leading-[28px] text-white">
           A nossa visão é continuar a expandir a nossa presença global,
           estabelecendo parcerias estratégicas e alcançando um crescimento
           contínuo e sustentável, sempre comprometidos com a excelência,
@@ -92,11 +140,9 @@ export default function AboutUs({ attributes, projects }: any) {
               O QUE PUDEMOS OFERECER{' '}
             </span>
           </div>
-          <h2 className="font-roboto text-[34px] font-medium">
-            Os nossos serviços
-          </h2>
+          <h2 className="text-[34px] font-medium">Os nossos serviços</h2>
           <div className="flex w-full items-center justify-start gap-[30px]">
-            <TeamSwiper items={attributes?.team?.teamMember} />
+            <ProjectTypes attributes={projects?.attributes} />
           </div>
         </div>
       </div>
@@ -109,7 +155,7 @@ export default function AboutUs({ attributes, projects }: any) {
               PROFISSIONAIS
             </span>
           </div>
-          <h2 className="font-roboto text-[34px] font-medium">Nossa Equipa</h2>
+          <h2 className="text-[34px] font-medium">Nossa Equipa</h2>
           <div className="flex w-full items-center justify-start gap-[30px]">
             <TeamSwiper items={attributes?.team?.teamMember} />
           </div>
@@ -124,9 +170,7 @@ export default function AboutUs({ attributes, projects }: any) {
               PROJETOS
             </span>
           </div>
-          <h2 className="font-roboto text-[34px] font-medium">
-            Projetos Recentes
-          </h2>
+          <h2 className="text-[34px] font-medium">Projetos Recentes</h2>
           <div className="flex w-full items-center justify-start gap-[30px]">
             {projects?.map(
               (item: { attributes: any }, index: Key | null | undefined) => (
@@ -162,12 +206,12 @@ export default function AboutUs({ attributes, projects }: any) {
       <div className="h-[694px] w-full px-[7%] py-[99px]">
         <div>
           <div className="flex items-center gap-[10px]">
-            <div className="h-[1px] w-[53px] bg-primary-yellow font-roboto font-medium" />
+            <div className="h-[1px] w-[53px] bg-primary-yellow font-medium" />
             <span className="text-sm font-normal uppercase text-primary-yellow">
               {attributes?.curiositySection?.title}
             </span>
           </div>
-          <h2 className="mb-[26px] font-roboto text-[34px] font-medium">
+          <h2 className="mb-[26px] text-[34px] font-medium">
             {attributes?.curiositySection?.subtitle}
           </h2>
         </div>
@@ -200,9 +244,11 @@ export default function AboutUs({ attributes, projects }: any) {
                   </p>
                   <div className="group flex items-center gap-[2px]">
                     <div className="h-[1px] w-[12px] bg-primary-yellow transition-all duration-500 ease-out group-hover:w-[24px]" />
-                    <span className="text-left text-primary-yellow">
-                      SABER MAIS
-                    </span>
+                    <Link href={'/contact'} className="hover:brightness-75">
+                      <span className="text-left text-primary-yellow">
+                        SABER MAIS
+                      </span>
+                    </Link>
                   </div>
                 </div>
                 <div
@@ -220,7 +266,7 @@ export default function AboutUs({ attributes, projects }: any) {
       </div>
       {/* partinershipSection */}
       <div className="flex h-[526px] w-full flex-col items-center justify-center">
-        <h3 className="mb-[76px] font-roboto text-[35px] font-medium leading-[41px]">
+        <h3 className="mb-[76px] text-[35px] font-medium leading-[41px]">
           Parcerias
         </h3>
         <div className="flex w-full justify-evenly">
@@ -255,6 +301,7 @@ export default function AboutUs({ attributes, projects }: any) {
 export async function getServerSideProps() {
   const data = await getAboutUs()
   const dataProjects = await getProjectList()
+
   const { attributes } = data?.data?.data
   const projects = dataProjects?.data?.data
 

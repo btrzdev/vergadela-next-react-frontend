@@ -16,7 +16,7 @@ const RecentBigNewsCard: React.FC<RecentNewsProps> = ({
   date,
 }) => {
   return (
-    <div className="group flex h-full w-full max-w-[420px] flex-col font-roboto hover:brightness-50">
+    <div className="group flex h-full w-full max-w-[420px] flex-col hover:brightness-50">
       <div
         className="flex h-[370px] w-full items-center justify-center rounded-[4px]"
         style={{

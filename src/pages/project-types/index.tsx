@@ -35,7 +35,6 @@ const ProjectTypes: React.FC<ProjectTypesProps> = ({ attributes }) => {
             {attributes?.attributes?.description}
           </p>
         </div>
-
         <div className="flex h-auto w-full flex-col lg:flex-row">
           {attributes?.attributes?.cardType?.map((item: any, index: any) => (
             <Link
@@ -48,7 +47,7 @@ const ProjectTypes: React.FC<ProjectTypesProps> = ({ attributes }) => {
                 className="group relative flex h-full min-h-[480px] w-full items-center justify-center overflow-hidden hover:cursor-pointer"
               >
                 <div
-                  className="absolute inset-0 w-full bg-cover bg-center grayscale filter transition-all duration-500 ease-in-out group-hover:scale-110 group-hover:brightness-100 group-hover:grayscale-0"
+                  className="absolute inset-0 w-full bg-cover bg-center grayscale filter transition-all duration-500 ease-in-out group-hover:scale-110 group-hover:brightness-50 group-hover:grayscale-0"
                   style={{
                     backgroundImage: `url(${getStrapiMedia(item?.imgCard?.data?.attributes?.url)})`,
                   }}
@@ -60,7 +59,6 @@ const ProjectTypes: React.FC<ProjectTypesProps> = ({ attributes }) => {
             </Link>
           ))}
         </div>
-
         <div className="h-[4px] w-full bg-primary-yellow"></div>
       </div>
     </main>

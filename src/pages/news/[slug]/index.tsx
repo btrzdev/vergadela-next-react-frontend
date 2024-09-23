@@ -55,7 +55,7 @@ const IndividualNews: React.FC<NewsProps> = ({ attributes, news, slug }) => {
               width={53}
               height={22}
             />
-            <span className="ml-2 font-roboto text-[16px] text-primary-yellow">
+            <span className="ml-2 text-[16px] text-primary-yellow">
               {'NOTICIAS'}
             </span>
           </div>
@@ -66,7 +66,7 @@ const IndividualNews: React.FC<NewsProps> = ({ attributes, news, slug }) => {
       </div>
 
       <div>
-        <div className="flex h-full w-full justify-between bg-[#D9D9D9] px-[7%] pt-[151px]">
+        <div className="flex h-full w-full justify-between border border-x-0 border-t-0 border-b-[#D9D9D9] bg-white px-[7%] pt-[151px]">
           <div className="flex w-1/2 flex-col">
             <div className="flex max-w-[420px] flex-col">
               <div className="flex items-center">
@@ -101,7 +101,7 @@ const IndividualNews: React.FC<NewsProps> = ({ attributes, news, slug }) => {
               />
             </div>{' '}
             <div className="flex flex-col gap-[5px]">
-              <h3 className="font-roboto text-[12px] font-semibold leading-[24px]">
+              <h3 className="text-[12px] font-semibold leading-[24px]">
                 PARTILHAR
               </h3>
               <div className="mb-[55px] flex gap-[24px]">
@@ -140,10 +140,11 @@ const IndividualNews: React.FC<NewsProps> = ({ attributes, news, slug }) => {
               </div>
             </div>
           </div>
-          <div className="flex w-1/2 flex-col gap-[40px]">
+          <div className="flex max-h-[750px] w-1/2 flex-col gap-[40px] overflow-y-auto">
             {attributes?.images?.data?.map(
               (item: { attributes: { url: string | null } }, index: any) => (
                 <img
+                  className="max-h-[333px] max-w-[533px] rounded-[14px]"
                   src={getStrapiMedia(item?.attributes?.url) ?? ''}
                   key={`${item}-${index}`}
                 />
@@ -190,7 +191,7 @@ const IndividualNews: React.FC<NewsProps> = ({ attributes, news, slug }) => {
                 alt={''}
                 className="h-[1px] w-full"
               />
-              <span className="ml-2 font-roboto text-[16px] text-primary-yellow">
+              <span className="ml-2 text-[16px] text-primary-yellow">
                 {'NOTÍCIAS'}
               </span>
               <h3 className="text-[35px] font-semibold">OUTRAS NOTÍCIAS</h3>

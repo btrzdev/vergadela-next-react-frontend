@@ -78,7 +78,7 @@ const News: React.FC<NewsProps> = ({ attributes, news }) => {
               width={53}
               height={22}
             />
-            <span className="ml-2 font-roboto text-[16px] text-primary-yellow">
+            <span className="ml-2 text-[16px] text-primary-yellow">
               {attributes.title}
             </span>
           </div>
@@ -164,9 +164,7 @@ const News: React.FC<NewsProps> = ({ attributes, news }) => {
 
           {/* Tag Filtering */}
           <div className="mb-[69px]">
-            <h2 className="mb-[19px] font-roboto text-[23px] font-semibold">
-              TAGS
-            </h2>
+            <h2 className="mb-[19px] text-[23px] font-semibold">TAGS</h2>
             <div className="flex w-full flex-wrap gap-[24px]">
               {news.map((item: any, index: any) => (
                 <span
@@ -186,7 +184,7 @@ const News: React.FC<NewsProps> = ({ attributes, news }) => {
 
           {/* Recent News Section */}
           <div className="mb-[132px] w-full">
-            <h2 className="no-break mb-[19px] font-roboto text-[23px] font-semibold">
+            <h2 className="no-break mb-[19px] text-[23px] font-semibold">
               NOTÍCIAS RECENTES
             </h2>
             <div className="flex flex-col gap-[24px]">

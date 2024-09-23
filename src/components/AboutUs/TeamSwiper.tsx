@@ -51,7 +51,7 @@ const TeamSwiper: React.FC<TeamSwiperProps> = ({ items }) => {
                 className="absolute bottom-2 left-[-100%] flex flex-col transition-transform duration-500 ease-out group-hover:left-5"
                 style={{ transition: 'left 0.5s ease-out' }}
               >
-                <h3 className="font-roboto text-[28px] font-medium text-white">
+                <h3 className="text-[28px] font-medium text-white">
                   {item?.name || 'Name'}
                 </h3>
                 <div className="flex items-center gap-[10px]">
