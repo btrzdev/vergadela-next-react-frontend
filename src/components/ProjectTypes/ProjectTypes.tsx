@@ -14,9 +14,10 @@ const ProjectTypeCardAbout: React.FC<ProjectTypesProps> = ({
   index,
   img,
   type,
+  href,
 }) => {
   return (
-    <Link href={'/project-list'} className="w-full" key={`${item}-${index}`}>
+    <Link href={href} className="w-full" key={`${item}-${index}`}>
       <div
         key={index}
         className="group relative flex h-full min-h-[602px] w-full items-center justify-center overflow-hidden hover:cursor-pointer"

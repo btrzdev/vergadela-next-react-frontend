@@ -123,7 +123,7 @@ const IndividualProject: React.FC<IndividualProjectProps> = ({
                     height={22}
                   />
                 </Link>
-                <Link href={''}>
+                <Link href={'https://www.facebook.com/vergadelainteriores/'}>
                   <Image
                     src={'/icons/facebookIcon.svg'}
                     alt={''}
@@ -215,7 +215,7 @@ const IndividualProject: React.FC<IndividualProjectProps> = ({
               </Link>
             </div>
             <div className="flex gap-[11px]">
-              <p>PROXIMO</p>
+              <p>PRÓXIMO</p>
               <Image
                 src={'/icons/straight.svg'}
                 alt={''}

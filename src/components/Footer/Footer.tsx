@@ -48,7 +48,10 @@ const Footer = () => {
         <div>
           <h3 className="mb-[53px] text-[16px] font-bold">REDES SOCIAIS</h3>
           <div className="flex flex-row gap-[20px] text-black">
-            <Link href={''} className="hover:cursor-pointer">
+            <Link
+              href={'https://www.facebook.com/vergadelainteriores/'}
+              className="hover:cursor-pointer"
+            >
               <Image
                 width={22}
                 height={22}

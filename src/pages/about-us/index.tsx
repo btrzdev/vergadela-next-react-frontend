@@ -1,3 +1,4 @@
+//@ts-nocheck
 import TeamSwiper from '@/components/AboutUs/TeamSwiper'
 import getAboutUs from '@/services/getAboutUs'
 import getProjectList from '@/services/getProjectList'
@@ -12,14 +13,18 @@ import {
   AwaitedReactNode,
   Key,
   useState,
+  useRef,
+  useEffect,
 } from 'react'
 import getProjectType from '@/services/getProjectType'
 import ProjectTypeCardAbout from '@/components/ProjectTypes/ProjectTypes'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 export default function AboutUs({ attributes, projects, projectsType }: any) {
-  console.log('Attributes About Us', attributes)
-  console.log('Attributes projects', projects)
-  console.log('Attributes projectTypes', projectsType)
+  // console.log('Attributes About Us', attributes)
+  // console.log('Attributes projects', projects)
+  // console.log('Attributes projectTypes', projectsType)
 
   const [chronologyItems, setChronologyItems] = useState(
     attributes?.chronology?.items
@@ -30,11 +35,37 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
   const filteredCronologyItemByYear = chronologyItems.filter(
     (item: any) => item.year === selectedYear
   )
+  const elementsRef = useRef<
+    (HTMLHeadingElement | HTMLParagraphElement | null)[]
+  >([])
 
-  // useEffect(() => console.log('Selected Year', selectedYear))
-  // useEffect(() =>
-  //   console.log('filteredCronologyItemByYear', filteredCronologyItemByYear)
-  // )
+  const handleIntersection = (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('opacity-0')
+        entry.target.classList.add(entry.target.dataset.animation)
+        observer.unobserve(entry.target)
+      }
+    })
+  }
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.2,
+    })
+
+    elementsRef.current.forEach((element) => {
+      if (element) {
+        observer.observe(element)
+      }
+    })
+
+    return () => {
+      elementsRef.current.forEach((element) => {
+        if (element) observer.unobserve(element)
+      })
+    }
+  }, [])
 
   return (
     <div>
@@ -70,51 +101,165 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
           </h2>
         </div>
       </div>
-      <div className="h-[368px] w-full rounded-b-[30px] border-t-2 border-t-primary-yellow bg-primary-green"></div>
+      <div className="flex w-full flex-col justify-between gap-[50px] rounded-b-[30px] border-t-2 border-t-primary-yellow bg-primary-green px-[12%] py-[80px] lg:h-[368px] lg:flex-row lg:gap-0 lg:py-0">
+        <div className="flex max-w-[420px] flex-col items-center justify-center">
+          <h3
+            ref={(el) => (elementsRef.current[0] = el)}
+            data-animation="animate-slideInLeft"
+            className="font-glittenCaps text-[36px] text-primary-yellow opacity-0"
+          >
+            {attributes?.hero?.blockQuote1?.title}
+          </h3>
+          <p
+            ref={(el) => (elementsRef.current[1] = el)}
+            data-animation="animate-slideInRight"
+            className="text-[16px] font-normal leading-[28px] text-white opacity-0"
+          >
+            {attributes?.hero?.blockQuote1?.description}
+          </p>
+        </div>
+
+        <div className="flex flex-wrap items-center justify-center gap-[8%] lg:w-1/2">
+          <div className="flex flex-col items-end">
+            <div className="flex flex-col items-end">
+              <h3
+                ref={(el) => (elementsRef.current[2] = el)}
+                data-animation="animate-slideInLeft"
+                className="font-glittenCaps text-[48px] text-primary-yellow opacity-0"
+              >
+                {attributes?.hero?.blockQuote1?.info1}
+              </h3>
+              <p
+                ref={(el) => (elementsRef.current[3] = el)}
+                data-animation="animate-slideInRight"
+                className="text-[16px] font-light leading-[28px] text-white opacity-0"
+              >
+                {attributes?.hero?.blockQuote1?.subinfo1}
+              </p>
+            </div>
+            <div className="flex flex-col items-end">
+              <h3
+                ref={(el) => (elementsRef.current[4] = el)}
+                data-animation="animate-slideInLeft"
+                className="font-glittenCaps text-[48px] text-primary-yellow opacity-0"
+              >
+                {attributes?.hero?.blockQuote1?.info3}
+              </h3>
+              <p
+                ref={(el) => (elementsRef.current[5] = el)}
+                data-animation="animate-slideInRight"
+                className="text-[16px] font-light leading-[28px] text-white opacity-0"
+              >
+                {attributes?.hero?.blockQuote1?.subinfo3}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-end">
+            <div className="flex flex-col items-end">
+              <h3
+                ref={(el) => (elementsRef.current[6] = el)}
+                data-animation="animate-slideInLeft"
+                className="font-glittenCaps text-[48px] text-primary-yellow opacity-0"
+              >
+                {attributes?.hero?.blockQuote1?.info2}
+              </h3>
+              <p
+                ref={(el) => (elementsRef.current[7] = el)}
+                data-animation="animate-slideInRight"
+                className="text-[16px] font-light leading-[28px] text-white opacity-0"
+              >
+                {attributes?.hero?.blockQuote1?.subinfo2}
+              </p>
+            </div>
+            <div className="flex flex-col items-end">
+              <h3
+                ref={(el) => (elementsRef.current[8] = el)}
+                data-animation="animate-slideInLeft"
+                className="font-glittenCaps text-[48px] text-primary-yellow opacity-0"
+              >
+                {attributes?.hero?.blockQuote1?.info4}
+              </h3>
+              <p
+                ref={(el) => (elementsRef.current[9] = el)}
+                data-animation="animate-slideInRight"
+                className="text-[16px] font-light leading-[28px] text-white opacity-0"
+              >
+                {attributes?.hero?.blockQuote1?.subinfo4}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* chronology  section*/}
       <div className="flex w-full flex-col items-center justify-center pb-[81px] pt-[89px]">
         <h2 className="my-[50px] text-[34px] font-semibold">Cronologia</h2>
-        <div className="my-12 mt-[213px] flex w-screen flex-col items-center">
+        <div className="my-12 mt-[213px] hidden w-screen flex-col items-center md:flex">
           <div className="relative flex w-[80%] justify-between">
-            {chronologyItems?.map(
-              (
-                item: {
-                  year:
-                    | string
-                    | number
-                    | bigint
-                    | boolean
-                    | ReactElement<any, string | JSXElementConstructor<any>>
-                    | Iterable<ReactNode>
-                    | ReactPortal
-                    | Promise<AwaitedReactNode>
-                    | null
-                    | undefined
-                },
-                index: number
-              ) => (
+            {chronologyItems?.map((item: any, index: number) => (
+              <div
+                className={`relative flex flex-col items-center justify-center`}
+                key={`${item.year}-${index}`}
+              >
                 <div
-                  className={`flex flex-col items-center justify-center`}
-                  key={`${item.year}-${index}`}
+                  className={`absolute bottom-12 min-w-max items-center ${index % 2 !== 0 ? 'flex flex-col-reverse' : 'hidden'}`}
                 >
+                  <div
+                    className={`h-[126px] w-[2px] bg-gradient-to-t ${item?.year === selectedYear ? 'from-primary-yellow' : 'from-black'} to-white"`}
+                  ></div>
+                  <span
+                    className={` ${item?.year === selectedYear ? 'text-primary-yellow' : 'text-black'} mt-2`}
+                  >
+                    {item?.subtitle}
+                  </span>{' '}
+                </div>
+                <div
+                  className={`absolute flex flex-col items-center justify-center ${index % 2 === 0 ? 'bottom-9' : 'bottom-0'}`}
+                >
+                  <span
+                    className={`text-[24px] font-semibold ${item?.year === selectedYear ? 'text-primary-yellow' : 'text-black'} ${index % 2 !== 0 ? 'hidden' : 'flex'}`}
+                  >
+                    {item?.year}
+                  </span>
                   <button
-                    className={`h-[26px] w-[26px] rounded-full bg-black ${item?.year === selectedYear ? 'bg-primary-yellow' : 'bg-black'}`}
+                    className={`z-10 h-[26px] w-[26px] rounded-full bg-black ${item?.year === selectedYear ? 'bg-primary-yellow' : 'bg-black'}`}
                     onClick={() => setSelectedYear(item?.year)}
                   ></button>
                   <span
-                    className={`text-[24px] font-semibold ${item?.year === selectedYear ? 'text-primary-yellow' : 'text-black'}`}
+                    className={`text-[24px] font-semibold ${item?.year === selectedYear ? 'text-primary-yellow' : 'text-black'} ${index % 2 !== 0 ? 'flex' : 'hidden'}`}
                   >
                     {item?.year}
                   </span>
                 </div>
-              )
-            )}
+
+                <div
+                  className={`absolute -top-10 flex min-w-max flex-col items-center ${index % 2 !== 0 ? 'hidden' : 'flex'}`}
+                >
+                  <div
+                    className={`h-[126px] w-[2px] ${index % 2 !== 0 ? 'bg-gradient-to-t' : 'bg-gradient-to-b'} ${item?.year === selectedYear ? 'from-primary-yellow' : 'from-black'} to-white"`}
+                  ></div>
+                  <span
+                    className={`text-[16px] ${item?.year === selectedYear ? 'text-primary-yellow' : 'text-black'} mt-2`}
+                  >
+                    {item?.subtitle}
+                  </span>{' '}
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="mt-[-50px] h-[2px] w-full bg-gradient-to-r from-transparent via-black to-transparent"></div>
         </div>
-        <div className="mt-[290px] flex w-full max-w-[1095] justify-center gap-[10%] px-[7%]">
-          <div className="flex max-w-[420px] flex-col justify-end">
+        <div className="-mt-[100px] h-[2px] w-full bg-gradient-to-r from-transparent via-black to-transparent"></div>
+        {chronologyItems?.map((item: any, index: number) => (
+          <div
+            className={`relative flex flex-col items-center justify-center lg:hidden`}
+            key={`${item.year}-${index}`}
+          >
+            <span className="">{item?.year}</span>
+          </div>
+        ))}
+        <div className="mt-[290px] flex w-full max-w-[1095] flex-col justify-center gap-[10%] px-[7%] lg:flex-row">
+          <div className="flex w-full flex-col justify-end lg:max-w-[420px]">
             <span className="text-[24px] font-semibold text-primary-yellow">
               {filteredCronologyItemByYear[0]?.year}
             </span>
@@ -126,7 +271,7 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
             </span>
           </div>
           <div
-            className="flex h-[368px] w-[562px] w-full max-w-[562px] items-center justify-center rounded-[14px]"
+            className="mt-[50px] flex h-[368px] w-[562px] w-full max-w-[562px] items-center justify-center rounded-[14px] lg:mt-0"
             style={{
               backgroundImage: `url(${getStrapiMedia(filteredCronologyItemByYear[0]?.image?.data?.attributes?.url)})`,
               backgroundRepeat: 'no-repeat',
@@ -137,20 +282,28 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
           />
         </div>
       </div>
-      <div className="flex h-[368px] w-full items-center justify-between rounded-b-[30px] border-t-2 border-t-primary-yellow bg-primary-green px-[7%] py-[59px]">
-        <h3 className="inline-block max-w-[420px] animate-slideInLeft font-glittenCaps text-[36px] text-primary-yellow">
-          &quot;Transformamos espaços em experiências, onde cada detalhe reflete
-          amor, inovação e a essência de quem os habita.&quot;
-        </h3>
-        <p className="inline-block max-w-[375px] animate-slideInRight text-[16px] font-normal leading-[28px] text-white">
-          A nossa visão é continuar a expandir a nossa presença global,
-          estabelecendo parcerias estratégicas e alcançando um crescimento
-          contínuo e sustentável, sempre comprometidos com a excelência,
-          inovação e responsabilidade social em todos os nossos projetos.
-        </p>
+      <div className="flex w-full flex-col items-center justify-between gap-[20px] rounded-b-[30px] border-t-2 border-t-primary-yellow bg-primary-green px-[12%] py-[59px] lg:h-[368px] lg:flex-row">
+        <div
+          className="flex items-center justify-center"
+          ref={(el) => (elementsRef.current[10] = el)}
+          data-animation="animate-slideInLeft"
+        >
+          <h3 className="inline-block max-w-[420px] animate-slideInLeft text-center font-glittenCaps text-[36px] text-primary-yellow lg:text-left">
+            {attributes?.blockQuote2?.title}
+          </h3>
+        </div>
+        <div
+          className="flex items-center justify-center"
+          ref={(el) => (elementsRef.current[11] = el)}
+          data-animation="animate-slideInRight"
+        >
+          <p className="inline-block max-w-[375px] animate-slideInRight text-justify text-[16px] font-normal leading-[28px] text-white">
+            {attributes?.blockQuote2?.description}
+          </p>
+        </div>
       </div>
-      {/* our services section*/}
-      <div className="h-[591px] w-full pt-[100px]">
+      {/* our services section */}
+      <div className="w-full pt-[100px]">
         <div className="flex flex-col gap-[36px]">
           <div className="flex flex-col gap-[10px] px-[7%]">
             <div className="flex items-center">
@@ -161,7 +314,7 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
             </div>
             <h2 className="text-[34px] font-medium">Os nossos serviços</h2>
           </div>
-          <div className="flex w-full items-center">
+          <div className="flex w-full flex-col items-center lg:flex-row">
             {projectsType.map((item: any, index: number) => (
               <ProjectTypeCardAbout
                 href={`/services-vergadela/${item?.attributes?.type}`}
@@ -174,8 +327,9 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
           </div>
         </div>
       </div>
+
       {/* our team section */}
-      <div className="mt-[300px] h-[591px] w-full px-[7%] pt-[100px]">
+      <div className="mt-[300px] w-full px-[7%] pt-[100px]">
         <div className="flex flex-col">
           <div className="flex items-center gap-[10px]">
             <div className="h-[1px] w-[53px] bg-primary-yellow" />
@@ -189,8 +343,9 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
           </div>
         </div>
       </div>
+
       {/* recent projects section */}
-      <div className="h-[591px] w-full px-[7%] pt-[100px]">
+      <div className="relative w-full px-[7%] pt-[100px]">
         <div className="flex flex-col">
           <div className="flex items-center gap-[10px]">
             <div className="h-[1px] w-[53px] bg-primary-yellow" />
@@ -220,7 +375,6 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
                       </span>
                     </div>
                     <h3 className="font-glittenCaps text-[28px] capitalize text-white">
-                      {' '}
                       {item?.attributes?.hero?.subtitle}
                     </h3>
                   </div>

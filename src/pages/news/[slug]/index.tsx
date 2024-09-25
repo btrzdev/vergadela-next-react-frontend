@@ -67,7 +67,7 @@ const IndividualNews: React.FC<NewsProps> = ({ attributes, news, slug }) => {
 
       <div>
         <div className="flex h-full w-full justify-between border border-x-0 border-t-0 border-b-[#D9D9D9] bg-white px-[7%] pt-[151px]">
-          <div className="flex w-1/2 flex-col">
+          <div className="flex w-1/2 flex-col gap-3">
             <div className="flex max-w-[420px] flex-col">
               <div className="flex items-center">
                 <span className="flex h-[32px] w-max items-center justify-center rounded-[2px] bg-medium-gray px-[18px] py-[9px] text-center text-sm font-semibold text-white">
@@ -100,7 +100,7 @@ const IndividualNews: React.FC<NewsProps> = ({ attributes, news, slug }) => {
                 }}
               />
             </div>{' '}
-            <div className="flex flex-col gap-[5px]">
+            <div className="mt-[20px] flex flex-col gap-[5px]">
               <h3 className="text-[12px] font-semibold leading-[24px]">
                 PARTILHAR
               </h3>

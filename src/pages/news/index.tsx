@@ -177,7 +177,7 @@ const News: React.FC<NewsProps> = ({ attributes, news }) => {
         <div className="flex flex-col px-[7%]">
           <div className="mb-[69px]">
             <input
-              className="focus:border-b-1 w-full border-b border-gray-300 pb-[8px] placeholder:text-[12px] focus:border-gray-300 focus:outline-none"
+              className="focus:border-b-1 hidden w-full border-b border-gray-300 pb-[8px] placeholder:text-[12px] focus:border-gray-300 focus:outline-none"
               placeholder="Pesquisar"
               value={searchTerm}
               onChange={handleSearch}

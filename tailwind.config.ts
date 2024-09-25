@@ -19,8 +19,8 @@ const config: Config = {
         },
       },
       animation: {
-        slideInLeft: 'slideInLeft 1s ease-out forwards',
-        slideInRight: 'slideInRight 1s ease-out forwards',
+        slideInLeft: 'slideInLeft 1s forwards',
+        slideInRight: 'slideInRight 1s forwards',
       },
       backgroundImage: {
         footer: "url('/bg_footer.png')",

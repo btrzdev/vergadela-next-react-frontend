@@ -12,8 +12,9 @@ interface ServicesVergadelaProps {
   slug: any
 }
 
-const ServicesVergadela: React.FC<ServicesVergadelaProps> = ({
+const ServiceVergadela: React.FC<ServicesVergadelaProps> = ({
   attributes,
+  slug,
 }) => {
   const [activeTab, setActiveTab] = useState(
     attributes[0]?.attributes?.subtitle
@@ -45,7 +46,7 @@ const ServicesVergadela: React.FC<ServicesVergadelaProps> = ({
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `url('images/service_bg.png')`,
+            backgroundImage: `url('/images/service_bg.png')`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             filter: 'brightness(0.5)',
@@ -92,8 +93,8 @@ const ServicesVergadela: React.FC<ServicesVergadelaProps> = ({
                   <img
                     src={
                       activeTab === item?.attributes?.subtitle
-                        ? 'icons/white_chair.svg'
-                        : 'icons/green_chair.svg'
+                        ? '/icons/white_chair.svg'
+                        : '/icons/green_chair.svg'
                     }
                     alt="Chair"
                     width={22}
@@ -150,15 +151,18 @@ const ServicesVergadela: React.FC<ServicesVergadelaProps> = ({
   )
 }
 
-export default ServicesVergadela
+export default ServiceVergadela
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { slug } = context.query
+
   const data = await getServices()
   const attributes = data?.data
 
   return {
     props: {
       attributes: attributes,
+      slug: slug,
     },
   }
 }

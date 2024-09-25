@@ -31,7 +31,7 @@ const NavBar = () => {
         </button>
 
         <div className="flex flex-row gap-[20px] text-black">
-          <Link href={''}>
+          <Link href={'https://www.facebook.com/vergadelainteriores/'}>
             <Image
               width={22}
               height={22}

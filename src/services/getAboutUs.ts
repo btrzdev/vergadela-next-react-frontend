@@ -50,6 +50,9 @@ const getAboutUs = async () => {
             },
           },
         },
+        blockQuote2: {
+          populate: '*',
+        },
       },
     }
 
