@@ -317,6 +317,7 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
           <div className="flex w-full flex-col items-center lg:flex-row">
             {projectsType.map((item: any, index: number) => (
               <ProjectTypeCardAbout
+                key={index}
                 href={`/services-vergadela/${item?.attributes?.type}`}
                 item={item?.attributes}
                 img={item?.attributes?.cardImg?.data?.attributes?.url}
