@@ -1,6 +1,6 @@
 export function getStrapiURL(path = '') {
   return `${
-    process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'
+    process.env.NEXT_PUBLIC_STRAPI_API_URL || 'https://localhost:1338'
   }${path}`
 }
 
@@ -10,7 +10,7 @@ export function getStrapiMedia(url: string | null) {
   }
 
   // Return the full URL if the media is hosted on an external provider
-  if (url.startsWith('http') || url.startsWith('//')) {
+  if (url.startsWith('https') || url.startsWith('//')) {
     return url
   }
 
@@ -19,8 +19,8 @@ export function getStrapiMedia(url: string | null) {
 }
 
 export const resolveImageUrl = (image?: string) => {
-  const baseUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL ?? 'http://localhost'
+  const baseUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL ?? 'https://localhost'
   if (!image) return baseUrl
-  if (baseUrl.includes('http')) return image
+  if (baseUrl.includes('https')) return image
   return `${baseUrl}:1338${image}`
 }
