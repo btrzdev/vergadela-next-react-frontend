@@ -20,8 +20,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     'services-vergadela',
   ]
 
+  const noFooterRoute = '/'
+  console.log('Router', router)
   return (
-    <div className={`flex min-h-screen flex-col ${roboto.className}`}>
+    <div
+      className={`flex min-h-screen flex-col ${roboto.className} overflow-hidden`}
+    >
       {specialNavBarRoutes.includes(router.pathname) ? (
         <NavBar />
       ) : (
@@ -30,7 +34,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <main className="flex-grow">
         <Component {...pageProps} />
       </main>
-      {/* <Footer /> */}
+      {noFooterRoute !== router.pathname ? <Footer /> : null}
     </div>
   )
 }

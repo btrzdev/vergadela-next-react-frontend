@@ -44,3 +44,12 @@
   background-color: #1D1C1B;
   }
 
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* For Firefox */
+  .scrollbar-hide {
+    scrollbar-width: none; /* Firefox */
+  }
+

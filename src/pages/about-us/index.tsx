@@ -93,7 +93,7 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
             </span>
           </div>
 
-          <h1 className="font-glittenCaps text-[70px] text-white">
+          <h1 className="font-glittenCaps text-[60px] text-white lg:text-[70px]">
             {attributes?.hero?.subtitle}
           </h1>
           <h2 className="mb-[45px] inline-block max-w-[460px] text-justify text-[20px] font-light leading-[26px] text-white">
@@ -101,7 +101,7 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
           </h2>
         </div>
       </div>
-      <div className="flex w-full flex-col justify-between gap-[50px] rounded-b-[30px] border-t-2 border-t-primary-yellow bg-primary-green px-[12%] py-[80px] lg:h-[368px] lg:flex-row lg:gap-0 lg:py-0">
+      <div className="flex w-full flex-col items-center justify-center gap-[50px] rounded-b-[30px] border-t-2 border-t-primary-yellow bg-primary-green px-[12%] py-[80px] lg:h-[368px] lg:flex-row lg:justify-between lg:gap-0 lg:py-0">
         <div className="flex max-w-[420px] flex-col items-center justify-center">
           <h3
             ref={(el) => (elementsRef.current[0] = el)}
@@ -119,7 +119,7 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-[8%] lg:w-1/2">
+        <div className="flex flex-wrap items-center justify-center gap-[10px] lg:w-1/2 lg:gap-[8%]">
           <div className="flex flex-col items-end">
             <div className="flex flex-col items-end">
               <h3
@@ -193,9 +193,9 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
       </div>
 
       {/* chronology  section*/}
-      <div className="flex w-full flex-col items-center justify-center pb-[81px] pt-[89px]">
-        <h2 className="my-[50px] text-[34px] font-semibold">Cronologia</h2>
-        <div className="my-12 mt-[213px] hidden w-screen flex-col items-center md:flex">
+      <div className="flex w-full flex-col items-center justify-center pb-[81px] pt-[40px] lg:pt-[89px]">
+        <h2 className="text-[34px] font-semibold lg:my-[50px]">Cronologia</h2>
+        <div className="my-12 mt-[213px] hidden w-screen flex-col items-center lg:flex">
           <div className="relative flex w-[80%] justify-between">
             {chronologyItems?.map((item: any, index: number) => (
               <div
@@ -249,16 +249,55 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
             ))}
           </div>
         </div>
-        <div className="-mt-[100px] h-[2px] w-full bg-gradient-to-r from-transparent via-black to-transparent"></div>
-        {chronologyItems?.map((item: any, index: number) => (
-          <div
-            className={`relative flex flex-col items-center justify-center lg:hidden`}
-            key={`${item.year}-${index}`}
-          >
-            <span className="">{item?.year}</span>
+        <div className="-mt-[100px] hidden h-[2px] w-full bg-gradient-to-r from-transparent via-black to-transparent lg:flex"></div>
+
+        <div className="mt-[290px] hidden w-full max-w-[1095] flex-col justify-center gap-[10%] px-[7%] lg:flex lg:flex-row">
+          <div className="flex w-full flex-col justify-end lg:max-w-[420px]">
+            <span className="text-[24px] font-semibold text-primary-yellow">
+              {filteredCronologyItemByYear[0]?.year}
+            </span>
+            <span className="text-left text-[34px] font-medium text-[#1D1C1B]">
+              {filteredCronologyItemByYear[0]?.title}
+            </span>
+            <span className="text-[14px] font-normal leading-[26px] text-[#1D1C1B]">
+              {filteredCronologyItemByYear[0]?.description}
+            </span>
           </div>
-        ))}
-        <div className="mt-[290px] flex w-full max-w-[1095] flex-col justify-center gap-[10%] px-[7%] lg:flex-row">
+          <div
+            className="mt-[50px] flex h-[368px] w-[562px] w-full max-w-[562px] items-center justify-center rounded-[14px] lg:mt-0"
+            style={{
+              backgroundImage: `url(${getStrapiMedia(filteredCronologyItemByYear[0]?.image?.data?.attributes?.url)})`,
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+              backgroundBlendMode: 'darken',
+              filter: 'brightness(50%)',
+            }}
+          />
+        </div>
+      </div>
+      {/* chronology section mobile */}
+      <div className="flex flex-col lg:hidden">
+        <div className="scrollbar-hide flex gap-[20px] overflow-x-scroll pl-[8%]">
+          {chronologyItems?.map((item: any, index: number) => (
+            <div
+              className="relative flex min-w-[80px] flex-shrink-0 flex-col items-center justify-center lg:hidden"
+              key={`${item.year}-${index}`}
+            >
+              <span
+                className={`cursor-pointer text-[20px] font-semibold ${
+                  item?.year === selectedYear
+                    ? 'rounded-md bg-primary-green p-3 text-primary-yellow'
+                    : 'text-black'
+                }`}
+                onClick={() => setSelectedYear(item?.year)}
+              >
+                {item?.year}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        <div className="mb-[30px] mt-[50px] flex w-full max-w-[1095] flex-col justify-center gap-[10%] px-[7%] lg:flex-row">
           <div className="flex w-full flex-col justify-end lg:max-w-[420px]">
             <span className="text-[24px] font-semibold text-primary-yellow">
               {filteredCronologyItemByYear[0]?.year}
@@ -330,7 +369,7 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
       </div>
 
       {/* our team section */}
-      <div className="mt-[300px] w-full px-[7%] pt-[100px]">
+      <div className="mt-0 w-full pl-[7%] pt-[100px] lg:mt-[300px] lg:px-[7%]">
         <div className="flex flex-col">
           <div className="flex items-center gap-[10px]">
             <div className="h-[1px] w-[53px] bg-primary-yellow" />
@@ -339,15 +378,15 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
             </span>
           </div>
           <h2 className="text-[34px] font-medium">Nossa Equipa</h2>
-          <div className="flex w-full items-center justify-start gap-[30px]">
+          <div className="scrollbar-hide flex w-full items-center gap-[30px] overflow-x-auto overflow-y-hidden">
             <TeamSwiper items={attributes?.team?.teamMember} />
           </div>
         </div>
       </div>
 
       {/* recent projects section */}
-      <div className="relative w-full px-[7%] pt-[100px]">
-        <div className="flex flex-col">
+      <div className="relative w-full overflow-x-auto pl-[7%] pt-[100px] lg:px-[7%]">
+        <div className="flex flex-col overflow-x-auto">
           <div className="flex items-center gap-[10px]">
             <div className="h-[1px] w-[53px] bg-primary-yellow" />
             <span className="text-sm font-normal uppercase text-primary-yellow">
@@ -355,15 +394,15 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
             </span>
           </div>
           <h2 className="text-[34px] font-medium">Projetos Recentes</h2>
-          <div className="flex w-full items-center justify-start gap-[30px]">
+          <div className="scrollbar-hide flex w-full items-center justify-start gap-[30px] overflow-x-auto">
             {projects?.map(
               (item: { attributes: any }, index: Key | null | undefined) => (
                 <div
-                  className="relative flex h-[278px] w-[308px] items-center overflow-hidden rounded-[12px]"
+                  className="relative flex h-[278px] min-w-[308px] items-center overflow-hidden rounded-[12px]"
                   key={index}
                 >
                   <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat grayscale transition-transform duration-1000 ease-out hover:scale-105 hover:grayscale-0"
+                    className="absolute inset-0 w-full bg-cover bg-center bg-no-repeat grayscale transition-transform duration-1000 ease-out hover:scale-105 hover:grayscale-0"
                     style={{
                       backgroundImage: `url(${getStrapiMedia(item?.attributes?.hero?.image?.data?.attributes?.url)})`,
                     }}
@@ -398,7 +437,7 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
         </div>
       </div>
       {/* curiosity */}
-      <div className="flex h-[694px] w-full flex-col px-[7%] py-[99px]">
+      <div className="flex h-[694px] w-full flex-col py-[99px] pb-0 pl-[7%] lg:px-[7%]">
         <>
           <div className="flex items-center gap-[10px]">
             <div className="h-[1px] w-[53px] bg-primary-yellow font-medium" />
@@ -410,7 +449,7 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
             {attributes?.curiositySection?.subtitle}
           </h2>
         </>
-        <div className="flex justify-between gap-[20px]">
+        <div className="scrollbar-hide flex justify-between gap-[20px] overflow-x-auto overflow-y-hidden">
           {attributes?.curiositySection?.curiosity?.map(
             (
               item: {
@@ -431,7 +470,7 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
             ) => (
               <div
                 key={index}
-                className="group flex h-[396px] w-[420px] flex-col overflow-hidden rounded-lg"
+                className="group flex h-[396px] w-[420px] min-w-[300px] flex-col overflow-hidden rounded-lg"
               >
                 <div className="items-left flex h-1/2 w-full flex-col justify-start gap-[23px] rounded-t-lg bg-primary-green py-[32px] pl-[20px]">
                   <p className="max-w-[252px] text-[26px] font-medium leading-[30.47px] text-white">
@@ -460,11 +499,11 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
         </div>
       </div>
       {/* partinershipSection */}
-      <div className="flex h-[526px] w-full flex-col items-center justify-center">
-        <h3 className="mb-[76px] text-[35px] font-medium leading-[41px]">
+      <div className="flex h-[250px] w-full flex-col items-start justify-center overflow-hidden lg:h-[526px] lg:items-center">
+        <h3 className="mb-[76px] pl-[7%] text-[35px] font-medium leading-[41px]">
           Parcerias
         </h3>
-        <div className="flex w-full justify-evenly">
+        <div className="scrollbar-hide flex w-full items-center justify-center gap-[20px] overflow-x-scroll px-[7%] pl-[100px] lg:justify-between">
           {attributes?.partinershipSection?.partinership.map(
             (
               item: {
@@ -473,9 +512,13 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
               },
               index: any
             ) => (
-              <div key={`${item}-${index}`}>
-                <Link href={item?.href}>
+              <div key={`${item}-${index}`} className="flex-shrink-0">
+                <Link
+                  href={item?.href}
+                  className="flex items-center justify-center"
+                >
                   <Image
+                    className="h-[49px] w-auto"
                     src={
                       `${getStrapiMedia(item?.image?.data?.attributes?.url)}` ??
                       ''

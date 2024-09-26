@@ -17,10 +17,15 @@ const config: Config = {
           '0%': { transform: 'translateX(100%)', opacity: '0' },
           '100%': { transform: 'translateX(0)', opacity: '1' },
         },
+        slideFromTop: {
+          '0%': { transform: 'translateY(-100%)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
       },
       animation: {
         slideInLeft: 'slideInLeft 1s forwards',
         slideInRight: 'slideInRight 1s forwards',
+        slideFromTop: 'slideFromTop 0.5s ease-out forwards',
       },
       backgroundImage: {
         footer: "url('/bg_footer.png')",

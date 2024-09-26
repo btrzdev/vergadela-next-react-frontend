@@ -11,7 +11,7 @@ const NavBar = () => {
 
   return (
     <>
-      <div className="flex h-[149px] w-full items-center justify-between overflow-hidden bg-white px-[5%]">
+      <div className="flex h-[149px] w-screen items-center justify-between overflow-hidden bg-white px-[5%]">
         <Link href={'/about-us'}>
           <Image
             width={140}
@@ -30,7 +30,7 @@ const NavBar = () => {
           />
         </button>
 
-        <div className="flex flex-row gap-[20px] text-black">
+        <div className="flex flex-row gap-[20px] text-black hover:brightness-50">
           <Link href={'https://www.facebook.com/vergadelainteriores/'}>
             <Image
               width={22}
@@ -39,7 +39,7 @@ const NavBar = () => {
               alt={''}
             />
           </Link>
-          <Link href={''}>
+          <Link href={''} className="hover:brightness-50">
             <Image
               width={22}
               height={22}
@@ -58,7 +58,7 @@ const NavBar = () => {
             backgroundSize: 'cover',
             zIndex: 100,
           }}
-          className="fixed left-0 top-0 z-50 flex h-full w-full flex-col items-center justify-center text-white"
+          className="animate-slideFromTop fixed left-0 top-0 z-50 flex h-full w-full flex-col items-center justify-center text-white"
         >
           <button
             className="absolute right-1/2 top-6 text-white"
@@ -112,13 +112,14 @@ const NavBar = () => {
               </nav>
             </div>
             <div className="z-100 flex w-1/2 items-start justify-start">
-              {' '}
-              <Image
-                height={350}
-                width={307}
-                src={'/icons/vergadela_log_navbar.svg'}
-                alt={'close button navbar'}
-              />
+              <Link href={'/'} onClick={toggleNav}>
+                <Image
+                  height={350}
+                  width={307}
+                  src={'/icons/vergadela_log_navbar.svg'}
+                  alt={'close button navbar'}
+                />
+              </Link>
             </div>
           </div>
         </div>

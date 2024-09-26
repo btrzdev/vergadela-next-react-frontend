@@ -3,7 +3,7 @@ import Image from 'next/image'
 const Contact = () => {
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between bg-white`}
+      className={`flex min-h-screen flex-col items-center justify-between overflow-hidden bg-white`}
     >
       <div className="flex h-full w-full max-w-[1440px] flex-col bg-white pb-[196px]">
         <div className="flex flex-col items-center justify-center">
