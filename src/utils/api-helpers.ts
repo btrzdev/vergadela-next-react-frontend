@@ -22,5 +22,5 @@ export const resolveImageUrl = (image?: string) => {
   const baseUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL ?? 'http://localhost'
   if (!image) return baseUrl
   if (baseUrl.includes('http')) return image
-  return `${baseUrl}:1337${image}`
+  return `${baseUrl}:1338${image}`
 }
