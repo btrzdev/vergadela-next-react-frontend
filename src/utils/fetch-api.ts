@@ -16,6 +16,7 @@ export async function fetchAPI(
         'Content-Type': 'application/json',
         // Authorization: `Bearer ${TOKEN}`,
       },
+      httpsAgent: new (require('https').Agent)({ rejectUnauthorized: false }),
       cache: 'no-store',
       next: { revalidate: 0 },
       ...options,
