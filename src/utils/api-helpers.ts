@@ -10,7 +10,7 @@ export function getStrapiMedia(url: string | null) {
   }
 
   // Return the full URL if the media is hosted on an external provider
-  if (url.startsWith('https') || url.startsWith('//')) {
+  if (url.startsWith('http') || url.startsWith('//')) {
     return url
   }
 
@@ -21,6 +21,6 @@ export function getStrapiMedia(url: string | null) {
 export const resolveImageUrl = (image?: string) => {
   const baseUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL ?? 'http://localhost'
   if (!image) return baseUrl
-  if (baseUrl.includes('https')) return image
+  if (baseUrl.includes('http')) return image
   return `${baseUrl}:1337${image}`
 }
