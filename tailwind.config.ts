@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      brightness: {
+        25: '.25',
+      },
       keyframes: {
         slideInLeft: {
           '0%': { transform: 'translateX(-100%)', opacity: '0' },

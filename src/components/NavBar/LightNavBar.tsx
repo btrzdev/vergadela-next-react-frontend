@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-const NavBar = () => {
+const NavBar = ({ links }: any) => {
   const [isNavOpen, setIsNavOpen] = useState(false)
 
   const toggleNav = () => {
@@ -12,7 +12,7 @@ const NavBar = () => {
   return (
     <>
       <div className="absolute z-50 flex h-[149px] w-full items-center justify-between overflow-hidden bg-transparent px-[5%]">
-        <Link href={'/about-us'}>
+        <Link href={'/'}>
           <Image
             width={140}
             height={32}
@@ -31,10 +31,7 @@ const NavBar = () => {
         </button>
 
         <div className="flex flex-row gap-[20px] text-black">
-          <Link
-            href={'https://www.facebook.com/vergadelainteriores/'}
-            className="hover:brightness-50"
-          >
+          <Link href={links?.facebook_link} className="hover:brightness-50">
             <Image
               width={22}
               height={22}
@@ -42,7 +39,7 @@ const NavBar = () => {
               alt={''}
             />
           </Link>
-          <Link href={''} className="hover:brightness-50">
+          <Link href={links?.instagram_link} className="hover:brightness-50">
             <Image
               width={22}
               height={22}
@@ -61,7 +58,7 @@ const NavBar = () => {
             backgroundSize: 'cover',
             zIndex: 100,
           }}
-          className="animate-slideFromTop fixed left-0 top-0 z-0 flex h-full w-screen flex-col items-center justify-center overflow-hidden text-white"
+          className="fixed left-0 top-0 z-0 flex h-full w-screen animate-slideFromTop flex-col items-center justify-center overflow-hidden text-white"
         >
           <button
             className="absolute right-1/2 top-6 text-white"

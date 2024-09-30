@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-const Footer = () => {
+const Footer = ({ attributes }: any) => {
   return (
     <div className="relative bottom-0 flex h-auto w-full flex-col-reverse items-start justify-start overflow-hidden bg-footer bg-cover bg-fixed bg-center bg-no-repeat pb-[50px] pt-[74px] text-white lg:h-[432px] lg:flex-row lg:justify-evenly lg:pb-0">
       <div className="flex w-full flex-col items-center justify-start pt-[40px] lg:w-1/4 lg:items-start lg:pt-0">
@@ -53,17 +53,15 @@ const Footer = () => {
               <span className="font-semibold text-primary-yellow">
                 Telefone:
               </span>
-              <span className="text-white">+351 253 276 111</span>
+              <span className="text-white">{attributes?.phone}</span>
             </div>
             <div className="flex gap-[5px]">
               <span className="font-semibold text-primary-yellow">Email:</span>
-              <span className="text-white">
-                Rua de Pousada 32, 4715-381 Braga, Portugal
-              </span>
+              <span className="text-white">{attributes?.email}</span>
             </div>
             <div className="flex gap-[5px]">
               <span className="font-semibold text-primary-yellow">Morada:</span>
-              <span className="text-white">+351 253 276 111</span>
+              <span className="text-white">{attributes?.address}</span>
             </div>
           </div>
         </div>
@@ -113,17 +111,19 @@ const Footer = () => {
           <div className="flex flex-col items-end justify-start gap-[20px] lg:items-end lg:justify-end">
             <div className="flex flex-col items-start items-end justify-center lg:mt-[49px] lg:items-end">
               <span className="text-right font-semibold text-primary-yellow">
-                Segunda-Sexta
+                {attributes?.week_days}
               </span>
               <span className="text-right text-white">
-                09h00 - 12h30 / 13h30 - 19h00
+                {attributes?.schedule_week_days}
               </span>
             </div>
             <div className="flex flex-col items-start items-end justify-center lg:items-end lg:justify-end">
               <span className="text-right font-semibold text-primary-yellow">
-                Sábado e Domingo
+                {attributes?.weekend_days}
               </span>
-              <span className="text-right text-white">Encerrado</span>
+              <span className="text-right text-white">
+                {attributes?.schedule_weekend_days}
+              </span>
             </div>
           </div>
         </div>
@@ -132,7 +132,7 @@ const Footer = () => {
         <h3 className="text-[16px] font-bold">REDES SOCIAIS</h3>
         <div className="flex flex-row items-start gap-[20px] text-black">
           <Link
-            href={'https://www.facebook.com/vergadelainteriores/'}
+            href={attributes?.facebook_link}
             className="hover:cursor-pointer hover:brightness-50"
           >
             <Image
@@ -142,7 +142,10 @@ const Footer = () => {
               alt={''}
             />
           </Link>
-          <Link href={''} className="hover:cursor-pointer hover:brightness-50">
+          <Link
+            href={attributes?.instagram_link}
+            className="hover:cursor-pointer hover:brightness-50"
+          >
             <Image
               width={22}
               height={22}

@@ -2,17 +2,13 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['app.grupoerre.pt'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'app.grupoerre.pt',
+      },
+    ],
   },
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/',
-  //       destination: '/about-us',
-  //       permanent: true,
-  //     },
-  //   ]
-  // },
 }
 
 export default nextConfig

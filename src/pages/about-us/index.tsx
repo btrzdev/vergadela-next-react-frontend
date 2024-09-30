@@ -20,9 +20,10 @@ import getProjectType from '@/services/getProjectType'
 import ProjectTypeCardAbout from '@/components/ProjectTypes/ProjectTypes'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import getServices from '@/services/getServices'
 
-export default function AboutUs({ attributes, projects, projectsType }: any) {
-  // console.log('Attributes About Us', attributes)
+export default function AboutUs({ attributes, projects, servicesTypes }: any) {
+  console.log('Attributes About Us', servicesTypes)
   // console.log('Attributes projects', projects)
   // console.log('Attributes projectTypes', projectsType)
 
@@ -73,7 +74,7 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
         <div
           className="relative flex h-[872px] w-full items-center justify-center rounded-[4px]"
           style={{
-            backgroundImage: `url('/images/hero.png')`,
+            backgroundImage: `url(${getStrapiMedia(attributes?.hero?.imageCover?.data?.attributes?.url)})`,
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             backgroundBlendMode: 'darken',
@@ -209,7 +210,7 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
                     className={`h-[126px] w-[2px] bg-gradient-to-t ${item?.year === selectedYear ? 'from-primary-yellow' : 'from-black'} to-white"`}
                   ></div>
                   <span
-                    className={` ${item?.year === selectedYear ? 'text-primary-yellow' : 'text-black'} mt-2`}
+                    className={`${item?.year === selectedYear ? 'text-primary-yellow' : 'text-black'} mt-2`}
                   >
                     {item?.subtitle}
                   </span>{' '}
@@ -302,7 +303,7 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
             <span className="text-[24px] font-semibold text-primary-yellow">
               {filteredCronologyItemByYear[0]?.year}
             </span>
-            <span className="text-left text-[34px] font-medium text-[#1D1C1B]">
+            <span className="text-left text-[34px] font-medium leading-[39px] text-[#1D1C1B]">
               {filteredCronologyItemByYear[0]?.title}
             </span>
             <span className="text-[14px] font-normal leading-[26px] text-[#1D1C1B]">
@@ -354,10 +355,10 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
             <h2 className="text-[34px] font-medium">Os nossos serviços</h2>
           </div>
           <div className="flex w-full flex-col items-center lg:flex-row">
-            {projectsType.map((item: any, index: number) => (
+            {servicesTypes.map((item: any, index: number) => (
               <ProjectTypeCardAbout
                 key={index}
-                href={`/services-vergadela/${item?.attributes?.type}`}
+                href={`/services-vergadela/${item?.attributes?.subtitle}`}
                 item={item?.attributes}
                 img={item?.attributes?.cardImg?.data?.attributes?.url}
                 type={item?.attributes?.type}
@@ -539,17 +540,17 @@ export default function AboutUs({ attributes, projects, projectsType }: any) {
 export async function getServerSideProps() {
   const data = await getAboutUs()
   const dataProjects = await getProjectList()
-  const dataProjectType = await getProjectType()
+  const dataServiceType = await getServices()
 
   const { attributes } = data?.data?.data
   const projects = dataProjects?.data?.data
-  const projectTypes = dataProjectType?.data?.data
-
+  const services = dataServiceType?.data
+  console.log('dataServiceType', services)
   return {
     props: {
       attributes: attributes,
       projects: projects,
-      projectsType: projectTypes,
+      servicesTypes: services,
     },
   }
 }
