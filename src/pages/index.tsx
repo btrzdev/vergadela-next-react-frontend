@@ -23,11 +23,11 @@ const Home: React.FC<HomeProps> = ({ projects }) => {
   }
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-full flex-col">
       <Slider {...settings}>
         {projects?.length > 0 ? (
           projects.map((item: any, index: number) => (
-            <div className="flex h-screen w-screen" key={index}>
+            <div className="flex h-full w-screen overflow-hidden" key={index}>
               <Link
                 href={'/project-types'}
                 className="absolute top-1/2 ml-10 flex flex-col pl-[3%]"
@@ -53,7 +53,7 @@ const Home: React.FC<HomeProps> = ({ projects }) => {
                 </div>
               </Link>
               <div
-                className="brightness-25 relative flex h-screen w-screen items-center pl-[200px]"
+                className="relative flex h-screen w-screen items-center pl-[200px] brightness-25"
                 style={{
                   backgroundImage: `url(${getStrapiMedia(item?.attributes?.hero?.image?.data?.attributes?.url)})`,
                   backgroundSize: 'cover',

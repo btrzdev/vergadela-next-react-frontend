@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps, attributes }: any) {
       ) : (
         <LightNavBar links={attributes?.attributes} />
       )}
-      <main className="flex-grow">
+      <main>
         <Component {...pageProps} />
       </main>
       {noFooterRoute !== router.pathname ? (

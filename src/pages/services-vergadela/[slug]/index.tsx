@@ -2,6 +2,7 @@ import getServices from '@/services/getServices'
 import Formatter from '@/utils/formatter'
 import { GetServerSidePropsContext } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState } from 'react'
 import Markdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
@@ -16,9 +17,7 @@ const ServiceVergadela: React.FC<ServicesVergadelaProps> = ({
   attributes,
   slug,
 }) => {
-  const [activeTab, setActiveTab] = useState(
-    attributes[0]?.attributes?.subtitle
-  )
+  const [activeTab, setActiveTab] = useState(slug)
 
   const currentContent = attributes.filter(
     (element: { attributes: { subtitle: any } }) =>
@@ -81,35 +80,39 @@ const ServiceVergadela: React.FC<ServicesVergadelaProps> = ({
                 },
                 index: any
               ) => (
-                <div
-                  onClick={() => setActiveTab(item?.attributes?.subtitle)}
-                  className={`flex min-h-[61px] flex-col items-center gap-[18px] rounded-[6px] px-[33px] py-[22px] text-center font-medium hover:cursor-pointer md:flex-row ${
-                    activeTab === item?.attributes?.subtitle
-                      ? 'bg-primary-green'
-                      : 'bg-white'
-                  }`}
-                  key={`${item}-${index}`}
+                <Link
+                  href={`/services-vergadela/${item?.attributes?.subtitle}`}
                 >
-                  <img
-                    src={
+                  <div
+                    onClick={() => setActiveTab(item?.attributes?.subtitle)}
+                    className={`flex min-h-[61px] flex-col items-center gap-[18px] rounded-[6px] px-[33px] py-[22px] text-center font-medium hover:cursor-pointer md:flex-row ${
                       activeTab === item?.attributes?.subtitle
-                        ? '/icons/white_chair.svg'
-                        : '/icons/green_chair.svg'
-                    }
-                    alt="Chair"
-                    width={22}
-                    height={18}
-                  />
-                  <h3
-                    className={`text-[16px] font-medium ${
-                      activeTab === item?.attributes?.subtitle
-                        ? 'text-white'
-                        : 'text-primary-green'
+                        ? 'bg-primary-green'
+                        : 'bg-white'
                     }`}
+                    key={`${item}-${index}`}
                   >
-                    {item?.attributes?.subtitle}
-                  </h3>
-                </div>
+                    <img
+                      src={
+                        activeTab === item?.attributes?.subtitle
+                          ? '/icons/white_chair.svg'
+                          : '/icons/green_chair.svg'
+                      }
+                      alt="Chair"
+                      width={22}
+                      height={18}
+                    />
+                    <h3
+                      className={`text-[16px] font-medium ${
+                        activeTab === item?.attributes?.subtitle
+                          ? 'text-white'
+                          : 'text-primary-green'
+                      }`}
+                    >
+                      {item?.attributes?.subtitle}
+                    </h3>
+                  </div>
+                </Link>
               )
             )}
           </div>

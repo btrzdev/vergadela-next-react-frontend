@@ -21,7 +21,7 @@ const NavBar = ({ links }: any) => {
           />
         </Link>
 
-        <button className="text-black" onClick={toggleNav}>
+        <button className="text-black hover:brightness-50" onClick={toggleNav}>
           <Image
             width={22}
             height={22}

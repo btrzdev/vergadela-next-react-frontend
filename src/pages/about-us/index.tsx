@@ -23,7 +23,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import getServices from '@/services/getServices'
 
 export default function AboutUs({ attributes, projects, servicesTypes }: any) {
-  console.log('Attributes About Us', servicesTypes)
+  console.log('Attributes servicesTypes', servicesTypes)
   // console.log('Attributes projects', projects)
   // console.log('Attributes projectTypes', projectsType)
 
@@ -69,10 +69,10 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
   }, [])
 
   return (
-    <div>
-      <div>
+    <div className="flex flex-col items-center justify-center">
+      <div className="flex w-screen">
         <div
-          className="relative flex h-[872px] w-full items-center justify-center rounded-[4px]"
+          className="flex h-[872px] w-full items-center justify-center rounded-[4px]"
           style={{
             backgroundImage: `url(${getStrapiMedia(attributes?.hero?.imageCover?.data?.attributes?.url)})`,
             backgroundRepeat: 'no-repeat',
@@ -102,99 +102,101 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
           </h2>
         </div>
       </div>
-      <div className="flex w-full flex-col items-center justify-center gap-[50px] rounded-b-[30px] border-t-2 border-t-primary-yellow bg-primary-green px-[12%] py-[80px] lg:h-[368px] lg:flex-row lg:justify-between lg:gap-0 lg:py-0">
-        <div className="flex max-w-[420px] flex-col items-center justify-center">
-          <h3
-            ref={(el) => (elementsRef.current[0] = el)}
-            data-animation="animate-slideInLeft"
-            className="font-glittenCaps text-[36px] text-primary-yellow opacity-0"
-          >
-            {attributes?.hero?.blockQuote1?.title}
-          </h3>
-          <p
-            ref={(el) => (elementsRef.current[1] = el)}
-            data-animation="animate-slideInRight"
-            className="text-[16px] font-normal leading-[28px] text-white opacity-0"
-          >
-            {attributes?.hero?.blockQuote1?.description}
-          </p>
-        </div>
-
-        <div className="flex flex-wrap items-center justify-center gap-[10px] lg:w-1/2 lg:gap-[8%]">
-          <div className="flex flex-col items-end">
-            <div className="flex flex-col items-end">
-              <h3
-                ref={(el) => (elementsRef.current[2] = el)}
-                data-animation="animate-slideInLeft"
-                className="font-glittenCaps text-[48px] text-primary-yellow opacity-0"
-              >
-                {attributes?.hero?.blockQuote1?.info1}
-              </h3>
-              <p
-                ref={(el) => (elementsRef.current[3] = el)}
-                data-animation="animate-slideInRight"
-                className="text-[16px] font-light leading-[28px] text-white opacity-0"
-              >
-                {attributes?.hero?.blockQuote1?.subinfo1}
-              </p>
-            </div>
-            <div className="flex flex-col items-end">
-              <h3
-                ref={(el) => (elementsRef.current[4] = el)}
-                data-animation="animate-slideInLeft"
-                className="font-glittenCaps text-[48px] text-primary-yellow opacity-0"
-              >
-                {attributes?.hero?.blockQuote1?.info3}
-              </h3>
-              <p
-                ref={(el) => (elementsRef.current[5] = el)}
-                data-animation="animate-slideInRight"
-                className="text-[16px] font-light leading-[28px] text-white opacity-0"
-              >
-                {attributes?.hero?.blockQuote1?.subinfo3}
-              </p>
-            </div>
+      <div className="flex w-screen flex-col items-center justify-center border-t-2 border-t-primary-yellow bg-primary-green">
+        <div className="flex w-full max-w-[1440px] flex-col items-center justify-center gap-[50px] rounded-b-[30px] px-[12%] py-[80px] lg:h-[368px] lg:flex-row lg:justify-between lg:gap-0 lg:py-0">
+          <div className="flex max-w-[420px] flex-col items-center justify-center">
+            <h3
+              ref={(el) => (elementsRef.current[0] = el)}
+              data-animation="animate-slideInLeft"
+              className="font-glittenCaps text-[36px] text-primary-yellow opacity-0"
+            >
+              {attributes?.hero?.blockQuote1?.title}
+            </h3>
+            <p
+              ref={(el) => (elementsRef.current[1] = el)}
+              data-animation="animate-slideInRight"
+              className="text-[16px] font-normal leading-[28px] text-white opacity-0"
+            >
+              {attributes?.hero?.blockQuote1?.description}
+            </p>
           </div>
 
-          <div className="flex flex-col items-end">
+          <div className="flex flex-wrap items-center justify-center gap-[10px] lg:w-1/2 lg:gap-[8%]">
             <div className="flex flex-col items-end">
-              <h3
-                ref={(el) => (elementsRef.current[6] = el)}
-                data-animation="animate-slideInLeft"
-                className="font-glittenCaps text-[48px] text-primary-yellow opacity-0"
-              >
-                {attributes?.hero?.blockQuote1?.info2}
-              </h3>
-              <p
-                ref={(el) => (elementsRef.current[7] = el)}
-                data-animation="animate-slideInRight"
-                className="text-[16px] font-light leading-[28px] text-white opacity-0"
-              >
-                {attributes?.hero?.blockQuote1?.subinfo2}
-              </p>
+              <div className="flex flex-col items-end">
+                <h3
+                  ref={(el) => (elementsRef.current[2] = el)}
+                  data-animation="animate-slideInLeft"
+                  className="font-glittenCaps text-[48px] text-primary-yellow opacity-0"
+                >
+                  {attributes?.hero?.blockQuote1?.info1}
+                </h3>
+                <p
+                  ref={(el) => (elementsRef.current[3] = el)}
+                  data-animation="animate-slideInRight"
+                  className="text-[16px] font-light leading-[28px] text-white opacity-0"
+                >
+                  {attributes?.hero?.blockQuote1?.subinfo1}
+                </p>
+              </div>
+              <div className="flex flex-col items-end">
+                <h3
+                  ref={(el) => (elementsRef.current[4] = el)}
+                  data-animation="animate-slideInLeft"
+                  className="font-glittenCaps text-[48px] text-primary-yellow opacity-0"
+                >
+                  {attributes?.hero?.blockQuote1?.info3}
+                </h3>
+                <p
+                  ref={(el) => (elementsRef.current[5] = el)}
+                  data-animation="animate-slideInRight"
+                  className="text-[16px] font-light leading-[28px] text-white opacity-0"
+                >
+                  {attributes?.hero?.blockQuote1?.subinfo3}
+                </p>
+              </div>
             </div>
+
             <div className="flex flex-col items-end">
-              <h3
-                ref={(el) => (elementsRef.current[8] = el)}
-                data-animation="animate-slideInLeft"
-                className="font-glittenCaps text-[48px] text-primary-yellow opacity-0"
-              >
-                {attributes?.hero?.blockQuote1?.info4}
-              </h3>
-              <p
-                ref={(el) => (elementsRef.current[9] = el)}
-                data-animation="animate-slideInRight"
-                className="text-[16px] font-light leading-[28px] text-white opacity-0"
-              >
-                {attributes?.hero?.blockQuote1?.subinfo4}
-              </p>
+              <div className="flex flex-col items-end">
+                <h3
+                  ref={(el) => (elementsRef.current[6] = el)}
+                  data-animation="animate-slideInLeft"
+                  className="font-glittenCaps text-[48px] text-primary-yellow opacity-0"
+                >
+                  {attributes?.hero?.blockQuote1?.info2}
+                </h3>
+                <p
+                  ref={(el) => (elementsRef.current[7] = el)}
+                  data-animation="animate-slideInRight"
+                  className="text-[16px] font-light leading-[28px] text-white opacity-0"
+                >
+                  {attributes?.hero?.blockQuote1?.subinfo2}
+                </p>
+              </div>
+              <div className="flex flex-col items-end">
+                <h3
+                  ref={(el) => (elementsRef.current[8] = el)}
+                  data-animation="animate-slideInLeft"
+                  className="font-glittenCaps text-[48px] text-primary-yellow opacity-0"
+                >
+                  {attributes?.hero?.blockQuote1?.info4}
+                </h3>
+                <p
+                  ref={(el) => (elementsRef.current[9] = el)}
+                  data-animation="animate-slideInRight"
+                  className="text-[16px] font-light leading-[28px] text-white opacity-0"
+                >
+                  {attributes?.hero?.blockQuote1?.subinfo4}
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* chronology  section*/}
-      <div className="flex w-full flex-col items-center justify-center pb-[81px] pt-[40px] lg:pt-[89px]">
+      <div className="flex w-full max-w-[1440px] flex-col items-center justify-center pb-[81px] pt-[40px] lg:pt-[89px]">
         <h2 className="text-[34px] font-semibold lg:my-[50px]">Cronologia</h2>
         <div className="my-12 mt-[213px] hidden w-screen flex-col items-center lg:flex">
           <div className="relative flex w-[80%] justify-between">
@@ -322,26 +324,29 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
           />
         </div>
       </div>
-      <div className="flex w-full flex-col items-center justify-between gap-[20px] rounded-b-[30px] border-t-2 border-t-primary-yellow bg-primary-green px-[12%] py-[59px] lg:h-[368px] lg:flex-row">
-        <div
-          className="flex items-center justify-center"
-          ref={(el) => (elementsRef.current[10] = el)}
-          data-animation="animate-slideInLeft"
-        >
-          <h3 className="inline-block max-w-[420px] animate-slideInLeft text-center font-glittenCaps text-[36px] text-primary-yellow lg:text-left">
-            {attributes?.blockQuote2?.title}
-          </h3>
-        </div>
-        <div
-          className="flex items-center justify-center"
-          ref={(el) => (elementsRef.current[11] = el)}
-          data-animation="animate-slideInRight"
-        >
-          <p className="inline-block max-w-[375px] animate-slideInRight text-justify text-[16px] font-normal leading-[28px] text-white">
-            {attributes?.blockQuote2?.description}
-          </p>
+      <div className="flex w-full flex-col items-center border-t-2 border-t-primary-yellow bg-primary-green">
+        <div className="flex w-full max-w-[1440px] flex-col items-center justify-between gap-[20px] rounded-b-[30px] px-[12%] py-[59px] lg:h-[368px] lg:flex-row">
+          <div
+            className="flex items-center justify-center"
+            ref={(el) => (elementsRef.current[10] = el)}
+            data-animation="animate-slideInLeft"
+          >
+            <h3 className="inline-block max-w-[420px] animate-slideInLeft text-center font-glittenCaps text-[36px] text-primary-yellow lg:text-left">
+              {attributes?.blockQuote2?.title}
+            </h3>
+          </div>
+          <div
+            className="flex items-center justify-center"
+            ref={(el) => (elementsRef.current[11] = el)}
+            data-animation="animate-slideInRight"
+          >
+            <p className="inline-block max-w-[375px] animate-slideInRight text-justify text-[16px] font-normal leading-[28px] text-white">
+              {attributes?.blockQuote2?.description}
+            </p>
+          </div>
         </div>
       </div>
+
       {/* our services section */}
       <div className="w-full pt-[100px]">
         <div className="flex flex-col gap-[36px]">
@@ -360,8 +365,8 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
                 key={index}
                 href={`/services-vergadela/${item?.attributes?.subtitle}`}
                 item={item?.attributes}
-                img={item?.attributes?.cardImg?.data?.attributes?.url}
-                type={item?.attributes?.type}
+                img={item?.attributes?.imgCover?.data?.attributes?.url}
+                type={item?.attributes?.subtitle}
                 index={index}
               />
             ))}
@@ -386,7 +391,7 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
       </div>
 
       {/* recent projects section */}
-      <div className="relative w-full overflow-x-auto pl-[7%] pt-[100px] lg:px-[7%]">
+      <div className="relative w-full max-w-[1440px] overflow-x-auto pl-[7%] pt-[100px] lg:px-[7%]">
         <div className="flex flex-col overflow-x-auto">
           <div className="flex items-center gap-[10px]">
             <div className="h-[1px] w-[53px] bg-primary-yellow" />
@@ -438,67 +443,70 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
         </div>
       </div>
       {/* curiosity */}
-      <div className="flex h-[694px] w-full flex-col py-[99px] pb-0 pl-[7%] lg:px-[7%]">
-        <>
-          <div className="flex items-center gap-[10px]">
-            <div className="h-[1px] w-[53px] bg-primary-yellow font-medium" />
-            <span className="text-sm font-normal uppercase text-primary-yellow">
-              {attributes?.curiositySection?.title}
-            </span>
+      <div className="flex w-full max-w-[1440px] items-center justify-center px-[7%]">
+        <div className="flex h-[694px] flex-col items-center py-[99px] pb-0">
+          <div className="w-full">
+            <div className="flex items-center gap-[10px]">
+              <div className="h-[1px] w-[53px] bg-primary-yellow font-medium" />
+              <span className="text-sm font-normal uppercase text-primary-yellow">
+                {attributes?.curiositySection?.title}
+              </span>
+            </div>
+            <h2 className="mb-[26px] text-[34px] font-medium">
+              {attributes?.curiositySection?.subtitle}
+            </h2>
           </div>
-          <h2 className="mb-[26px] text-[34px] font-medium">
-            {attributes?.curiositySection?.subtitle}
-          </h2>
-        </>
-        <div className="scrollbar-hide flex justify-between gap-[20px] overflow-x-auto overflow-y-hidden">
-          {attributes?.curiositySection?.curiosity?.map(
-            (
-              item: {
-                title:
-                  | string
-                  | number
-                  | bigint
-                  | boolean
-                  | ReactElement<any, string | JSXElementConstructor<any>>
-                  | Iterable<ReactNode>
-                  | ReactPortal
-                  | Promise<AwaitedReactNode>
-                  | null
-                  | undefined
-                image: { data: { attributes: { url: string | null } } }
-              },
-              index: Key | null | undefined
-            ) => (
-              <div
-                key={index}
-                className="group flex h-[396px] w-[420px] min-w-[300px] flex-col overflow-hidden rounded-lg"
-              >
-                <div className="items-left flex h-1/2 w-full flex-col justify-start gap-[23px] rounded-t-lg bg-primary-green py-[32px] pl-[20px]">
-                  <p className="max-w-[252px] text-[26px] font-medium leading-[30.47px] text-white">
-                    {item.title}
-                  </p>
-                  <div className="group flex items-center gap-[2px]">
-                    <div className="h-[1px] w-[12px] bg-primary-yellow transition-all duration-500 ease-out group-hover:w-[24px]" />
-                    <Link href={'/contact'} className="hover:brightness-75">
-                      <span className="text-left text-primary-yellow">
-                        SABER MAIS
-                      </span>
-                    </Link>
+          <div className="scrollbar-hide flex justify-between gap-[20px] overflow-x-auto overflow-y-hidden">
+            {attributes?.curiositySection?.curiosity?.map(
+              (
+                item: {
+                  title:
+                    | string
+                    | number
+                    | bigint
+                    | boolean
+                    | ReactElement<any, string | JSXElementConstructor<any>>
+                    | Iterable<ReactNode>
+                    | ReactPortal
+                    | Promise<AwaitedReactNode>
+                    | null
+                    | undefined
+                  image: { data: { attributes: { url: string | null } } }
+                },
+                index: Key | null | undefined
+              ) => (
+                <div
+                  key={index}
+                  className="group flex h-[396px] w-[420px] min-w-[300px] flex-col overflow-hidden rounded-lg"
+                >
+                  <div className="items-left flex h-1/2 w-full flex-col justify-start gap-[23px] rounded-t-lg bg-primary-green py-[32px] pl-[20px]">
+                    <p className="max-w-[252px] text-[26px] font-medium leading-[30.47px] text-white">
+                      {item.title}
+                    </p>
+                    <div className="group flex items-center gap-[2px]">
+                      <div className="h-[1px] w-[12px] bg-primary-yellow transition-all duration-500 ease-out group-hover:w-[24px]" />
+                      <Link href={'/contact'} className="hover:brightness-75">
+                        <span className="text-left text-primary-yellow">
+                          SABER MAIS
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
+                  <div
+                    className="relative flex h-[872px] w-full items-center justify-center bg-cover bg-center bg-no-repeat grayscale filter transition-transform duration-1000 ease-out group-hover:scale-105 group-hover:filter-none"
+                    style={{
+                      backgroundImage: `url(${getStrapiMedia(item?.image?.data?.attributes?.url)})`,
+                    }}
+                  >
+                    <div className="absolute inset-0 transition duration-500 ease-out group-hover:brightness-100 group-hover:filter-none"></div>
                   </div>
                 </div>
-                <div
-                  className="relative flex h-[872px] w-full items-center justify-center bg-cover bg-center bg-no-repeat grayscale filter transition-transform duration-1000 ease-out group-hover:scale-105 group-hover:filter-none"
-                  style={{
-                    backgroundImage: `url(${getStrapiMedia(item?.image?.data?.attributes?.url)})`,
-                  }}
-                >
-                  <div className="absolute inset-0 transition duration-500 ease-out group-hover:brightness-100 group-hover:filter-none"></div>
-                </div>
-              </div>
-            )
-          )}
+              )
+            )}
+          </div>
         </div>
       </div>
+
       {/* partinershipSection */}
       <div className="flex h-[250px] w-full flex-col items-start justify-center overflow-hidden lg:h-[526px] lg:items-center">
         <h3 className="mb-[76px] pl-[7%] text-[35px] font-medium leading-[41px]">

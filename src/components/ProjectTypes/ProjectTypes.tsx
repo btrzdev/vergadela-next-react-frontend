@@ -28,7 +28,7 @@ const ProjectTypeCardAbout: React.FC<ProjectTypesProps> = ({
             backgroundImage: `url(${getStrapiMedia(img)})`,
           }}
         />
-        <p className="relative z-50 font-glittenCaps text-[50px] capitalize text-white transition-colors duration-500 ease-in-out group-hover:text-primary-yellow">
+        <p className="relative z-50 text-center font-glittenCaps text-[50px] capitalize text-white transition-colors duration-500 ease-in-out group-hover:text-primary-yellow">
           {type}
         </p>
       </div>

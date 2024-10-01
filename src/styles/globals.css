@@ -23,24 +23,19 @@
     margin: 0;
   }
   
-  #__next {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
   ::-webkit-scrollbar{
-    height: 3px;
+    height: 1px;
     background-color: #1D1C1B;
     
   } 
   ::-webkit-scrollbar-track {
-    height: 3px;
+    height: 1px;
     background-color: #dbd7d4;
     
   } 
 
   ::-webkit-scrollbar-thumb {
-  height: 3px;
+  height: 1px;
   background-color: #1D1C1B;
   }
 
@@ -71,6 +66,10 @@
     margin: 0 3px;
     padding: 0;
   }
+
+  .button__bar ul {
+    height: 0px;
+  }
   
   .button__bar li button {
     border: 1px solid #E0B75B;
@@ -94,3 +93,5 @@
     background: #E0B75B;
     outline: 0;
   }
+
+  
