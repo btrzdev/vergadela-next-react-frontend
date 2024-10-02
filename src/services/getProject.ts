@@ -1,5 +1,4 @@
 import { fetchAPI } from '@/utils/fetch-api'
-import { populate } from 'dotenv'
 
 export const getProject = async (id: string | number | undefined) => {
   if (!id) {

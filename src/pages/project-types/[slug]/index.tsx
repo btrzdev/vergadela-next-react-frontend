@@ -1,16 +1,30 @@
 import ProjectCard from '@/components/ProjectList/ProjectCard'
 import getProjectList from '@/services/getProjectList'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { GetServerSidePropsContext } from 'next/types'
+import getProjectType from '@/services/getProjectType'
 
 interface ProjectListProps {
   attributes: any
+  slug: string
+  projectTypes: any
 }
 
-const ProjectList: React.FC<ProjectListProps> = ({ attributes }) => {
-  console.log('Atributes', attributes)
+const ProjectList: React.FC<ProjectListProps> = ({
+  attributes,
+  slug,
+  projectTypes,
+}) => {
+  console.log('Atributes projectlist', attributes)
+  console.log('Atributes projectTypes', projectTypes)
 
+  const [projectType, selectProjectType] = useState(
+    attributes.filter(
+      (el: { attributes: { type: any } }) => el.attributes?.type === slug
+    )
+  )
   const [selectedFilter, setSelectedFilter] = useState('TODOS')
 
   const filters = [
@@ -22,13 +36,15 @@ const ProjectList: React.FC<ProjectListProps> = ({ attributes }) => {
     'MOBILIÁRIO PERSONALIZADO',
   ]
 
+  useEffect(() => console.log('Project Type', projectType), [])
+
   return (
-    <div className="flex h-screen w-screen flex-col">
+    <div className="flex h-full w-screen flex-col">
       <div className="relative min-h-[872px]">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `url('images/hero.png')`,
+            backgroundImage: `url('/images/hero.png')`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             filter: 'brightness(0.5)',
@@ -36,7 +52,7 @@ const ProjectList: React.FC<ProjectListProps> = ({ attributes }) => {
           }}
         ></div>
 
-        <div className="relative left-[10%] top-1/2 z-10 flex flex-col">
+        <div className="absolute left-[10%] top-1/2 z-10 flex flex-col">
           <div className="flex">
             <Image
               src={'/icons/yellow_straight.svg'}
@@ -48,8 +64,8 @@ const ProjectList: React.FC<ProjectListProps> = ({ attributes }) => {
               PROJETOS
             </span>
           </div>
-          <h3 className="font-glittenCaps text-[70px] text-white">
-            Apartamentos
+          <h3 className="font-glittenCaps text-[70px] capitalize text-white">
+            {projectType[0]?.attributes?.type}
           </h3>
         </div>
       </div>
@@ -70,16 +86,19 @@ const ProjectList: React.FC<ProjectListProps> = ({ attributes }) => {
       <div className="flex flex-col pb-[335px]">
         <div className="flex">
           <ProjectCard
+            slug={slug}
             bgUrl={attributes[0].attributes?.hero?.image?.data?.attributes?.url}
             width={'w-2/3'}
             type={attributes[0].attributes?.type}
           />
           <ProjectCard
+            slug={slug}
             bgUrl={attributes[0].attributes?.hero?.image?.data?.attributes?.url}
             width={'w-1/3'}
             type={attributes[0].attributes?.type}
           />
           <ProjectCard
+            slug={slug}
             bgUrl={attributes[0].attributes?.hero?.image?.data?.attributes?.url}
             width={'w-1/3'}
             type={attributes[0].attributes?.type}
@@ -87,16 +106,19 @@ const ProjectList: React.FC<ProjectListProps> = ({ attributes }) => {
         </div>
         <div className="flex">
           <ProjectCard
+            slug={slug}
             bgUrl={attributes[0].attributes?.hero?.image?.data?.attributes?.url}
             width={'w-1/3'}
             type={attributes[0].attributes?.type}
           />
           <ProjectCard
+            slug={slug}
             bgUrl={attributes[0].attributes?.hero?.image?.data?.attributes?.url}
             width={'w-2/3'}
             type={attributes[0].attributes?.type}
           />
           <ProjectCard
+            slug={slug}
             bgUrl={attributes[0].attributes?.hero?.image?.data?.attributes?.url}
             width={'w-1/3'}
             type={attributes[0].attributes?.type}
@@ -121,13 +143,17 @@ const ProjectList: React.FC<ProjectListProps> = ({ attributes }) => {
 
 export default ProjectList
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const data = await getProjectList()
+  const dataProjectTypes = await getProjectType()
   const attributes = data?.data?.data
-
+  const projectTypes = dataProjectTypes?.data?.data
+  const { slug } = context.query
   return {
     props: {
       attributes: attributes,
+      slug: slug,
+      projectTypes: projectTypes,
     },
   }
 }

@@ -279,10 +279,11 @@ const IndividualProject: React.FC<IndividualProjectProps> = ({
 export default IndividualProject
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const { slug } = context.query
+  const { project } = context.query
 
-  const data = await getProject(String(slug))
+  const data = await getProject(String(project))
   const attributes = data?.data?.attributes
+  // console.log('Attributes', slug)
 
   return {
     props: {

@@ -11,6 +11,9 @@ const getProjectType = async () => {
         project_types: {
           populate: '*',
         },
+        heroCoverImg: {
+          populate: '*',
+        },
       },
     }
 
