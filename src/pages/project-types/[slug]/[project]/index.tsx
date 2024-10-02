@@ -34,7 +34,7 @@ const IndividualProject: React.FC<IndividualProjectProps> = ({
   }
 
   return (
-    <div className="flex h-screen flex-col bg-[#FFFAF5]">
+    <div className="flex h-full flex-col bg-[#FFFAF5]">
       <div className="h-[872px] w-full">
         <div
           className="flex h-[872px] items-center px-[7%]"
@@ -54,18 +54,18 @@ const IndividualProject: React.FC<IndividualProjectProps> = ({
               />
               <span className="text-[16px] text-primary-yellow">PROJETOS</span>
             </div>
-            <h3 className="font-glittenCaps text-[70px] text-white">
+            <h3 className="font-glittenCaps text-[40px] text-white lg:text-[70px]">
               Apartamentos
             </h3>
           </div>
         </div>
       </div>
-      <div className="flex w-full flex-col items-center bg-[#FFFAF5]">
+      <div className="flex w-full flex-col bg-[#FFFAF5]">
         <div className="max-w-[1095px] bg-[#FFFAF5]">
-          <div className="mb-[66px] mt-[108px] flex justify-between px-[7%]">
-            <div className="flex w-1/2 flex-col gap-[42px]">
+          <div className="mb-[66px] mt-[108px] flex flex-col justify-center px-[7%] lg:flex-row lg:justify-between lg:pb-[30px]">
+            <div className="items-left flex w-full flex-col gap-[42px] lg:w-1/2">
               <h3 className="text-[35px] font-semibold">{infos?.location}</h3>
-              <div className="flex justify-between">
+              <div className="flex flex-col justify-center gap-[20px] lg:flex-row lg:justify-between">
                 <div className="flex flex-col gap-[30px]">
                   <div className="flex flex-col">
                     <p className="text-[12px] font-semibold">TEAM</p>
@@ -110,48 +110,55 @@ const IndividualProject: React.FC<IndividualProjectProps> = ({
                 </div>
               </div>
             </div>
-            <div className="flex w-1/4 flex-col gap-[5px]">
+            <div className="flex h-[50px] w-full flex-col gap-[5px] lg:w-1/4">
               <h3 className="text-[12px] font-semibold leading-[24px]">
                 PARTILHAR
               </h3>
               <div className="flex gap-[24px]">
-                <Link href={''}>
+                <Link href={''} className="h-[22px] w-[22px]">
                   <Image
                     src={'/icons/instagramIcon.svg'}
                     alt={''}
                     width={22}
                     height={22}
+                    layout="responsive"
                   />
                 </Link>
-                <Link href={'https://www.facebook.com/vergadelainteriores/'}>
+                <Link
+                  href={'https://www.facebook.com/vergadelainteriores/'}
+                  className="h-[22px] w-[22px]"
+                >
                   <Image
                     src={'/icons/facebookIcon.svg'}
                     alt={''}
                     width={22}
                     height={22}
+                    layout="intrinsic"
                   />
                 </Link>
-                <Link href={''}>
+                <Link href={''} className="h-[22px] w-[22px]">
                   <Image
                     src={'/icons/linkedin.svg'}
                     alt={''}
                     width={22}
                     height={22}
+                    layout="intrinsic"
                   />
                 </Link>
-                <Link href={''}>
+                <Link href={''} className="h-[22px] w-[22px]">
                   <Image
                     src={'/icons/twitter.svg'}
                     alt={''}
                     width={22}
                     height={22}
+                    layout="intrinsic"
                   />
                 </Link>
               </div>
             </div>
           </div>
           <div className="flex w-full flex-col justify-center gap-[30px] px-[7%] pb-[30px] pt-[30px]">
-            <div className="flex h-[300px] w-full max-w-[1095px] gap-[30px] overflow-x-auto overflow-y-hidden">
+            <div className="flex h-[300px] w-full max-w-[1095px] gap-[30px] overflow-x-auto overflow-y-hidden px-[30%] lg:px-0">
               {carrouselImages.map(
                 (image: { attributes: { url: string | null } }, index: any) => (
                   <div
@@ -170,7 +177,7 @@ const IndividualProject: React.FC<IndividualProjectProps> = ({
 
             <div className="flex h-full items-center justify-center">
               <div
-                className="flex h-[800px] w-full max-w-[1094px] rounded-[12px]"
+                className="flex h-[400px] w-full max-w-[1094px] rounded-[12px] lg:h-[800px]"
                 style={{
                   backgroundImage: `url(${getStrapiMedia(selectedImage)})`,
                   backgroundPosition: 'center',
@@ -180,21 +187,21 @@ const IndividualProject: React.FC<IndividualProjectProps> = ({
             </div>
           </div>
 
-          <div className="mb-[55px] flex gap-[30px] px-[7%]">
-            <div className="flex w-1/2 flex-col gap-[14px]">
+          <div className="mb-[55px] flex flex-col items-center justify-center gap-[30px] lg:flex-row lg:px-[7%]">
+            <div className="flex w-full flex-col items-center gap-[14px] lg:w-1/2 lg:items-start">
               <h3 className="text-left font-semibold">DETALHES</h3>
               <p className="max-w-[532px] text-left text-[16px] leading-[26px] text-medium-gray">
                 {infos?.details[0]?.content}
               </p>
             </div>
-            <div className="flex w-1/2 flex-col gap-[14px]">
+            <div className="flex w-full flex-col items-center gap-[14px] lg:w-1/2 lg:items-start">
               <h3 className="text-left font-semibold">CONCEITO</h3>
               <p className="max-w-[532px] text-left text-[16px] leading-[26px] text-medium-gray">
                 {infos?.details[1]?.content}
               </p>
             </div>
           </div>
-          <div className="mb-[50px] flex justify-between px-[7%]">
+          <div className="mb-[50px] flex w-full justify-center gap-[50px] px-[7%] lg:justify-between">
             <div className="flex gap-[11px]">
               <Image
                 src={'/icons/straight.svg'}
