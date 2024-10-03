@@ -146,4 +146,9 @@
     width: 100vw;
   }
 
+  .slick-slider.slick-initialized {
+    overflow: hidden;
+    height: 100vh;
+  }
+
   

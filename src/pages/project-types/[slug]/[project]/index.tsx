@@ -13,7 +13,7 @@ interface IndividualProjectProps {
 const IndividualProject: React.FC<IndividualProjectProps> = ({
   attributes,
 }) => {
-  console.log('Project', attributes)
+  // console.log('Project', attributes)
 
   const infos = attributes?.infoSection
 
@@ -30,7 +30,7 @@ const IndividualProject: React.FC<IndividualProjectProps> = ({
     const relativeUrl = new URL(fullUrl).pathname
 
     setSelectedImage(relativeUrl)
-    console.log('Extracted Relative URL:', relativeUrl)
+    // console.log('Extracted Relative URL:', relativeUrl)
   }
 
   return (

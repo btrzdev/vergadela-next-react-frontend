@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -8,6 +8,20 @@ const NavBar = ({ links }: any) => {
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen)
   }
+
+  // Disable body scroll when the navbar is open
+  useEffect(() => {
+    if (isNavOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+
+    // Clean up the effect when the component unmounts
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [isNavOpen])
 
   return (
     <>

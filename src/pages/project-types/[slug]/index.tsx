@@ -17,8 +17,8 @@ const ProjectList: React.FC<ProjectListProps> = ({
   slug,
   projectTypes,
 }) => {
-  console.log('Atributes projectlist', attributes)
-  console.log('Atributes projectTypes', projectTypes)
+  // console.log('Atributes projectlist', attributes)
+  // console.log('Atributes projectTypes', projectTypes)
 
   const [projectType, selectProjectType] = useState(
     attributes.filter(

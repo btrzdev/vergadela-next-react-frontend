@@ -17,8 +17,8 @@ interface NewsProps {
 }
 
 const IndividualNews: React.FC<NewsProps> = ({ attributes, news, slug }) => {
-  console.log('attributes', attributes)
-  console.log('news', news)
+  // console.log('attributes', attributes)
+  // console.log('news', news)
 
   const customComponents = {
     p: ({ ...props }) => (

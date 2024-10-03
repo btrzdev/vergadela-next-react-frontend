@@ -28,7 +28,7 @@ export const getProject = async (id: string | number | undefined) => {
       nextRevalidate: 60,
     })
 
-    console.log('Response Data', responseData)
+    // console.log('Response Data', responseData)
     if (responseData.data) {
       return responseData.data
     }

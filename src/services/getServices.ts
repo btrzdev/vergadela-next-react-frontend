@@ -11,7 +11,7 @@ export const getServices = async () => {
       nextRevalidate: 60,
     })
 
-    console.log('Response Data', responseData)
+    // console.log('Response Data', responseData)
     if (responseData.data) {
       return responseData.data
     }
