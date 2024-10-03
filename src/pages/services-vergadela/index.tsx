@@ -95,6 +95,7 @@ const ServicesVergadela: React.FC<ServicesVergadelaProps> = ({
                 index: any
               ) => (
                 <Link
+                  key={index}
                   href={`/services-vergadela/${item?.attributes?.subtitle}`}
                 >
                   <div
