@@ -94,4 +94,56 @@
     outline: 0;
   }
 
+  .button__bar_team {
+    display: inline-block;
+    vertical-align: middle;
+    margin: auto;
+    padding: 0;   
+    border-radius: 40px;
+    width: 70px;
+    text-align: center;
+    z-index: 50;
+  }
+  
+  .button__bar_team  li {
+    list-style: none;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 3px;
+    padding: 0;
+  }
+
+  .button__bar_team  ul {
+    height: 0px;
+  }
+  
+  .button__bar_team  li button {
+    border: 1px solid #E0B75B;
+    position: relative;
+    top: 20px;
+    background: transparent;
+    color: transparent;
+    cursor: pointer;
+    display: block;
+    height: 15px;
+    width: 15px;
+    border-radius: 7.5px;
+  }
+  
+  .button__bar_team  li.slick-active button {
+    background-color: #E0B75B;
+  }
+  
+  .button__bar_team  li button:hover,
+  .button__bar_team  li button:focus {
+    background: #E0B75B;
+    outline: 0;
+  }
+
+  .slick-slider.slick-initialized {
+    gap: 30px;
+    justify-content:space-between;
+    width: 100vw;
+  }
+
   

@@ -12,7 +12,7 @@ const roboto = Roboto({
 })
 
 function MyApp({ Component, pageProps, attributes }: any) {
-  console.log('Console footer', attributes)
+  // console.log('Console footer', attributes)
   const router = useRouter()
 
   const specialNavBarRoutes = [

@@ -44,7 +44,7 @@ const IndividualProject: React.FC<IndividualProjectProps> = ({
             backgroundSize: 'cover',
           }}
         >
-          <div className="z-10 flex flex-col">
+          <div className="z-10 flex max-w-[1440px] flex-col px-[7%]">
             <div className="flex gap-[12px]">
               <Image
                 src={'/icons/yellow_straight.svg'}
@@ -54,13 +54,13 @@ const IndividualProject: React.FC<IndividualProjectProps> = ({
               />
               <span className="text-[16px] text-primary-yellow">PROJETOS</span>
             </div>
-            <h3 className="font-glittenCaps text-[40px] text-white lg:text-[70px]">
-              Apartamentos
+            <h3 className="font-glittenCaps text-[40px] capitalize text-white lg:text-[70px]">
+              {attributes.type}
             </h3>
           </div>
         </div>
       </div>
-      <div className="flex w-full flex-col bg-[#FFFAF5]">
+      <div className="flex w-full flex-col items-center justify-center bg-[#FFFAF5]">
         <div className="max-w-[1095px] bg-[#FFFAF5]">
           <div className="mb-[66px] mt-[108px] flex flex-col justify-center px-[7%] lg:flex-row lg:justify-between lg:pb-[30px]">
             <div className="items-left flex w-full flex-col gap-[42px] lg:w-1/2">

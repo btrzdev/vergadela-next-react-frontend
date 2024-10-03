@@ -1,4 +1,5 @@
 //@ts-nocheck
+import dynamic from 'next/dynamic'
 import TeamSwiper from '@/components/AboutUs/TeamSwiper'
 import getAboutUs from '@/services/getAboutUs'
 import getProjectList from '@/services/getProjectList'
@@ -21,12 +22,13 @@ import ProjectTypeCardAbout from '@/components/ProjectTypes/ProjectTypes'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import getServices from '@/services/getServices'
+const ReactPlayer = dynamic(() => import('react-player'), { ssr: false })
 
 export default function AboutUs({ attributes, projects, servicesTypes }: any) {
-  console.log('Attributes servicesTypes', servicesTypes)
+  // console.log('Attributes servicesTypes', servicesTypes)
   // console.log('Attributes projects', projects)
   // console.log('Attributes projectTypes', projectsType)
-
+  const [isPlaying, setIsPlaying] = useState(false) // Control video state
   const [chronologyItems, setChronologyItems] = useState(
     attributes?.chronology?.items
   )
@@ -194,7 +196,28 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
           </div>
         </div>
       </div>
-
+      {/* video section*/}
+      <div className="flex w-screen flex-col">
+        <ReactPlayer
+          url="https://www.youtube.com/watch?v=zHR_3BCONRo"
+          width="100%"
+          height="872px"
+          playing={isPlaying}
+          playIcon={
+            <button onClick={() => setIsPlaying(true)}>
+              <Image
+                className="h-[125px] h-[185px] hover:text-primary-yellow lg:h-[225px] lg:w-[285px]"
+                src={'/icons/play_circle.svg'}
+                alt={''}
+                width={100}
+                height={100}
+              />
+            </button>
+          }
+          light="/images/thumbnail.png"
+          controls
+        />
+      </div>
       {/* chronology  section*/}
       <div className="flex w-full max-w-[1440px] flex-col items-center justify-center pb-[81px] pt-[40px] lg:pt-[89px]">
         <h2 className="text-[34px] font-semibold lg:my-[50px]">Cronologia</h2>
@@ -375,7 +398,7 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
       </div>
 
       {/* our team section */}
-      <div className="mt-0 w-full pl-[7%] pt-[100px] lg:mt-[300px] lg:px-[7%]">
+      <div className="mt-0 w-full pl-[7%] pt-[100px] lg:mt-[300px] lg:pt-0">
         <div className="flex flex-col">
           <div className="flex items-center gap-[10px]">
             <div className="h-[1px] w-[53px] bg-primary-yellow" />
@@ -384,7 +407,7 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
             </span>
           </div>
           <h2 className="text-[34px] font-medium">Nossa Equipa</h2>
-          <div className="scrollbar-hide flex w-full items-center gap-[30px] overflow-x-auto overflow-y-hidden">
+          <div className="scrollbar-hide flex h-[400px] w-full items-center overflow-y-hidden">
             <TeamSwiper items={attributes?.team?.teamMember} />
           </div>
         </div>

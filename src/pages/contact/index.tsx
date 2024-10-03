@@ -12,7 +12,7 @@ const Contact = () => {
           </h1>
           <hr className="h-[2px] w-[87px] bg-primary-yellow" />
         </div>
-        <div className="flex flex-col-reverse items-center justify-center gap-[40px] pt-[106px] md:pr-[7%] lg:flex-row">
+        <div className="flex flex-col-reverse items-center justify-center gap-[40px] pt-[106px] lg:flex-row lg:pr-[7%]">
           <div className="max-h-[591px] min-h-[579px] w-full min-w-[400px] rounded-none bg-[url('/contactFormImage.png')] bg-cover lg:w-1/2 lg:rounded-r-[14px] xl:rounded-[14px]" />
           <form className="flex w-full flex-col items-center justify-center px-[10%] lg:w-1/2">
             <h2 className="mb-[49px] text-[35px] font-semibold text-primary-dark">

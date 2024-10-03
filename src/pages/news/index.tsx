@@ -70,7 +70,7 @@ const News: React.FC<NewsProps> = ({ attributes, news }) => {
           }}
         ></div>
 
-        <div className="relative left-[10%] top-1/2 z-10 flex w-full flex-col">
+        <div className="relative left-[10%] top-1/2 z-10 flex w-full max-w-[1440px] flex-col">
           <div className="flex">
             <Image
               src={'/icons/yellow_straight.svg'}
@@ -177,7 +177,7 @@ const News: React.FC<NewsProps> = ({ attributes, news }) => {
         <div className="flex flex-col px-[7%]">
           <div className="mb-[69px]">
             <input
-              className="focus:border-b-1 hidden w-full border-b border-gray-300 pb-[8px] placeholder:text-[12px] focus:border-gray-300 focus:outline-none"
+              className="focus:border-b-1 hidden w-full border-b border-gray-300 pb-[8px] placeholder:text-[12px] focus:border-gray-300 focus:outline-none lg:flex"
               placeholder="Pesquisar"
               value={searchTerm}
               onChange={handleSearch}

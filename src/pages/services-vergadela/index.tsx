@@ -1,8 +1,11 @@
+import getServicePage from '@/services/getServicePage'
 import getServices from '@/services/getServices'
+import { getStrapiMedia } from '@/utils/api-helpers'
 import Formatter from '@/utils/formatter'
 import { GetServerSidePropsContext } from 'next'
 import Image from 'next/image'
-import { useState } from 'react'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import Markdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
 import remarkBreaks from 'remark-breaks'
@@ -10,10 +13,12 @@ import remarkBreaks from 'remark-breaks'
 interface ServicesVergadelaProps {
   attributes: any
   slug: any
+  servicePage: any
 }
 
 const ServicesVergadela: React.FC<ServicesVergadelaProps> = ({
   attributes,
+  servicePage,
 }) => {
   const [activeTab, setActiveTab] = useState(
     attributes[0]?.attributes?.subtitle
@@ -38,6 +43,13 @@ const ServicesVergadela: React.FC<ServicesVergadelaProps> = ({
       />
     ),
   }
+  useEffect(() => {
+    window.scrollTo({
+      top: 1000,
+      left: 0,
+      behavior: 'instant',
+    })
+  }, [])
 
   return (
     <div className="flex w-full flex-col">
@@ -45,7 +57,7 @@ const ServicesVergadela: React.FC<ServicesVergadelaProps> = ({
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `url('images/service_bg.png')`,
+            backgroundImage: `url(${getStrapiMedia(servicePage?.imgCover?.data?.attributes?.url)})`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             filter: 'brightness(0.5)',
@@ -61,10 +73,12 @@ const ServicesVergadela: React.FC<ServicesVergadelaProps> = ({
               height={22}
             />
             <span className="ml-2 text-[16px] text-primary-yellow">
-              SOBRE NÓS
+              {servicePage?.title}
             </span>
           </div>
-          <h3 className="font-glittenCaps text-[70px] text-white">Serviços</h3>
+          <h3 className="font-glittenCaps text-[70px] text-white">
+            {servicePage?.subtitle}
+          </h3>
         </div>
       </div>
 
@@ -80,35 +94,39 @@ const ServicesVergadela: React.FC<ServicesVergadelaProps> = ({
                 },
                 index: any
               ) => (
-                <div
-                  onClick={() => setActiveTab(item?.attributes?.subtitle)}
-                  className={`flex min-h-[61px] flex-col items-center gap-[18px] rounded-[6px] px-[33px] py-[22px] text-center font-medium hover:cursor-pointer md:flex-row ${
-                    activeTab === item?.attributes?.subtitle
-                      ? 'bg-primary-green'
-                      : 'bg-white'
-                  }`}
-                  key={`${item}-${index}`}
+                <Link
+                  href={`/services-vergadela/${item?.attributes?.subtitle}`}
                 >
-                  <img
-                    src={
+                  <div
+                    onClick={() => setActiveTab(item?.attributes?.subtitle)}
+                    className={`flex min-h-[61px] flex-col items-center gap-[18px] rounded-[6px] px-[33px] py-[22px] text-center font-medium hover:cursor-pointer md:flex-row ${
                       activeTab === item?.attributes?.subtitle
-                        ? 'icons/white_chair.svg'
-                        : 'icons/green_chair.svg'
-                    }
-                    alt="Chair"
-                    width={22}
-                    height={18}
-                  />
-                  <h3
-                    className={`text-[16px] font-medium ${
-                      activeTab === item?.attributes?.subtitle
-                        ? 'text-white'
-                        : 'text-primary-green'
+                        ? 'bg-primary-green'
+                        : 'bg-white'
                     }`}
+                    key={`${item}-${index}`}
                   >
-                    {item?.attributes?.subtitle}
-                  </h3>
-                </div>
+                    <img
+                      src={
+                        activeTab === item?.attributes?.subtitle
+                          ? '/icons/white_chair.svg'
+                          : '/icons/green_chair.svg'
+                      }
+                      alt="Chair"
+                      width={22}
+                      height={18}
+                    />
+                    <h3
+                      className={`text-[16px] font-medium ${
+                        activeTab === item?.attributes?.subtitle
+                          ? 'text-white'
+                          : 'text-primary-green'
+                      }`}
+                    >
+                      {item?.attributes?.subtitle}
+                    </h3>
+                  </div>
+                </Link>
               )
             )}
           </div>
@@ -154,11 +172,14 @@ export default ServicesVergadela
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const data = await getServices()
+  const servicePage = await getServicePage()
   const attributes = data?.data
+  const servicePageData = servicePage?.data?.data
 
   return {
     props: {
       attributes: attributes,
+      servicePage: servicePageData?.attributes,
     },
   }
 }

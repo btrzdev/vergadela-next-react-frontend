@@ -1,9 +1,11 @@
+import getServicePage from '@/services/getServicePage'
 import getServices from '@/services/getServices'
+import { getStrapiMedia } from '@/utils/api-helpers'
 import Formatter from '@/utils/formatter'
 import { GetServerSidePropsContext } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Markdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
 import remarkBreaks from 'remark-breaks'
@@ -11,10 +13,12 @@ import remarkBreaks from 'remark-breaks'
 interface ServicesVergadelaProps {
   attributes: any
   slug: any
+  servicePage: any
 }
 
 const ServiceVergadela: React.FC<ServicesVergadelaProps> = ({
   attributes,
+  servicePage,
   slug,
 }) => {
   const [activeTab, setActiveTab] = useState(slug)
@@ -39,13 +43,21 @@ const ServiceVergadela: React.FC<ServicesVergadelaProps> = ({
     ),
   }
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 1000,
+      left: 0,
+      behavior: 'instant',
+    })
+  }, [slug])
+
   return (
     <div className="flex w-full flex-col">
       <div className="relative min-h-[872px]">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `url('/images/service_bg.png')`,
+            backgroundImage: `url(${getStrapiMedia(servicePage?.imgCover?.data?.attributes?.url)})`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             filter: 'brightness(0.5)',
@@ -161,11 +173,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   const data = await getServices()
   const attributes = data?.data
+  const servicePage = await getServicePage()
+  const servicePageData = servicePage?.data?.data
 
   return {
     props: {
       attributes: attributes,
       slug: slug,
+      servicePage: servicePageData?.attributes,
     },
   }
 }

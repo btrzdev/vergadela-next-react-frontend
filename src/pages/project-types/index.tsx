@@ -8,9 +8,7 @@ interface ProjectTypesProps {
 }
 const ProjectTypes: React.FC<ProjectTypesProps> = ({ attributes }) => {
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between bg-white`}
-    >
+    <div className={`flex min-h-screen flex-col justify-end bg-white`}>
       <div className="flex h-full w-full flex-col items-center justify-center bg-white">
         <div className="mb-[50px] flex flex-col items-center justify-center gap-[40px] px-5 py-[10px] lg:mb-[160px] lg:gap-[126px] lg:px-0">
           <div className="flex flex-col items-center">
@@ -60,7 +58,7 @@ const ProjectTypes: React.FC<ProjectTypesProps> = ({ attributes }) => {
         </div>
         <div className="h-[4px] w-full bg-primary-yellow"></div>
       </div>
-    </main>
+    </div>
   )
 }
 
