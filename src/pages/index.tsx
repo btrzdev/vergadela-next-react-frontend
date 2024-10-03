@@ -23,7 +23,7 @@ const Home: React.FC<HomeProps> = ({ projects }) => {
   }
 
   return (
-    <div className="flex min-h-full flex-col">
+    <div className="flex h-screen flex-col">
       <Slider {...settings}>
         {projects?.length > 0 ? (
           projects.map((item: any, index: number) => (

@@ -144,11 +144,9 @@
     gap: 30px;
     justify-content:space-between;
     width: 100vw;
+    height: 100%;
   }
 
-  .slick-slider.slick-initialized {
-    overflow: hidden;
-    height: 100vh;
-  }
+
 
   

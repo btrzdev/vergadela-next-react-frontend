@@ -60,17 +60,20 @@ const NavBar = ({ links }: any) => {
           }}
           className="fixed left-0 top-0 z-50 flex h-full w-full animate-slideFromTop flex-col items-center justify-center text-white"
         >
-          <button
-            className="absolute right-1/2 top-6 text-white"
-            onClick={toggleNav}
-          >
-            <Image
-              height={20}
-              width={20}
-              src={'/icons/closeButton.svg'}
-              alt={'close button navbar'}
-            />
-          </button>
+          <div className="justifycenter flex h-[149px] w-full items-center">
+            <button
+              className="absolute right-1/2 top-6 text-white"
+              onClick={toggleNav}
+            >
+              <Image
+                height={20}
+                width={20}
+                src={'/icons/closeButton.svg'}
+                alt={'close button navbar'}
+              />
+            </button>
+          </div>
+
           <div className="flex w-full px-[7%]">
             <div className="flex w-1/2">
               <nav className="flex w-full flex-col gap-[40px] font-glittenCaps text-[35px]">
