@@ -11,11 +11,40 @@ const TeamSwiper: React.FC<TeamSwiperProps> = ({ items }) => {
     dots: true,
     dotsClass: 'button__bar_team',
     infinite: false,
-    slidesToShow: items?.length,
-    slidesToScroll: 4,
+    slidesToShow: Math.min(4, items.length),
     centerMode: false,
     variableWidth: false,
     vertical: false,
+    responsive: [
+      {
+        breakpoint: 1300,
+        settings: {
+          slidesToShow: Math.min(4, items.length),
+          slidesToScroll: 4,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: Math.min(3, items.length),
+          slidesToScroll: 3,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: Math.min(2, items.length),
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: Math.min(1, items.length),
+          slidesToScroll: 1,
+        },
+      },
+    ],
   }
 
   return (
@@ -24,7 +53,7 @@ const TeamSwiper: React.FC<TeamSwiperProps> = ({ items }) => {
         {items?.length > 0 ? (
           items.map((item: any, index: number) => (
             <div
-              className="w- group relative mr-[30px] flex h-[278px] overflow-hidden rounded-[12px] lg:max-w-[308px]"
+              className="group relative flex h-[278px] min-w-[300px] overflow-hidden rounded-[12px] lg:max-w-[308px]"
               key={index}
             >
               <div

@@ -95,12 +95,13 @@
   }
 
   .button__bar_team {
-    display: inline-block;
+    display: flex;
+    flex-direction: row;
     vertical-align: middle;
     margin: auto;
     padding: 0;   
     border-radius: 40px;
-    width: 70px;
+    width: auto;
     text-align: center;
     z-index: 50;
   }
@@ -115,6 +116,9 @@
 
   .button__bar_team  ul {
     height: 0px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
   }
   
   .button__bar_team  li button {
@@ -141,7 +145,6 @@
   }
 
   .slick-slider.slick-initialized {
-    gap: 30px;
     justify-content:space-between;
     width: 100vw;
     height: 100%;

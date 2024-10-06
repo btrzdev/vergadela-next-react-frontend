@@ -32,13 +32,14 @@ const ServicesVergadela: React.FC<ServicesVergadelaProps> = ({
   const customComponents = {
     p: ({ ...props }) => (
       <p
-        className="flex flex-col items-center justify-center font-roboto text-[14px] font-light leading-[24px] text-medium-gray lg:flex-row"
+        className="flex flex-col items-center justify-center font-roboto text-[14px] font-light leading-[24px] text-medium-gray lg:flex-row lg:justify-between"
         {...props}
       />
     ),
     img: ({ ...props }) => (
       <img
         className="h-auto w-full md:w-[300px] lg:mr-4 lg:min-h-[326px] lg:min-w-[450px] xl:max-w-[474px]"
+        src={getStrapiMedia(props.src) || undefined}
         {...props}
       />
     ),

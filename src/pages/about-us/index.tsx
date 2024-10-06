@@ -28,7 +28,7 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
   // console.log('Attributes servicesTypes', servicesTypes)
   // console.log('Attributes projects', projects)
   // console.log('Attributes projectTypes', projectsType)
-  const [isPlaying, setIsPlaying] = useState(false) // Control video state
+  const [isPlaying, setIsPlaying] = useState(false)
   const [chronologyItems, setChronologyItems] = useState(
     attributes?.chronology?.items
   )
@@ -382,7 +382,7 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
             </div>
             <h2 className="text-[34px] font-medium">Os nossos serviços</h2>
           </div>
-          <div className="flex w-full flex-col items-center lg:flex-row">
+          <div className="flex w-full max-w-[1440px] flex-col items-center lg:flex-row">
             {servicesTypes.map((item: any, index: number) => (
               <ProjectTypeCardAbout
                 key={index}
@@ -398,8 +398,8 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
       </div>
 
       {/* our team section */}
-      <div className="mt-0 w-full pl-[7%] pt-[100px] lg:mt-[300px] lg:pt-0">
-        <div className="flex flex-col">
+      <div className="mt-0 w-full max-w-[1440px] pl-[7%] pt-[100px] lg:mt-[300px] lg:px-[7%] lg:pt-0">
+        <div className="flex w-full flex-col">
           <div className="flex items-center gap-[10px]">
             <div className="h-[1px] w-[53px] bg-primary-yellow" />
             <span className="text-sm font-normal uppercase text-primary-yellow">
@@ -407,7 +407,7 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
             </span>
           </div>
           <h2 className="text-[34px] font-medium">Nossa Equipa</h2>
-          <div className="scrollbar-hide flex h-[400px] w-full items-center overflow-y-hidden">
+          <div className="scrollbar-hide flex h-[400px] w-full items-center overflow-y-hidden lg:overflow-x-hidden">
             <TeamSwiper items={attributes?.team?.teamMember} />
           </div>
         </div>
@@ -415,7 +415,7 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
 
       {/* recent projects section */}
       <div className="relative w-full max-w-[1440px] overflow-x-auto pl-[7%] pt-[100px] lg:px-[7%]">
-        <div className="flex flex-col overflow-x-auto">
+        <div className="flex w-full flex-col overflow-x-auto">
           <div className="flex items-center gap-[10px]">
             <div className="h-[1px] w-[53px] bg-primary-yellow" />
             <span className="text-sm font-normal uppercase text-primary-yellow">
@@ -466,19 +466,17 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
         </div>
       </div>
       {/* curiosity */}
-      <div className="flex w-full max-w-[1440px] items-center justify-center px-[7%]">
-        <div className="flex h-[694px] flex-col items-center py-[99px] pb-0">
-          <div className="w-full">
-            <div className="flex items-center gap-[10px]">
-              <div className="h-[1px] w-[53px] bg-primary-yellow font-medium" />
-              <span className="text-sm font-normal uppercase text-primary-yellow">
-                {attributes?.curiositySection?.title}
-              </span>
-            </div>
-            <h2 className="mb-[26px] text-[34px] font-medium">
-              {attributes?.curiositySection?.subtitle}
-            </h2>
+      <div className="relative w-full max-w-[1440px] overflow-x-auto pl-[7%] pt-[100px] lg:px-[7%]">
+        <div className="flex w-full flex-col overflow-x-auto">
+          <div className="flex items-center gap-[10px]">
+            <div className="h-[1px] w-[53px] bg-primary-yellow" />
+            <span className="text-sm font-normal uppercase text-primary-yellow">
+              {attributes?.curiositySection?.title}
+            </span>
           </div>
+          <h2 className="text-[34px] font-medium">
+            {attributes?.curiositySection?.subtitle}
+          </h2>
           <div className="scrollbar-hide flex justify-between gap-[20px] overflow-x-auto overflow-y-hidden">
             {attributes?.curiositySection?.curiosity?.map(
               (
