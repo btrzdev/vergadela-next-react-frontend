@@ -152,7 +152,7 @@ const IndividualNews: React.FC<NewsProps> = ({ attributes, news, slug }) => {
             )}
           </div>
         </div>
-        <div className="flex h-[800px] w-full flex-col">
+        <div className="flex h-auto w-full flex-col">
           <div className="mb-[50px] flex justify-between px-[7%] pt-[51px]">
             <div className="flex gap-[11px]">
               <Image
