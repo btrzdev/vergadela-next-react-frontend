@@ -17,7 +17,7 @@ const ProjectList: React.FC<ProjectListProps> = ({
   slug,
   projectTypes,
 }) => {
-  // console.log('Atributes projectlist', attributes)
+  console.log('Atributes projectlist', attributes)
   // console.log('Atributes projectTypes', projectTypes)
 
   const [projectType, selectProjectType] = useState(
@@ -83,7 +83,7 @@ const ProjectList: React.FC<ProjectListProps> = ({
           ))}
         </div>
       </div>
-      <div className="flex flex-col pb-[335px]">
+      <div className="flex flex-col">
         <div className="flex">
           <ProjectCard
             slug={slug}
@@ -125,7 +125,7 @@ const ProjectList: React.FC<ProjectListProps> = ({
           />
         </div>
       </div>
-      <div className="flex">
+      <div className="mt-[53px] flex items-center justify-center pb-[300px]">
         <Link href={''} className="text-[16px] font-normal">
           MAIS PROJETOS
         </Link>

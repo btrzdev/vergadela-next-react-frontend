@@ -1,6 +1,13 @@
+import getContactPage from '@/services/getContactPage'
+import { getStrapiMedia } from '@/utils/api-helpers'
 import Image from 'next/image'
+import { GetServerSidePropsContext } from 'next/types'
 
-const Contact = () => {
+interface ContactProps {
+  attributes: any
+}
+const Contact: React.FC<ContactProps> = ({ attributes }) => {
+  console.log('Attributes', attributes)
   return (
     <main
       className={`flex min-h-screen flex-col items-center justify-between overflow-hidden bg-white`}
@@ -8,15 +15,20 @@ const Contact = () => {
       <div className="flex h-full w-full max-w-[1440px] flex-col bg-white pb-[196px]">
         <div className="flex flex-col items-center justify-center">
           <h1 className="font-glittenCaps text-[70px] font-normal text-black">
-            Contactos
+            {attributes?.title}
           </h1>
           <hr className="h-[2px] w-[87px] bg-primary-yellow" />
         </div>
         <div className="flex flex-col-reverse items-center justify-center gap-[40px] pt-[106px] lg:flex-row lg:pr-[7%]">
-          <div className="max-h-[591px] min-h-[579px] w-full min-w-[400px] rounded-none bg-[url('/contactFormImage.png')] bg-cover lg:w-1/2 lg:rounded-r-[14px] xl:rounded-[14px]" />
+          <div
+            className={`max-h-[591px] min-h-[579px] w-full min-w-[400px] rounded-none bg-cover lg:w-1/2 lg:rounded-r-[14px] xl:rounded-[14px]`}
+            style={{
+              backgroundImage: `url(${getStrapiMedia(attributes?.image?.data?.attributes?.url)})`,
+            }}
+          />
           <form className="flex w-full flex-col items-center justify-center px-[10%] lg:w-1/2">
             <h2 className="mb-[49px] text-[35px] font-semibold text-primary-dark">
-              Agende sua reunião!
+              {attributes?.titleForm}
             </h2>
             <div className="flex w-full flex-col justify-center gap-[40px]">
               <input
@@ -54,3 +66,14 @@ const Contact = () => {
 }
 
 export default Contact
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const data = await getContactPage()
+  const attributes = data?.data
+
+  return {
+    props: {
+      attributes: attributes?.data?.attributes,
+    },
+  }
+}

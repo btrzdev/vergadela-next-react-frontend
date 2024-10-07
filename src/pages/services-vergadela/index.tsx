@@ -38,7 +38,7 @@ const ServicesVergadela: React.FC<ServicesVergadelaProps> = ({
     ),
     img: ({ ...props }) => (
       <img
-        className="h-auto w-full md:w-[300px] lg:mr-4 lg:min-h-[326px] lg:min-w-[450px] xl:max-w-[474px]"
+        className="h-auto w-full md:w-[300px] lg:mr-4 lg:h-[180px] lg:w-full xl:h-[230px] 2xl:h-[300px]"
         src={getStrapiMedia(props.src) || undefined}
         {...props}
       />
@@ -149,10 +149,7 @@ const ServicesVergadela: React.FC<ServicesVergadelaProps> = ({
               const containsImage = children.includes('<img')
 
               return (
-                <div
-                  key={key}
-                  className={`flex ${containsImage ? 'flex-row' : 'flex-row'}`}
-                >
+                <div key={key}>
                   <Markdown
                     remarkPlugins={[remarkBreaks]}
                     rehypePlugins={[rehypeRaw]}

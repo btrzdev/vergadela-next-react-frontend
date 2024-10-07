@@ -13,8 +13,6 @@ interface NewsProps {
 }
 
 const News: React.FC<NewsProps> = ({ attributes, news }) => {
-  const newsTags = news?.map((item: any) => item?.attributes?.tag)
-
   const [searchTerm, setSearchTerm] = useState('')
   const [filteredItems, setFilteredItems] = useState(news)
   const [searchByTag, setSearchByTag] = useState('')
@@ -57,7 +55,6 @@ const News: React.FC<NewsProps> = ({ attributes, news }) => {
 
   return (
     <div className="flex w-screen flex-col overflow-hidden">
-      {/* Header Section */}
       <div className="relative mb-[78px] flex min-h-[500px] items-center overflow-hidden lg:min-h-[872px]">
         <div
           className="absolute inset-0"
@@ -88,140 +85,134 @@ const News: React.FC<NewsProps> = ({ attributes, news }) => {
         </div>
       </div>
 
-      {/* Main Section */}
-      <div className="mb-[132px] flex w-full flex-col justify-between px-[7%] lg:flex-row">
-        {/* News Cards Section */}
-        <div className="flex flex-col">
-          {/* Tag Filtering */}
-          <div className="mb-[69px] lg:hidden">
-            <h2 className="mb-[19px] text-[23px] font-semibold">TAGS</h2>
-            <div className="flex w-full flex-wrap gap-[24px]">
-              {news.map((item: any, index: any) => (
-                <span
-                  key={`${item}-${index}`}
-                  onClick={() => handleSpanClick(item?.attributes?.tag)}
-                  className={`flex h-[32px] w-max items-center justify-center rounded-[2px] px-[18px] py-[9px] text-center text-sm font-semibold ${
-                    searchByTag === item?.attributes?.tag
-                      ? 'bg-medium-gray text-white'
-                      : 'border border-medium-gray bg-white text-medium-gray'
-                  } cursor-pointer`}
-                >
-                  {item?.attributes?.tag?.toUpperCase()}
-                </span>
-              ))}
+      <div className="flex w-full flex-col items-center justify-center">
+        <div className="mb-[132px] flex w-full max-w-[1440px] flex-col justify-center justify-between px-[7%] lg:flex-row">
+          <div className="flex flex-col">
+            <div className="mb-[69px] lg:hidden">
+              <h2 className="mb-[19px] text-[23px] font-semibold">TAGS</h2>
+              <div className="flex w-full flex-wrap gap-[24px]">
+                {news.map((item: any, index: any) => (
+                  <span
+                    key={`${item}-${index}`}
+                    onClick={() => handleSpanClick(item?.attributes?.tag)}
+                    className={`flex h-[32px] w-max items-center justify-center rounded-[2px] px-[18px] py-[9px] text-center text-sm font-semibold ${
+                      searchByTag === item?.attributes?.tag
+                        ? 'bg-medium-gray text-white'
+                        : 'border border-medium-gray bg-white text-medium-gray'
+                    } cursor-pointer`}
+                  >
+                    {item?.attributes?.tag?.toUpperCase()}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="flex flex-col gap-[67px]">
-          {paginatedNews.map((item: any, index: any) => (
-            <Link href={`/news/${item?.id}`} key={`${item}-${index}`}>
-              <NewsCard
-                key={`${item}-${index}`}
-                newsTitle={item?.attributes?.preview?.title}
-                imageSrc={
-                  item?.attributes?.preview?.image?.data?.attributes?.url
-                }
-                newsContent={
-                  'Worem ipsum dolor sit amet, consectetur adipiscing elit...'
-                }
-                tag={item?.attributes?.tag}
-                date={'6 DE MAIO, 2022'}
-              />
-            </Link>
-          ))}
-
-          {/* Pagination Section */}
-          <div className="flex justify-center gap-2">
-            {/* Previous Button */}
-            <button
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              className="rotate-180 bg-transparent hover:cursor-pointer"
-            >
-              <img
-                src="/icons/nextPageButton.svg"
-                className="h-[32px] w-[40px]"
-              />
-            </button>
-
-            {/* Page Numbers */}
-            {Array.from({ length: totalPages }, (_, index) => (
-              <button
-                key={index}
-                onClick={() => handlePageChange(index + 1)}
-                className={`px-4 py-2 ${
-                  currentPage === index + 1
-                    ? 'bg-black text-white'
-                    : 'bg-gray-300 text-black'
-                } rounded`}
-              >
-                {index + 1}
-              </button>
+          <div className="flex w-full flex-col gap-[67px]">
+            {paginatedNews.map((item: any, index: any) => (
+              <Link href={`/news/${item?.id}`} key={`${item}-${index}`}>
+                <NewsCard
+                  key={`${item}-${index}`}
+                  newsTitle={item?.attributes?.preview?.title}
+                  imageSrc={
+                    item?.attributes?.preview?.image?.data?.attributes?.url
+                  }
+                  newsContent={
+                    'Worem ipsum dolor sit amet, consectetur adipiscing elit...'
+                  }
+                  tag={item?.attributes?.tag}
+                  date={'6 DE MAIO, 2022'}
+                />
+              </Link>
             ))}
 
-            {/* Next Button */}
-            <button
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              className="bg-transparent hover:cursor-pointer"
-            >
-              <img
-                src="/icons/nextPageButton.svg"
-                className="h-[32px] w-[40px]"
-              />
-            </button>
-          </div>
-        </div>
+            <div className="flex justify-center gap-2">
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="rotate-180 bg-transparent hover:cursor-pointer"
+              >
+                <img
+                  src="/icons/nextPageButton.svg"
+                  className="h-[32px] w-[40px]"
+                />
+              </button>
 
-        <div className="flex flex-col px-[7%]">
-          <div className="mb-[69px]">
-            <input
-              className="focus:border-b-1 hidden w-full border-b border-gray-300 pb-[8px] placeholder:text-[12px] focus:border-gray-300 focus:outline-none lg:flex"
-              placeholder="Pesquisar"
-              value={searchTerm}
-              onChange={handleSearch}
-            />
-          </div>
-
-          {/* Tag Filtering */}
-          <div className="mb-[69px] hidden lg:flex lg:flex-col">
-            <h2 className="mb-[19px] text-[23px] font-semibold">TAGS</h2>
-            <div className="flex w-full flex-wrap gap-[24px]">
-              {news.map((item: any, index: any) => (
-                <span
-                  key={`${item}-${index}`}
-                  onClick={() => handleSpanClick(item?.attributes?.tag)}
-                  className={`flex h-[32px] w-max items-center justify-center rounded-[2px] px-[18px] py-[9px] text-center text-sm font-semibold ${
-                    searchByTag === item?.attributes?.tag
-                      ? 'bg-medium-gray text-white'
-                      : 'border border-medium-gray bg-white text-medium-gray'
-                  } cursor-pointer`}
+              {Array.from({ length: totalPages }, (_, index) => (
+                <button
+                  key={index}
+                  onClick={() => handlePageChange(index + 1)}
+                  className={`px-4 py-2 ${
+                    currentPage === index + 1
+                      ? 'bg-black text-white'
+                      : 'bg-gray-300 text-black'
+                  } rounded`}
                 >
-                  {item?.attributes?.tag?.toUpperCase()}
-                </span>
+                  {index + 1}
+                </button>
               ))}
+
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="bg-transparent hover:cursor-pointer"
+              >
+                <img
+                  src="/icons/nextPageButton.svg"
+                  className="h-[32px] w-[40px]"
+                />
+              </button>
             </div>
           </div>
 
-          {/* Recent News Section */}
-          <div className="mb-0 w-full lg:mb-[132px]">
-            <h2 className="no-break mb-[19px] text-[23px] font-semibold">
-              OUTRAS NOTÍCIAS
-            </h2>
-            <div className="flex flex-col gap-[24px]">
-              {news.map((item: any, index: any) => (
-                <Link href={`/news/${item?.id}`} key={`${item}-${index}`}>
-                  <RecentNewsCard
+          <div className="flex flex-col px-[7%]">
+            <div className="mb-[69px]">
+              <input
+                className="focus:border-b-1 hidden w-full border-b border-gray-300 pb-[8px] placeholder:text-[12px] focus:border-gray-300 focus:outline-none lg:flex"
+                placeholder="Pesquisar"
+                value={searchTerm}
+                onChange={handleSearch}
+              />
+            </div>
+
+            <div className="mb-[69px] hidden lg:flex lg:flex-col">
+              <h2 className="mb-[19px] text-[23px] font-semibold">TAGS</h2>
+              <div className="flex w-full flex-wrap gap-[24px]">
+                {news.map((item: any, index: any) => (
+                  <span
                     key={`${item}-${index}`}
-                    newsDate={'6 DE MAIO, 2022'}
-                    newsTitle={item?.attributes?.preview?.title}
-                    imgUrl={
-                      item?.attributes?.preview?.image?.data?.attributes?.url
-                    }
-                  />
-                </Link>
-              ))}
+                    onClick={() => handleSpanClick(item?.attributes?.tag)}
+                    className={`flex h-[32px] w-max items-center justify-center rounded-[2px] px-[18px] py-[9px] text-center text-sm font-semibold ${
+                      searchByTag === item?.attributes?.tag
+                        ? 'bg-medium-gray text-white'
+                        : 'border border-medium-gray bg-white text-medium-gray'
+                    } cursor-pointer`}
+                  >
+                    {item?.attributes?.tag?.toUpperCase()}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Recent News Section */}
+            <div className="mb-0 w-full lg:mb-[132px]">
+              <h2 className="no-break mb-[19px] text-[23px] font-semibold">
+                OUTRAS NOTÍCIAS
+              </h2>
+              <div className="flex flex-col gap-[24px]">
+                {news.map((item: any, index: any) => (
+                  <Link href={`/news/${item?.id}`} key={`${item}-${index}`}>
+                    <RecentNewsCard
+                      key={`${item}-${index}`}
+                      newsDate={'6 DE MAIO, 2022'}
+                      newsTitle={item?.attributes?.preview?.title}
+                      imgUrl={
+                        item?.attributes?.preview?.image?.data?.attributes?.url
+                      }
+                    />
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>

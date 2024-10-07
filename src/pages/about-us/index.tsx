@@ -382,7 +382,7 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
             </div>
             <h2 className="text-[34px] font-medium">Os nossos serviços</h2>
           </div>
-          <div className="flex w-full max-w-[1440px] flex-col items-center lg:flex-row">
+          <div className="flex w-full flex-col items-center lg:flex-row">
             {servicesTypes.map((item: any, index: number) => (
               <ProjectTypeCardAbout
                 key={index}
@@ -529,7 +529,7 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
       </div>
 
       {/* partinershipSection */}
-      <div className="flex h-[250px] w-full flex-col items-start justify-center overflow-hidden lg:h-[526px] lg:items-center">
+      <div className="flex h-[250px] w-full max-w-[1440px] flex-col items-start justify-center overflow-hidden lg:h-[526px] lg:items-center">
         <h3 className="mb-[76px] pl-[7%] text-[35px] font-medium leading-[41px]">
           Parcerias
         </h3>
@@ -542,13 +542,13 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
               },
               index: any
             ) => (
-              <div key={`${item}-${index}`} className="flex-shrink-0">
+              <div key={`${item}-${index}`} className="">
                 <Link
                   href={item?.href}
-                  className="flex items-center justify-center"
+                  className="flex items-center justify-between"
                 >
                   <Image
-                    className="h-[49px] w-auto"
+                    className="max-h-[49px] w-auto"
                     src={
                       `${getStrapiMedia(item?.image?.data?.attributes?.url)}` ??
                       ''
