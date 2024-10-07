@@ -22,6 +22,7 @@ import ProjectTypeCardAbout from '@/components/ProjectTypes/ProjectTypes'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import getServices from '@/services/getServices'
+import TeamSlider from '@/components/AboutUs/TeamSlider'
 const ReactPlayer = dynamic(() => import('react-player'), { ssr: false })
 
 export default function AboutUs({ attributes, projects, servicesTypes }: any) {
@@ -408,7 +409,8 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
           </div>
           <h2 className="text-[34px] font-medium">Nossa Equipa</h2>
           <div className="scrollbar-hide flex h-[400px] w-full items-center overflow-y-hidden lg:overflow-x-hidden">
-            <TeamSwiper items={attributes?.team?.teamMember} />
+            <TeamSlider items={attributes?.team?.teamMember} />
+            {/* <TeamSwiper items={attributes?.team?.teamMember} /> */}
           </div>
         </div>
       </div>
@@ -477,7 +479,7 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
           <h2 className="text-[34px] font-medium">
             {attributes?.curiositySection?.subtitle}
           </h2>
-          <div className="scrollbar-hide flex justify-between gap-[20px] overflow-x-auto overflow-y-hidden">
+          <div className="scrollbar-hide flex h-[400px] w-full items-center gap-[20px] overflow-x-hidden">
             {attributes?.curiositySection?.curiosity?.map(
               (
                 item: {
@@ -498,7 +500,7 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
               ) => (
                 <div
                   key={index}
-                  className="group flex h-[396px] w-[420px] min-w-[300px] flex-col overflow-hidden rounded-lg"
+                  className="group flex h-[396px] min-w-[300px] flex-col overflow-hidden rounded-lg lg:w-1/3 xl:w-[420px]"
                 >
                   <div className="items-left flex h-1/2 w-full flex-col justify-start gap-[23px] rounded-t-lg bg-primary-green py-[32px] pl-[20px]">
                     <p className="max-w-[252px] text-[26px] font-medium leading-[30.47px] text-white">

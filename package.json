@@ -28,7 +28,8 @@
     "reactjs-carousel-slider": "^1.0.5",
     "rehype-raw": "^7.0.0",
     "remark-breaks": "^4.0.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "swiper": "^11.1.14"
   },
   "devDependencies": {
     "@types/node": "^20",

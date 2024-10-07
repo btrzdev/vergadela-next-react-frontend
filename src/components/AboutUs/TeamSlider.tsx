@@ -1,59 +1,45 @@
 import { getStrapiMedia } from '@/utils/api-helpers'
 import React from 'react'
-import Slider from 'react-slick'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/pagination'
 
 type TeamSwiperProps = {
   items: any[]
 }
+import { Pagination } from 'swiper/modules'
 
-const TeamSwiper: React.FC<TeamSwiperProps> = ({ items }) => {
-  const settings = {
-    dots: true,
-    dotsClass: 'button__bar_team',
-    infinite: false,
-    slidesToShow: Math.min(4, items.length),
-    centerMode: false,
-    variableWidth: false,
-    vertical: false,
-    responsive: [
-      {
-        breakpoint: 1300,
-        settings: {
-          slidesToShow: Math.min(4, items.length),
-          slidesToScroll: 4,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: Math.min(3, items.length),
-          slidesToScroll: 3,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: Math.min(2, items.length),
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: Math.min(1, items.length),
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  }
-
+const TeamSlider: React.FC<TeamSwiperProps> = ({ items }) => {
   return (
-    <div className="slider-container">
-      <Slider {...settings}>
-        {items?.length > 0 ? (
-          items.map((item: any, index: number) => (
+    <Swiper
+      pagination={{
+        dynamicBullets: true,
+        clickable: true,
+      }}
+      spaceBetween={30}
+      modules={[Pagination]}
+      className="mySwiper"
+      breakpoints={{
+        320: {
+          slidesPerView: 1,
+        },
+        640: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
+        1440: {
+          slidesPerView: 4,
+        },
+      }}
+    >
+      {items?.length > 0 ? (
+        items.map((item: any, index: number) => (
+          <SwiperSlide>
+            {' '}
             <div
-              className="group relative flex h-[278px] w-[220px] overflow-hidden rounded-[12px] pr-[30px] lg:max-w-[250px] lg:pr-[10px] xl:pr-0"
+              className="xl:[308px] group relative flex h-[278px] w-[250px] overflow-hidden rounded-[12px] pr-0"
               key={index}
             >
               <div
@@ -91,15 +77,15 @@ const TeamSwiper: React.FC<TeamSwiperProps> = ({ items }) => {
                 </div>
               </div>
             </div>
-          ))
-        ) : (
-          <div className="flex h-full w-full items-center justify-center">
-            No items available
-          </div>
-        )}
-      </Slider>
-    </div>
+          </SwiperSlide>
+        ))
+      ) : (
+        <div className="flex h-full w-full items-center justify-center">
+          No items available
+        </div>
+      )}
+    </Swiper>
   )
 }
 
-export default TeamSwiper
+export default TeamSlider
