@@ -36,7 +36,7 @@ const TeamSlider: React.FC<TeamSwiperProps> = ({ items }) => {
     >
       {items?.length > 0 ? (
         items.map((item: any, index: number) => (
-          <SwiperSlide>
+          <SwiperSlide key={index}>
             {' '}
             <div
               className="xl:[308px] group relative flex h-[278px] w-[250px] overflow-hidden rounded-[12px] pr-0"
