@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps, attributes }: any) {
       ) : (
         <LightNavBar links={attributes?.attributes} />
       )}
-      <main>
+      <main className={`${roboto.className}`}>
         <Component {...pageProps} />
       </main>
       {noFooterRoute !== router.pathname ? (

@@ -23,7 +23,13 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import getServices from '@/services/getServices'
 import TeamSlider from '@/components/AboutUs/TeamSlider'
+import { Roboto } from 'next/font/google'
 const ReactPlayer = dynamic(() => import('react-player'), { ssr: false })
+
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '700'],
+})
 
 export default function AboutUs({ attributes, projects, servicesTypes }: any) {
   // console.log('Attributes servicesTypes', servicesTypes)
@@ -72,7 +78,9 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
   }, [])
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div
+      className={`flex flex-col ${roboto?.className} items-center justify-center`}
+    >
       <div className="flex w-screen">
         <div
           className="flex h-[872px] w-full items-center justify-center rounded-[4px]"
@@ -235,29 +243,29 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
                   <div
                     className={`h-[126px] w-[2px] bg-gradient-to-t ${item?.year === selectedYear ? 'from-primary-yellow' : 'from-black'} to-white"`}
                   ></div>
-                  <span
-                    className={`${item?.year === selectedYear ? 'text-primary-yellow' : 'text-black'} mt-2`}
+                  <p
+                    className={`${item?.year === selectedYear ? 'text-primary-yellow' : 'text-black'} mt-2 max-w-[150px] text-center`}
                   >
                     {item?.subtitle}
-                  </span>{' '}
+                  </p>{' '}
                 </div>
                 <div
                   className={`absolute flex flex-col items-center justify-center ${index % 2 === 0 ? 'bottom-9' : 'bottom-0'}`}
                 >
-                  <span
+                  <p
                     className={`text-[24px] font-semibold ${item?.year === selectedYear ? 'text-primary-yellow' : 'text-black'} ${index % 2 !== 0 ? 'hidden' : 'flex'}`}
                   >
                     {item?.year}
-                  </span>
+                  </p>
                   <button
                     className={`z-10 h-[26px] w-[26px] rounded-full bg-black ${item?.year === selectedYear ? 'bg-primary-yellow' : 'bg-black'}`}
                     onClick={() => setSelectedYear(item?.year)}
                   ></button>
-                  <span
+                  <p
                     className={`text-[24px] font-semibold ${item?.year === selectedYear ? 'text-primary-yellow' : 'text-black'} ${index % 2 !== 0 ? 'flex' : 'hidden'}`}
                   >
                     {item?.year}
-                  </span>
+                  </p>
                 </div>
 
                 <div
@@ -266,11 +274,11 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
                   <div
                     className={`h-[126px] w-[2px] ${index % 2 !== 0 ? 'bg-gradient-to-t' : 'bg-gradient-to-b'} ${item?.year === selectedYear ? 'from-primary-yellow' : 'from-black'} to-white"`}
                   ></div>
-                  <span
-                    className={`text-[16px] ${item?.year === selectedYear ? 'text-primary-yellow' : 'text-black'} mt-2`}
+                  <p
+                    className={`max-w-[150px] text-center text-[16px] ${item?.year === selectedYear ? 'text-primary-yellow' : 'text-black'} mt-2`}
                   >
                     {item?.subtitle}
-                  </span>{' '}
+                  </p>{' '}
                 </div>
               </div>
             ))}
@@ -279,16 +287,16 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
         <div className="-mt-[100px] hidden h-[2px] w-full bg-gradient-to-r from-transparent via-black to-transparent lg:flex"></div>
 
         <div className="mt-[290px] hidden w-full max-w-[1095] flex-col justify-center gap-[10%] px-[7%] lg:flex lg:flex-row">
-          <div className="flex w-full flex-col justify-end lg:max-w-[420px]">
-            <span className="text-[24px] font-semibold text-primary-yellow">
+          <div className="flex w-full flex-col justify-between lg:max-w-[420px]">
+            <p className="text-[24px] font-semibold text-primary-yellow">
               {filteredCronologyItemByYear[0]?.year}
-            </span>
-            <span className="text-left text-[34px] font-medium text-[#1D1C1B]">
+            </p>
+            <p className="text-left text-[34px] font-medium text-[#1D1C1B]">
               {filteredCronologyItemByYear[0]?.title}
-            </span>
-            <span className="text-[14px] font-normal leading-[26px] text-[#1D1C1B]">
+            </p>
+            <p className="text-[14px] font-normal leading-[26px] text-[#1D1C1B]">
               {filteredCronologyItemByYear[0]?.description}
-            </span>
+            </p>
           </div>
           <div
             className="mt-[50px] flex h-[368px] w-[562px] w-full max-w-[562px] items-center justify-center rounded-[14px] lg:mt-0"
@@ -407,7 +415,7 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
               PROFISSIONAIS
             </span>
           </div>
-          <h2 className="text-[34px] font-medium">Nossa Equipa</h2>
+          <h2 className="roboto text-[34px] font-medium">Nossa equipa</h2>
           <div className="scrollbar-hide flex h-[400px] w-full items-center overflow-y-hidden lg:overflow-x-hidden">
             <TeamSlider items={attributes?.team?.teamMember} />
             {/* <TeamSwiper items={attributes?.team?.teamMember} /> */}
@@ -544,23 +552,20 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
               },
               index: any
             ) => (
-              <div key={`${item}-${index}`} className="">
-                <Link
-                  href={item?.href}
-                  className="flex items-center justify-between"
-                >
-                  <Image
-                    className="max-h-[49px] w-auto"
-                    src={
-                      `${getStrapiMedia(item?.image?.data?.attributes?.url)}` ??
-                      ''
-                    }
-                    width={74}
-                    height={74}
-                    alt={''}
-                  />
-                </Link>
-              </div>
+              <Link
+                key={`${item}-${index}`}
+                href={item?.href}
+                className="flex items-center"
+              >
+                <img
+                  className="w-auto max-w-[236px]"
+                  src={
+                    `${getStrapiMedia(item?.image?.data?.attributes?.url)}` ??
+                    ''
+                  }
+                  alt={''}
+                />
+              </Link>
             )
           )}
         </div>
