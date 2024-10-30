@@ -9,7 +9,6 @@ const NavBar = ({ links }: any) => {
     setIsNavOpen(!isNavOpen)
   }
 
-  // Disable body scroll when the navbar is open
   useEffect(() => {
     if (isNavOpen) {
       document.body.style.overflow = 'hidden'
@@ -17,7 +16,6 @@ const NavBar = ({ links }: any) => {
       document.body.style.overflow = 'auto'
     }
 
-    // Clean up the effect when the component unmounts
     return () => {
       document.body.style.overflow = 'auto'
     }
@@ -75,7 +73,7 @@ const NavBar = ({ links }: any) => {
           className="fixed left-0 top-0 z-0 flex h-full w-screen animate-slideFromTop flex-col items-center justify-center overflow-hidden text-white"
         >
           <div className="fixed absolute top-0 z-50 flex h-[149px] w-full items-center justify-center overflow-hidden bg-transparent px-[5%]">
-            <button className="" onClick={toggleNav}>
+            <button className="hover:brightness-50" onClick={toggleNav}>
               <Image
                 height={20}
                 width={20}
@@ -90,35 +88,35 @@ const NavBar = ({ links }: any) => {
                 <Link
                   href="/about-us"
                   onClick={toggleNav}
-                  className="hover:text-primary-yellow"
+                  className="text-primary-yellow hover:brightness-50"
                 >
                   Sobre nós
                 </Link>
                 <Link
                   href="/services-vergadela"
                   onClick={toggleNav}
-                  className="hover:text-primary-yellow"
+                  className="text-primary-yellow hover:brightness-50"
                 >
                   Serviços
                 </Link>
                 <Link
                   href="/project-types"
                   onClick={toggleNav}
-                  className="hover:text-primary-yellow"
+                  className="text-primary-yellow hover:brightness-50"
                 >
                   Projetos
                 </Link>
                 <Link
                   href="/news"
                   onClick={toggleNav}
-                  className="hover:text-primary-yellow"
+                  className="text-primary-yellow hover:brightness-50"
                 >
                   Notícias
                 </Link>
                 <Link
                   href="/contact"
                   onClick={toggleNav}
-                  className="hover:text-primary-yellow"
+                  className="text-primary-yellow hover:brightness-50"
                 >
                   Contactos
                 </Link>

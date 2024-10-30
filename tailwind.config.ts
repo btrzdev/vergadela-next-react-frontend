@@ -24,11 +24,21 @@ const config: Config = {
           '0%': { transform: 'translateY(-100%)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
+        slideFromBottom: {
+          '0%': { transform: 'translateY(100%)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        pushToTop: {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(-30px)' },
+        },
       },
       animation: {
         slideInLeft: 'slideInLeft 1s forwards',
         slideInRight: 'slideInRight 1s forwards',
         slideFromTop: 'slideFromTop 0.5s ease-out forwards',
+        slideFromBottom: 'slideFromBottom 0.3s ease-out forwards',
+        pushToTop: 'pushToTop 0.9s ease-out forwards',
       },
       backgroundImage: {
         footer: "url('/bg_footer.png')",

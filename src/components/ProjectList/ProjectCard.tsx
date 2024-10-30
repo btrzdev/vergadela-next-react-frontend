@@ -46,7 +46,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                 width={10}
                 height={22}
               />
-              <span className="text-[16px] text-primary-yellow">{type}</span>
+              <span className="text-[16px] uppercase text-primary-yellow">
+                {type}
+              </span>
             </div>
             <h4 className="font-glittenCaps text-[28px] text-white">
               Lorem Ipsum

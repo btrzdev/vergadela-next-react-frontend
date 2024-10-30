@@ -555,16 +555,20 @@ export default function AboutUs({ attributes, projects, servicesTypes }: any) {
               <Link
                 key={`${item}-${index}`}
                 href={item?.href}
-                className="flex items-center"
+                className="group flex h-full flex-col items-center justify-between gap-[10px] py-[40px]"
               >
                 <img
-                  className="w-auto max-w-[236px]"
+                  className="w-auto max-w-[236px] transform transition-transform duration-500 group-hover:translate-y-[-0.5rem]"
                   src={
                     `${getStrapiMedia(item?.image?.data?.attributes?.url)}` ??
                     ''
                   }
-                  alt={''}
+                  alt=""
                 />
+                <span className="max-w-[70%] translate-y-10 transform text-[14px] opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                  Protocolo focado na atribuição de um desconto a todos os seus
+                  associados em cerca de 7,5%
+                </span>
               </Link>
             )
           )}
